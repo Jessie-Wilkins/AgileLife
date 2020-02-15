@@ -11,7 +11,10 @@ pipeline {
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
-                sh './gradlew build'
+                withGradle {
+                    sh './gradlew build'
+                }
+                
             }
         }
     }
