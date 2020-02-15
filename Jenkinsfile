@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        gradle "android_gradle"
+    }
     stages {
         stage('Build') {
             steps {
