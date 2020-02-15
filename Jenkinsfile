@@ -12,7 +12,7 @@ pipeline {
                     ls -lah
                 '''
                 withGradle {
-                    sh './gradlew build'
+                    sh 'echo $GRADLE_HOME'
                 }
                 
             }
