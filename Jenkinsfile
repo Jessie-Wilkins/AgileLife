@@ -11,9 +11,7 @@ pipeline {
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
-                withGradle {
-                    sh 'echo $GRADLE_HOME'
-                }
+                sh 'gradle --version'
                 
             }
         }
