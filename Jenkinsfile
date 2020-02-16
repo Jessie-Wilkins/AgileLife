@@ -3,14 +3,12 @@ pipeline {
     tools {
         gradle "android_gradle"
     }
+    environment {
+        S
+    }
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Hello World"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
-                '''
                 sh 'MyApplication/gradlew assembleDebug -p MyApplication/'
                 
             }
