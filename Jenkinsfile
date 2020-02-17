@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'MyApplication/gradlew assembleDebug -p MyApplication/'
-                sh "${ANDROID_SK_ROOT}avdmanager -h"
+                sh "${ANDROID_SDK_ROOT}avdmanager -h"
             }
         }
     }
