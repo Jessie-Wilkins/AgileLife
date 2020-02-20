@@ -3,7 +3,7 @@ pipeline {
     environment {
         ANDROID_SDK_TOOLS = '/home/jessie/Android/Sdk/tools'
         ANDROID_SDK_TOOLS_BIN = '/home/jessie/Android/Sdk/tools/bin'
-        ANDROID_SDK_TOOLS_EMU = env.ANDROID_SDK_TOOLS'/emulator'
+        ANDROID_SDK_EMU = '/home/jessie/Android/Sdk/emulator'
     }
     stages {
         stage('Build') {
