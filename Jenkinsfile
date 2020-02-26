@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'MyApplication/gradlew test -pi MyApplication/'
+                sh 'MyApplication/gradlew test -p MyApplication/'
             }
 
         }
