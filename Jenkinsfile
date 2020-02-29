@@ -1,19 +1,26 @@
 pipeline {
     agent any
-    tools {
-        gradle "android_gradle"
+    environment {
+        ANDROID_SDK_TOOLS = '/home/jessie/Android/Sdk/tools'
+        ANDROID_SDK_TOOLS_BIN = '/home/jessie/Android/Sdk/tools/bin'
+        ANDROID_SDK_EMU = '/home/jessie/Android/Sdk/emulator'
+
     }
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Hello World"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
-                '''
-                sh 'MyApplication/gradlew assembleDebug -p MyApplication'
-                
+                sh 'MyApplication/gradlew assembleDebug -p MyApplication/'
+
+                //sh "${ANDROID_SDK_TOOLS_BIN}/avdmanager delete avd --name testAVD"
+                //sh "echo no | ${ANDROID_SDK_TOOLS_BIN}/avdmanager create avd --force --name testAVD --abi google_apis_playstore/x86 --package 'system-images;android-29;google_apis_playstore;x86'"
+                //sh "${ANDROID_SDK_EMU}/emulator -avd testAVD -no-window"
             }
+        }
+        stage('Test') {
+            steps {
+                sh 'MyApplication/gradlew test -p MyApplication/'
+            }
+
         }
     }
 }

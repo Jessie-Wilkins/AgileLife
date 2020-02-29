@@ -1,0 +1,12 @@
+Point System:
+
+I. Entering in Points
+    1. The user will be able to add points.
+    2. The user will be able to enter in points capacity.
+    3. The user will be able to remove points.
+
+II. Managing Points
+    1. The user will be able to see total points per time period (sprint, PI, etc.) on a separate page.
+    2. The user will be able to see past completed points.
+    3. The user will be able to mark points as completed.
+    4. The user will see the completed points decremented from total points.
