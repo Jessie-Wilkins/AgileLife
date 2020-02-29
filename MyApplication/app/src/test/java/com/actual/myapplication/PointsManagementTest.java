@@ -15,8 +15,29 @@ public class PointsManagementTest {
         assertEquals(4, 2 + 2);
     }
 
+    @Test
     public void canAddPoints() {
         PointsManagement pnt_mgt_obj = new PointsManagement();
-        pnt_mgt_obj.addPoints
+        pnt_mgt_obj.addPoints(1);
+        assertEquals(1, pnt_mgt_obj.getPoints());
     }
+
+    @Test
+    public void canRemovePoints() {
+        PointsManagement pnt_mgt_obj = new PointsManagement();
+        pnt_mgt_obj.addPoints(1);
+        pnt_mgt_obj.removePoints(1);
+        assertEquals(0, pnt_mgt_obj.getPoints());
+    }
+
+    @Test
+    public void cannotRemovePointsBelowZero() {
+        PointsManagement pnt_mgt_obj = new PointsManagement();
+        pnt_mgt_obj.addPoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.removePoints(1);
+        assertEquals(0, pnt_mgt_obj.getPoints());
+    }
+
+
 }
