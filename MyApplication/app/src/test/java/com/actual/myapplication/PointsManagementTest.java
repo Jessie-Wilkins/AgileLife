@@ -39,5 +39,37 @@ public class PointsManagementTest {
         assertEquals(0, pnt_mgt_obj.getPoints());
     }
 
+    @Test
+    public void canEnterPointsCapacity() {
+        PointsManagement pnt_mgt_obj = new PointsManagement();
+        pnt_mgt_obj.addPoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.addCapacity(4);
+        assertEquals(4, pnt_mgt_obj.getCapacity());
+    }
+
+    @Test
+    public void canRemovePointsCapacity() {
+        PointsManagement pnt_mgt_obj = new PointsManagement();
+        pnt_mgt_obj.addPoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.addCapacity(4);
+        pnt_mgt_obj.removeCapacity(1);
+        assertEquals(3, pnt_mgt_obj.getCapacity());
+    }
+
+    @Test
+    public void cannotRemoveCapacityBelowZero() {
+        PointsManagement pnt_mgt_obj = new PointsManagement();
+        pnt_mgt_obj.addPoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.addCapacity(4);
+        pnt_mgt_obj.removeCapacity(1);
+        pnt_mgt_obj.removeCapacity(4);
+        assertEquals(3, pnt_mgt_obj.getCapacity());
+    }
 
 }
