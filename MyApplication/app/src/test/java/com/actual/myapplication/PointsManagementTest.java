@@ -72,4 +72,18 @@ public class PointsManagementTest {
         assertEquals(3, pnt_mgt_obj.getCapacity());
     }
 
+    @Test
+    public void canMarkPointsAsCompleted() {
+        PointsManagement pnt_mgt_obj = new PointsManagement();
+        pnt_mgt_obj.addPoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.addCapacity(4);
+        pnt_mgt_obj.removeCapacity(1);
+        pnt_mgt_obj.removeCapacity(4);
+        pnt_mgt_obj.addPoints(3);
+        pnt_mgt_obj.completePoints(2);
+        assertEquals(1, pnt_mgt_obj.getPoints());
+    }
+
 }

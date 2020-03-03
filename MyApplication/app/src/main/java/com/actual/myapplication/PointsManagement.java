@@ -12,12 +12,7 @@ class PointsManagement {
     }
 
     public void removePoints(int points) {
-        if(formerIsGreaterThanOrEqualLatter(this.points, points)) {
-            this.points -=points;
-        }
-        else {
-            System.out.println("Cannot remove more points than allotted!");
-        }
+        this.points = subtractLatterFromFormerConditional(this.points, points, "points");
     }
 
     public void addCapacity(int capacity) {
@@ -25,22 +20,33 @@ class PointsManagement {
     }
 
     public void removeCapacity(int capacity) {
-        if(formerIsGreaterThanOrEqualLatter(this.capacity, capacity)) {
-            this.capacity -= capacity;
-        }
-        else {
-            System.out.println("Cannot remove more capacity than allotted!");
-        }
-    }
+        this.capacity = subtractLatterFromFormerConditional(this.capacity, capacity, "capacity");
 
-    private boolean formerIsGreaterThanOrEqualLatter(int former, int latter) {
-        return former >= latter;
     }
 
     public int getCapacity() {
         return capacity;
     }
 
+    public int completePoints(int points) {
+        return 0;
+    }
+
     //Private Utilities Section
+
+    private boolean formerIsGreaterThanOrEqualLatter(int former, int latter) {
+        return former >= latter;
+    }
+
+    private int subtractLatterFromFormerConditional(int former, int latter, String object_of_message) {
+        if(formerIsGreaterThanOrEqualLatter(former, latter)) {
+            former -=latter;
+            return former;
+        }
+        else {
+            System.out.println("Cannot remove more "+object_of_message+" than allotted!");
+            return former;
+        }
+    }
 
 }
