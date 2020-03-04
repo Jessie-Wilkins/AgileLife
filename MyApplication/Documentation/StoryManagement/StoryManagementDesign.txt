@@ -1,0 +1,16 @@
+Story System:
+
+Definition of Story:
+A story is a given task with a title, description, number of points, assigned "sprint", and amount completed.
+
+I. Entering Stories
+    1. The user will be able to add a blank story. A blank story is a story without a given title, description or other factors.
+    2. The story will have a default title, description, etc.
+    2. The user will be able to add a title to a story.
+    3. The user will be able to add a description to the story.
+    4. The user will be able to add the number of points assigned to the story.
+    5. The user will be able to add the sprint that the story is assigned to.
+    6. The user will be able to say how much of the story was completed.
+
+II. Managing Stories
+    1.

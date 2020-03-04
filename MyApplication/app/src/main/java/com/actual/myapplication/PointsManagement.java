@@ -3,6 +3,7 @@ package com.actual.myapplication;
 class PointsManagement {
     private int points = 0;
     private int capacity = 0;
+    private int completed_points = 0;
     public void addPoints(int points) {
         this.points += points;
     }
@@ -21,15 +22,19 @@ class PointsManagement {
 
     public void removeCapacity(int capacity) {
         this.capacity = subtractLatterFromFormerConditional(this.capacity, capacity, "capacity");
-
     }
 
     public int getCapacity() {
         return capacity;
     }
 
-    public int completePoints(int points) {
-        return 0;
+    public void completePoints(int points) {
+        this.points =  subtractLatterFromFormerConditional(this.points, points, "completed points");
+        this.completed_points+=points;
+    }
+
+    public int getCompletedPoints() {
+        return this.completed_points;
     }
 
     //Private Utilities Section
@@ -48,5 +53,4 @@ class PointsManagement {
             return former;
         }
     }
-
 }
