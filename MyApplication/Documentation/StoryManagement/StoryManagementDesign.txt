@@ -1,16 +1,29 @@
 Story System:
 
 Definition of Story:
-A story is a given task with a title, description, number of points, assigned "sprint", and amount completed.
+A story is a given task with a title, description, number of points, status, assigned "sprint", and amount completed.
 
 I. Entering Stories
-    1. The user will be able to add a blank story. A blank story is a story without a given title, description or other factors.
+    1. The user will be able to add a blank story. A blank story is a story without a user-given title, description or other factors.
     2. The story will have a default title, description, etc.
     2. The user will be able to add a title to a story.
     3. The user will be able to add a description to the story.
     4. The user will be able to add the number of points assigned to the story.
     5. The user will be able to add the sprint that the story is assigned to.
-    6. The user will be able to say how much of the story was completed.
+
 
 II. Managing Stories
-    1.
+    1.The user will be able to edit all attributes in a given story.
+    2. The user will be able to delete stories (stories are placed in "Trash Bin").
+    3. The user will be able to split the story into two stories (both stories split into numbered clones of the main story with evenly split points while the main story is deleted).
+    4. The user can mark the story status as "Completed" (not deleted, but hidden from view in a "completed stories" section)
+    5. The user can mark a story status as "On Deck".
+    6. The user can mark the story status as "In Progress".
+    7. The user will be able to mark the points completed for a story (how many points have been marked as completed).
+    8. The user will be able to see a history of completed stories.
+    9. The user will be able to delete all stories placed in Trash Bin.
+    10. The user will be able to delete certain, chosen stories in Trash Bin.
+    11. The user will be able to see the points that have been completed.
+
+Note: Trash Bin may have to be split from the Story system. It would be best used as a static class that holds various deleted story objects that can be manipulated from there.
+Note 2: Completed Stories section and Split Stories should have their own classes to deal with multi story functionality; something like a Story Repository would be best used for this situation.
