@@ -3,6 +3,9 @@ package com.actual.myapplication;
 class StoryBuilder {
     private static int builder_count = 0;
     private String title;
+    private String description;
+    private int points;
+    private static StoryBuilder builder;
 
     private StoryBuilder() {
 
@@ -10,10 +13,12 @@ class StoryBuilder {
 
     public static StoryBuilder initiateBuilder() {
         if(builder_count == 0) {
-            return new StoryBuilder();
+            builder_count++;
+            builder = new StoryBuilder();
+            return builder;
         }
         else {
-            return null;
+            return builder;
         }
     }
 
@@ -23,5 +28,21 @@ class StoryBuilder {
 
     public String getTitle() {
         return this.title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public int getPoints() {
+        return this.points;
     }
 }

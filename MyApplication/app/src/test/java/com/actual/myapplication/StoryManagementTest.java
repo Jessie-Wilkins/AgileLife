@@ -32,4 +32,75 @@ public class StoryManagementTest {
         assertEquals("Title 1", story_obj.getTitle());
 
     }
+
+    @Test
+    public void canSetDescription() {
+        Story story_obj = new Story();
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+        story_obj.setStoryAttributes(builder);
+
+        builder.setDescription("Description 1");
+        story_obj.setStoryAttributes(builder);
+        assertEquals("Description 1", story_obj.getDescription());
+
+    }
+
+    @Test
+    public void canSetPoints() {
+        Story story_obj = new Story();
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+        story_obj.setStoryAttributes(builder);
+
+        builder.setDescription("Description 1");
+        story_obj.setStoryAttributes(builder);
+
+        builder.setPoints(4);
+        story_obj.setStoryAttributes(builder);
+        assertEquals(4, story_obj.getPoints());
+
+    }
+
+    /*@Test
+    public void canSetTitle() {
+        Story story_obj = new Story();
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        builder.setTitle("Title 1");
+        story_obj.setStoryAttributes(builder);
+        assertEquals("Title 1", story_obj.getTitle());
+
+    }
+
+    @Test
+    public void canSetTitle() {
+        Story story_obj = new Story();
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        builder.setTitle("Title 1");
+        story_obj.setStoryAttributes(builder);
+        assertEquals("Title 1", story_obj.getTitle());
+
+    }
+
+    @Test
+    public void canSetTitle() {
+        Story story_obj = new Story();
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        builder.setTitle("Title 1");
+        story_obj.setStoryAttributes(builder);
+        assertEquals("Title 1", story_obj.getTitle());
+
+    }
+
+    @Test
+    public void canSetTitle() {
+        Story story_obj = new Story();
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        builder.setTitle("Title 1");
+        story_obj.setStoryAttributes(builder);
+        assertEquals("Title 1", story_obj.getTitle());
+
+    }*/
 }
