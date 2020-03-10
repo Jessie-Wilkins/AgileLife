@@ -4,12 +4,18 @@ class PointsManagement {
     private int points = 0;
     private int capacity = 0;
     private int completed_points = 0;
+    private int total_points = 0;
     public void addPoints(int points) {
         this.points += points;
+        this.total_points += points;
+    }
+
+    public  int getTotalPoints() {
+        return this.total_points;
     }
 
     public int getPoints() {
-        return points;
+        return this.points;
     }
 
     public void removePoints(int points) {
