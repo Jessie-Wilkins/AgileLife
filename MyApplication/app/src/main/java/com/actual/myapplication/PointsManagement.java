@@ -20,6 +20,7 @@ class PointsManagement {
 
     public void removePoints(int points) {
         this.points = subtractLatterFromFormerConditional(this.points, points, "points");
+        this.total_points = subtractLatterFromFormerConditional(this.total_points, points, "total points");
     }
 
     public void addCapacity(int capacity) {

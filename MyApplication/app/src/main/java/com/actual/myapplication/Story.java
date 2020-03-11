@@ -6,6 +6,11 @@ class Story {
     private PointsManagement points = new PointsManagement();
     private String status = "Default Status";
     private String sprint;
+    private int id;
+
+    public Story() {
+        id = IdGenerator.generateId();
+    }
 
     public String getTitle() {
         return this.title;
@@ -34,5 +39,9 @@ class Story {
 
     public String getSprint() {
         return this.sprint;
+    }
+
+    public int getId() {
+        return id;
     }
 }
