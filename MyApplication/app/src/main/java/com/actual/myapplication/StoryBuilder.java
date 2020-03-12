@@ -6,7 +6,7 @@ class StoryBuilder {
     private String description;
     private int points;
     private static StoryBuilder builder;
-    private String status;
+    private Story.StoryStatus status;
     private String sprint;
     private int completed_points;
 
@@ -49,11 +49,11 @@ class StoryBuilder {
         return this.points;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Story.StoryStatus status) {
         this.status = status;
     }
 
-    public String getStatus() {
+    public Story.StoryStatus getStatus() {
         return this.status;
     }
 

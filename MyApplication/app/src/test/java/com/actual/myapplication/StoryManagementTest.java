@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.instanceOf;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -87,11 +89,11 @@ public class StoryManagementTest {
 
         builder.setPoints(4);
 
-        builder.setStatus("Status 1");
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
         story_obj.setStoryAttributes(builder);
 
-        assertEquals("Status 1", story_obj.getStatus());
+        assertEquals(Story.StoryStatus.IN_PROGRESS, story_obj.getStatus());
 
     }
 
@@ -108,7 +110,7 @@ public class StoryManagementTest {
 
         builder.setPoints(4);
 
-        builder.setStatus("Status 1");
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
         builder.setSprint("Sprint 1");
 
@@ -131,7 +133,7 @@ public class StoryManagementTest {
 
         builder.setPoints(4);
 
-        builder.setStatus("Status 1");
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
         builder.setSprint("Sprint 1");
 
@@ -156,7 +158,7 @@ public class StoryManagementTest {
 
         builder.setPoints(4);
 
-        builder.setStatus("Status 1");
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
         builder.setSprint("Sprint 1");
 
@@ -181,7 +183,7 @@ public class StoryManagementTest {
 
         builder.setPoints(4);
 
-        builder.setStatus("Status 1");
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
         builder.setSprint("Sprint 1");
 
@@ -192,6 +194,14 @@ public class StoryManagementTest {
         Story story_obj2 = new Story();
 
         assertEquals(2, story_obj2.getId());
+
+    }
+
+    @Test
+    public void canAddAStoryToStoryQueue() {
+        StoryManager story_mgr = new StoryManager();
+        story_mgr.addStory();
+        assertThat(story_mgr.getStory(1), instanceOf(Story.class));
 
     }
 }
