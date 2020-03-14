@@ -72,4 +72,8 @@ class StoryBuilder {
     public int getCompleted_points() {
         return this.completed_points;
     }
+
+    public StoryBuilder onlyChangedAttributes() {
+        return builder;
+    }
 }

@@ -5,6 +5,16 @@ class PointsManagement {
     private int capacity = 0;
     private int completed_points = 0;
     private int total_points = 0;
+
+    public void setPoints(int points) {
+        this.points = points;
+        this.total_points = points;
+    }
+
+    public void setCompletedPoints(int completed_points) {
+        this.completed_points = completed_points;
+    }
+
     public void addPoints(int points) {
         this.points += points;
         this.total_points += points;

@@ -1,10 +1,9 @@
 package com.actual.myapplication;
-import java.lang.Enum;
 
 class Story {
     private String title = "Default Title";
     private String description = "Default Description";
-    private PointsManagement points = new PointsManagement();
+    private final PointsManagement points_management = new PointsManagement();
     private StoryStatus status = StoryStatus.READY;
     public enum StoryStatus {
         READY,
@@ -12,7 +11,7 @@ class Story {
         DONE
     }
     private String sprint = "Default Sprint";
-    private int id;
+    private final int id;
 
     public Story() {
         id = IdGenerator.generateId();
@@ -25,18 +24,18 @@ class Story {
     public void setStoryAttributes(StoryBuilder attributes) {
         this.title = attributes.getTitle();
         this.description = attributes.getDescription();
-        this.points.addPoints(attributes.getPoints());
+        this.points_management.setPoints(attributes.getPoints());
         this.status = attributes.getStatus();
         this.sprint = attributes.getSprint();
-        this.points.completePoints(attributes.getCompleted_points());
+        this.points_management.setCompletedPoints(attributes.getCompleted_points());
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public PointsManagement getPoints() {
-        return this.points;
+    public PointsManagement getPointsManagement() {
+        return this.points_management;
     }
 
     public StoryStatus getStatus() {

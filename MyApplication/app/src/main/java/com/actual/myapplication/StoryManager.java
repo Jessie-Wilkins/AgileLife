@@ -3,7 +3,7 @@ package com.actual.myapplication;
 import java.util.ArrayList;
 
 class StoryManager {
-    private static ArrayList<Story> story_list = new ArrayList<>();
+    private static final ArrayList<Story> story_list = new ArrayList<>();
     private static StoryManager story_mgr;
     private static int story_mgr_count = 0;
 
@@ -36,5 +36,9 @@ class StoryManager {
         Story story = new Story();
         story.setStoryAttributes(builder);
         story_list.add(story);
+    }
+
+    public void editStory(int id, StoryBuilder builder) {
+        story_list.get(id-1).setStoryAttributes(builder);
     }
 }

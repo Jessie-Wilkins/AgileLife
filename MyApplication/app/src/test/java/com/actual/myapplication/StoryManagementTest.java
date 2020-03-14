@@ -72,7 +72,7 @@ public class StoryManagementTest {
 
         story_obj.setStoryAttributes(builder);
 
-        assertEquals(4, story_obj.getPoints().getTotalPoints());
+        assertEquals(4, story_obj.getPointsManagement().getTotalPoints());
 
     }
 
@@ -141,7 +141,7 @@ public class StoryManagementTest {
 
         story_obj.setStoryAttributes(builder);
 
-        assertEquals(2, story_obj.getPoints().getCompletedPoints());
+        assertEquals(2, story_obj.getPointsManagement().getCompletedPoints());
 
     }
 
@@ -235,6 +235,172 @@ public class StoryManagementTest {
 
         story_mgr.addStory(builder);
         assertEquals("Sprint 1", story_mgr.getStory(3).getSprint());
+    }
+
+    @Test
+    public void canEditStoryWithBuilderItem() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        story_mgr.addStory();
+
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        assertEquals(7, story_mgr.getStory(3).getPointsManagement().getPoints());
+    }
+
+    @Test
+    public void canEditStoryPointsDirectlyWithStoryManager() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        story_mgr.addStory();
+
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        story_mgr.getStory(3).getPointsManagement().addPoints(3);
+
+        assertEquals(10, story_mgr.getStory(3).getPointsManagement().getPoints());
+    }
+
+    @Test
+    public void canEditAnotherStoryWithBuilderWithOnlyChangedAttributes() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        story_mgr.addStory();
+
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        story_mgr.getStory(3).getPointsManagement().addPoints(3);
+
+        builder.setSprint("Sprint 3");
+
+        story_mgr.editStory(2, builder.onlyChangedAttributes());
+
+        assertEquals("Sprint 3", story_mgr.getStory(2).getSprint());
+
+    }
+
+    @Test
+    public void canGetTheCorrectAttributeAfterEditingADifferentStory() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        story_mgr.addStory();
+
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        story_mgr.getStory(3).getPointsManagement().addPoints(3);
+
+        builder.setSprint("Sprint 3");
+
+        story_mgr.editStory(2, builder.onlyChangedAttributes());
+
+        assertNotEquals("Sprint 3", story_mgr.getStory(3).getSprint());
+    }
+
+    @Test
+    public void canGetOriginalAttributeForUnchangedStoryValueIfEditedWithDeltaOrChangedOnlyAttributes() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        story_mgr.addStory();
+
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        story_mgr.getStory(3).getPointsManagement().addPoints(3);
+
+        builder.setSprint("Sprint 3");
+
+        story_mgr.editStory(2, builder.onlyChangedAttributes());
+
+        assertNotEquals(7, story_mgr.getStory(2).getPointsManagement().getPoints());
     }
 
 }
