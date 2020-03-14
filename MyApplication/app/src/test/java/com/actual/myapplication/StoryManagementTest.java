@@ -198,10 +198,43 @@ public class StoryManagementTest {
     }
 
     @Test
-    public void canAddAStoryToStoryQueue() {
-        StoryManager story_mgr = new StoryManager();
+    public void canAddAStoryToStoryList() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
         story_mgr.addStory();
         assertThat(story_mgr.getStory(1), instanceOf(Story.class));
 
     }
+
+    @Test
+    public void canAddTwoStoriesToStoryList() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        story_mgr.addStory();
+        assertEquals(story_mgr.getStory(2), story_mgr.getStory(2));
+    }
+
+    @Test
+    public void canAddStoryWithBuilderItems() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        story_mgr.addStory();
+
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+
+        story_mgr.addStory(builder);
+        assertEquals("Sprint 1", story_mgr.getStory(3).getSprint());
+    }
+
 }

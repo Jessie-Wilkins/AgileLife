@@ -11,7 +11,7 @@ class Story {
         IN_PROGRESS,
         DONE
     }
-    private String sprint;
+    private String sprint = "Default Sprint";
     private int id;
 
     public Story() {
