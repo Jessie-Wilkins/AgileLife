@@ -41,4 +41,8 @@ class StoryManager {
     public void editStory(int id, StoryBuilder builder) {
         story_list.get(id-1).setStoryAttributes(builder);
     }
+
+    public void editStoryWithOnlyChangedAttributes(int id, StoryBuilder builder) {
+        story_list.get(id-1).setChangedStoryAttributes(builder);
+    }
 }

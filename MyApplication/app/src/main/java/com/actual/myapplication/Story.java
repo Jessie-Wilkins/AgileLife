@@ -5,6 +5,7 @@ class Story {
     private String description = "Default Description";
     private final PointsManagement points_management = new PointsManagement();
     private StoryStatus status = StoryStatus.READY;
+
     public enum StoryStatus {
         READY,
         IN_PROGRESS,
@@ -28,6 +29,29 @@ class Story {
         this.status = attributes.getStatus();
         this.sprint = attributes.getSprint();
         this.points_management.setCompletedPoints(attributes.getCompleted_points());
+        attributes.setAttributesToNotChanged();
+    }
+    public void setChangedStoryAttributes(StoryBuilder attributes) {
+        if(attributes.isTitleChanged()) {
+            this.title = attributes.getTitle();
+        }
+        if(attributes.isDescriptionChanged()) {
+            this.description = attributes.getDescription();
+        }
+        if(attributes.arePointsChanged()) {
+            this.points_management.setPoints(attributes.getPoints());
+        }
+        if(attributes.isStatusChanged()) {
+            this.status = attributes.getStatus();
+        }
+        if(attributes.isSprintChanged()) {
+            this.sprint = attributes.getSprint();
+        }
+        if(attributes.areCompletedPointsChanged()) {
+            this.points_management.setCompletedPoints(attributes.getCompleted_points());
+        }
+        attributes.setAttributesToNotChanged();
+
     }
 
     public String getDescription() {

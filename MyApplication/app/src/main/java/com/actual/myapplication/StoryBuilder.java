@@ -9,6 +9,12 @@ class StoryBuilder {
     private Story.StoryStatus status;
     private String sprint;
     private int completed_points;
+    private boolean completed_points_changed = false;
+    private boolean points_changed = false;
+    private boolean sprintChanged = false;
+    private boolean statusChanged = false;
+    private boolean descriptionChanged = false;
+    private boolean titleChanged = false;
 
     private StoryBuilder() {
 
@@ -26,6 +32,7 @@ class StoryBuilder {
     }
 
     public void setTitle(String title) {
+        setTitleChanged(true);
         this.title = title;
     }
 
@@ -34,6 +41,7 @@ class StoryBuilder {
     }
 
     public void setDescription(String description) {
+        setDescriptionChanged(true);
         this.description = description;
     }
 
@@ -42,6 +50,7 @@ class StoryBuilder {
     }
 
     public void setPoints(int points) {
+        this.points_changed = true;
         this.points = points;
     }
 
@@ -50,6 +59,7 @@ class StoryBuilder {
     }
 
     public void setStatus(Story.StoryStatus status) {
+        setStatusChanged(true);
         this.status = status;
     }
 
@@ -58,6 +68,7 @@ class StoryBuilder {
     }
 
     public void setSprint(String sprint) {
+        setSprintChanged(true);
         this.sprint = sprint;
     }
 
@@ -66,6 +77,7 @@ class StoryBuilder {
     }
 
     public void setCompletedPoints(int completed_points) {
+        this.completed_points_changed = true;
         this.completed_points = completed_points;
     }
 
@@ -73,7 +85,52 @@ class StoryBuilder {
         return this.completed_points;
     }
 
-    public StoryBuilder onlyChangedAttributes() {
-        return builder;
+    public boolean isTitleChanged() {
+        return titleChanged;
+    }
+
+    public void setTitleChanged(boolean titleChanged) {
+        this.titleChanged = titleChanged;
+    }
+
+    public boolean isDescriptionChanged() {
+        return descriptionChanged;
+    }
+
+    public void setDescriptionChanged(boolean descriptionChanged) {
+        this.descriptionChanged = descriptionChanged;
+    }
+
+    public boolean isStatusChanged() {
+        return statusChanged;
+    }
+
+    public void setStatusChanged(boolean statusChanged) {
+        this.statusChanged = statusChanged;
+    }
+
+    public boolean isSprintChanged() {
+        return sprintChanged;
+    }
+
+    public void setSprintChanged(boolean sprintChanged) {
+        this.sprintChanged = sprintChanged;
+    }
+
+    public boolean arePointsChanged() {
+        return this.points_changed;
+    }
+
+    public boolean areCompletedPointsChanged() {
+        return this.completed_points_changed;
+    }
+
+    public void setAttributesToNotChanged() {
+        setDescriptionChanged(false);
+        setSprintChanged(false);
+        setStatusChanged(false);
+        setTitleChanged(false);
+        this.completed_points_changed = false;
+        this.points_changed = false;
     }
 }

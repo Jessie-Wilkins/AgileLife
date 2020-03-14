@@ -327,7 +327,7 @@ public class StoryManagementTest {
 
         builder.setSprint("Sprint 3");
 
-        story_mgr.editStory(2, builder.onlyChangedAttributes());
+        story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
         assertEquals("Sprint 3", story_mgr.getStory(2).getSprint());
 
@@ -363,7 +363,7 @@ public class StoryManagementTest {
 
         builder.setSprint("Sprint 3");
 
-        story_mgr.editStory(2, builder.onlyChangedAttributes());
+        story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
         assertNotEquals("Sprint 3", story_mgr.getStory(3).getSprint());
     }
@@ -398,7 +398,7 @@ public class StoryManagementTest {
 
         builder.setSprint("Sprint 3");
 
-        story_mgr.editStory(2, builder.onlyChangedAttributes());
+        story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
         assertNotEquals(7, story_mgr.getStory(2).getPointsManagement().getPoints());
     }
