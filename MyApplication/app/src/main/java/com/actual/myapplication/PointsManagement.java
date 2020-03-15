@@ -8,11 +8,12 @@ class PointsManagement {
 
     public void setPoints(int points) {
         this.points = points;
-        this.total_points = points;
+        this.total_points = this.points+this.completed_points;
     }
 
     public void setCompletedPoints(int completed_points) {
         this.completed_points = completed_points;
+        this.total_points = this.points+this.completed_points;
     }
 
     public void addPoints(int points) {

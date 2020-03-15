@@ -6,6 +6,7 @@ class StoryManager {
     private static final ArrayList<Story> story_list = new ArrayList<>();
     private static StoryManager story_mgr;
     private static int story_mgr_count = 0;
+    private static final ArrayList<Story> deleted_story_list = new ArrayList<>();
 
     private StoryManager() {
 
@@ -44,5 +45,14 @@ class StoryManager {
 
     public void editStoryWithOnlyChangedAttributes(int id, StoryBuilder builder) {
         story_list.get(id-1).setChangedStoryAttributes(builder);
+    }
+
+    public void deleteStory(int id) {
+        deleted_story_list.add(id-1, story_list.get(id-1));
+        story_list.set(id-1,null);
+    }
+
+    public Story getDeletedStory(int id) {
+        return deleted_story_list.get(id-1);
     }
 }

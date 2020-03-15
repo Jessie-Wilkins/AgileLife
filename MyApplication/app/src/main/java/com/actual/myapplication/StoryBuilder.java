@@ -31,6 +31,11 @@ class StoryBuilder {
         }
     }
 
+    public static void resetBuilderAsUninitiated() {
+        builder = null;
+        builder_count = 0;
+    }
+
     public void setTitle(String title) {
         setTitleChanged(true);
         this.title = title;
@@ -50,7 +55,7 @@ class StoryBuilder {
     }
 
     public void setPoints(int points) {
-        this.points_changed = true;
+        setPointsChanged(true);
         this.points = points;
     }
 
@@ -89,7 +94,7 @@ class StoryBuilder {
         return titleChanged;
     }
 
-    public void setTitleChanged(boolean titleChanged) {
+    private void setTitleChanged(boolean titleChanged) {
         this.titleChanged = titleChanged;
     }
 
@@ -97,7 +102,7 @@ class StoryBuilder {
         return descriptionChanged;
     }
 
-    public void setDescriptionChanged(boolean descriptionChanged) {
+    private void setDescriptionChanged(boolean descriptionChanged) {
         this.descriptionChanged = descriptionChanged;
     }
 
@@ -105,7 +110,7 @@ class StoryBuilder {
         return statusChanged;
     }
 
-    public void setStatusChanged(boolean statusChanged) {
+    private void setStatusChanged(boolean statusChanged) {
         this.statusChanged = statusChanged;
     }
 
@@ -113,7 +118,7 @@ class StoryBuilder {
         return sprintChanged;
     }
 
-    public void setSprintChanged(boolean sprintChanged) {
+    private void setSprintChanged(boolean sprintChanged) {
         this.sprintChanged = sprintChanged;
     }
 
@@ -121,8 +126,16 @@ class StoryBuilder {
         return this.points_changed;
     }
 
+    private void setPointsChanged(boolean points_changed) {
+        this.points_changed = points_changed;
+    }
+
     public boolean areCompletedPointsChanged() {
         return this.completed_points_changed;
+    }
+
+    private void setCompletedPointsChanged(boolean completed_points_changed) {
+        this.completed_points_changed = completed_points_changed;
     }
 
     public void setAttributesToNotChanged() {
@@ -130,7 +143,7 @@ class StoryBuilder {
         setSprintChanged(false);
         setStatusChanged(false);
         setTitleChanged(false);
-        this.completed_points_changed = false;
-        this.points_changed = false;
+        setCompletedPointsChanged(false);
+        setPointsChanged(false);
     }
 }
