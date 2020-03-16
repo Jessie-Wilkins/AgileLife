@@ -1,6 +1,7 @@
 package com.actual.myapplication;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 class StoryManager {
     private static final ArrayList<Story> story_list = new ArrayList<>();
@@ -48,11 +49,34 @@ class StoryManager {
     }
 
     public void deleteStory(int id) {
+        if(deleted_story_list.isEmpty()) {
+            deleted_story_list.add(0,null);
+        }
         deleted_story_list.add(id-1, story_list.get(id-1));
         story_list.set(id-1,null);
     }
 
     public Story getDeletedStory(int id) {
-        return deleted_story_list.get(id-1);
+        try {
+            return deleted_story_list.get(id-1);
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
+
+    public void clearAllStoriesFromDeletedStoryList() {
+        deleted_story_list.clear();
+    }
+
+    public int[] getDeletedStoriesIds() {
+        int iter_index = 0;
+        int[] id_array = new int[deleted_story_list.size()];
+        final Iterator<Story> iterator = deleted_story_list.iterator();
+        while(iterator.hasNext()) {
+            id_array[iter_index] = iterator.next().getId();
+            iter_index++;
+        }
+        return id_array;
     }
 }

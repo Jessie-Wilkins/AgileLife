@@ -2,6 +2,8 @@ package com.actual.myapplication;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
@@ -294,6 +296,90 @@ public class StoryManagementTest {
         story_mgr.deleteStory(1);
 
         assertEquals(temp_story, story_mgr.getDeletedStory(1));
+    }
+
+    @Test
+    public void canClearDeletedStoriesListOfAllDeletedStories() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        story_mgr.addStory();
+        StoryBuilder.resetBuilderAsUninitiated();
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        story_mgr.getStory(3).getPointsManagement().addPoints(3);
+
+        builder.setSprint("Sprint 3");
+
+        story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
+
+        Story temp_story = story_mgr.getStory(1);
+
+        story_mgr.deleteStory(1);
+
+        story_mgr.clearAllStoriesFromDeletedStoryList();
+
+        assertNotEquals(temp_story, story_mgr.getDeletedStory(1));
+    }
+
+    @Test
+    public void canGetListOfDeletedStoriesIds() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        story_mgr.addStory();
+        StoryBuilder.resetBuilderAsUninitiated();
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        story_mgr.getStory(3).getPointsManagement().addPoints(3);
+
+        builder.setSprint("Sprint 3");
+
+        story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
+
+        Story temp_story = story_mgr.getStory(1);
+
+        story_mgr.deleteStory(1);
+
+        story_mgr.clearAllStoriesFromDeletedStoryList();
+
+        story_mgr.deleteStory(2);
+
+        assertEquals(2, story_mgr.getDeletedStoriesIds()[0]);
     }
 
 }
