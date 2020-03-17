@@ -382,4 +382,50 @@ public class StoryManagementTest {
         assertEquals(2, story_mgr.getDeletedStoriesIds()[0]);
     }
 
+    @Test
+    public void canRetrieveDeletedStoriesFromDeletedStoriesListIntoStoriesList() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        story_mgr.addStory();
+        StoryBuilder.resetBuilderAsUninitiated();
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        story_mgr.getStory(3).getPointsManagement().addPoints(3);
+
+        builder.setSprint("Sprint 3");
+
+        story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
+
+        Story temp_story = story_mgr.getStory(1);
+
+        story_mgr.deleteStory(1);
+
+        story_mgr.clearAllStoriesFromDeletedStoryList();
+
+        temp_story = story_mgr.getStory(2);
+
+        story_mgr.deleteStory(2);
+
+        story_mgr.retrieveStoryFromDeletedStoryList(2);
+
+        assertEquals(temp_story, story_mgr.getStory(2));
+    }
 }

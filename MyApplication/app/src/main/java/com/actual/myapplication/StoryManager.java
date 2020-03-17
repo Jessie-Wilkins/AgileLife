@@ -72,11 +72,15 @@ class StoryManager {
     public int[] getDeletedStoriesIds() {
         int iter_index = 0;
         int[] id_array = new int[deleted_story_list.size()];
-        final Iterator<Story> iterator = deleted_story_list.iterator();
-        while(iterator.hasNext()) {
-            id_array[iter_index] = iterator.next().getId();
-            iter_index++;
+        for(Story del_story : deleted_story_list) {
+            if(del_story !=null) {
+                id_array[iter_index] = del_story.getId();
+                iter_index++;
+            }
         }
         return id_array;
+    }
+
+    public void retrieveStoryFromDeletedStoryList(int i) {
     }
 }
