@@ -1,13 +1,13 @@
 package com.actual.myapplication;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 class StoryManager {
     private static final ArrayList<Story> story_list = new ArrayList<>();
     private static StoryManager story_mgr;
     private static int story_mgr_count = 0;
     private static final ArrayList<Story> deleted_story_list = new ArrayList<>();
+    private static final ArrayList<Story> completed_story_list = new ArrayList<>();;
 
     private StoryManager() {
 
@@ -24,14 +24,14 @@ class StoryManager {
         else {
             return story_mgr;
         }
-
     }
+
     public void addStory() {
         story_list.add(new Story());
     }
 
     public Story getStory(int id) {
-        return story_list.get(id-1);
+        return story_list.get(getIndex(id));
     }
 
     public void addStory(StoryBuilder builder) {
@@ -41,24 +41,21 @@ class StoryManager {
     }
 
     public void editStory(int id, StoryBuilder builder) {
-        story_list.get(id-1).setStoryAttributes(builder);
+        story_list.get(getIndex(id)).setStoryAttributes(builder);
     }
 
     public void editStoryWithOnlyChangedAttributes(int id, StoryBuilder builder) {
-        story_list.get(id-1).setChangedStoryAttributes(builder);
+        story_list.get(getIndex(id)).setChangedStoryAttributes(builder);
     }
 
     public void deleteStory(int id) {
-        if(deleted_story_list.isEmpty()) {
-            deleted_story_list.add(0,null);
-        }
-        deleted_story_list.add(id-1, story_list.get(id-1));
-        story_list.set(id-1,null);
+        initializeEmptyList(deleted_story_list);
+        transferStoryFromListToList(id, story_list, deleted_story_list);
     }
 
     public Story getDeletedStory(int id) {
         try {
-            return deleted_story_list.get(id-1);
+            return deleted_story_list.get(getIndex(id));
         }
         catch (Exception e) {
             return null;
@@ -81,6 +78,36 @@ class StoryManager {
         return id_array;
     }
 
-    public void retrieveStoryFromDeletedStoryList(int i) {
+    public void retrieveStoryFromDeletedStoryList(int id) {
+        initializeEmptyList(story_list);
+        transferStoryFromListToList(id, deleted_story_list, story_list);
     }
+
+    public void completeStory(int id) {
+        initializeEmptyList(completed_story_list);
+        transferStoryFromListToList(id, story_list, completed_story_list);
+    }
+
+    public Story getCompletedStory(int id) {
+        return completed_story_list.get(getIndex(id));
+    }
+
+    //Private Utilities Section
+
+    private void transferStoryFromListToList(int id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
+        to_story_list.add(getIndex(id), from_story_list.get(getIndex(id)));
+        from_story_list.set(getIndex(id), null);
+    }
+
+    private int getIndex(int id) {
+        return id - 1;
+    }
+
+    private void initializeEmptyList(ArrayList<Story> deleted_story_list) {
+        if (deleted_story_list.isEmpty()) {
+            deleted_story_list.add(0, null);
+        }
+    }
+
+
 }
