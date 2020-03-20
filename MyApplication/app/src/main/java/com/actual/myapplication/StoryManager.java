@@ -92,6 +92,11 @@ class StoryManager {
         return completed_story_list.get(getIndex(id));
     }
 
+    public void retrieveStoryFromCompletedStoryList(int id) {
+        initializeEmptyList(story_list);
+        transferStoryFromListToList(id, completed_story_list, story_list);
+    }
+
     //Private Utilities Section
 
     private void transferStoryFromListToList(int id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
@@ -109,5 +114,15 @@ class StoryManager {
         }
     }
 
-
+    public int[] getCompletedStoriesIds() {
+        int iter_index = 0;
+        int[] id_array = new int[completed_story_list.size()];
+        for(Story comp_story : completed_story_list) {
+            if(comp_story !=null) {
+                id_array[iter_index] = comp_story.getId();
+                iter_index++;
+            }
+        }
+        return id_array;
+    }
 }

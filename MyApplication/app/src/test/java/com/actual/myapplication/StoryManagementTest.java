@@ -15,6 +15,29 @@ import static org.hamcrest.CoreMatchers.instanceOf;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class StoryManagementTest {
+    //Private Utilities
+    private void repetitiveBuilder(StoryBuilder builder) {
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+    }
+
+    private StoryBuilder getStoryBuilderSetup(StoryManager story_mgr) {
+        story_mgr.addStory();
+        story_mgr.addStory();
+        StoryBuilder.resetBuilderAsUninitiated();
+        return StoryBuilder.initiateBuilder();
+    }
+
+    //TestsForClass
 
     @Test
     public void canAddAStoryToStoryList() {
@@ -35,22 +58,9 @@ public class StoryManagementTest {
     @Test
     public void canAddStoryWithBuilderItems() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
         assertEquals("Sprint 1", story_mgr.getStory(3).getSprint());
@@ -59,22 +69,9 @@ public class StoryManagementTest {
     @Test
     public void canEditStoryWithBuilderItem() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -88,22 +85,9 @@ public class StoryManagementTest {
     @Test
     public void canEditStoryPointsDirectlyWithStoryManager() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -119,22 +103,9 @@ public class StoryManagementTest {
     @Test
     public void canEditAnotherStoryWithBuilderWithOnlyChangedAttributes() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -155,22 +126,9 @@ public class StoryManagementTest {
     @Test
     public void canGetTheCorrectAttributeAfterEditingADifferentStory() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -190,22 +148,9 @@ public class StoryManagementTest {
     @Test
     public void canGetOriginalAttributeForUnchangedStoryValueIfEditedWithDeltaOrChangedOnlyAttributes() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -225,22 +170,9 @@ public class StoryManagementTest {
     @Test
     public void canNotRetrieveDeletedStoryFromStoryList() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -262,22 +194,9 @@ public class StoryManagementTest {
     @Test
     public void canRetrieveDeletedStoryFromDeletedStoryList() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -301,22 +220,9 @@ public class StoryManagementTest {
     @Test
     public void canClearDeletedStoriesListOfAllDeletedStories() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -342,22 +248,9 @@ public class StoryManagementTest {
     @Test
     public void canGetListOfDeletedStoriesIds() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -385,22 +278,9 @@ public class StoryManagementTest {
     @Test
     public void canRetrieveDeletedStoriesFromDeletedStoriesListIntoStoriesList() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -432,22 +312,9 @@ public class StoryManagementTest {
     @Test
     public void canAddStoryToCompletedStoryList() {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
-        story_mgr.addStory();
-        story_mgr.addStory();
-        StoryBuilder.resetBuilderAsUninitiated();
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
 
-        builder.setTitle("Title 1");
-
-        builder.setDescription("Description 1");
-
-        builder.setPoints(4);
-
-        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
-
-        builder.setSprint("Sprint 1");
-
-        builder.setCompletedPoints(2);
+        repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
 
@@ -476,5 +343,83 @@ public class StoryManagementTest {
         story_mgr.completeStory(2);
 
         assertEquals(temp_story, story_mgr.getCompletedStory(2));
+    }
+
+    @Test
+    public void canRetrieveCompletedStoryFromCompletedStoryList() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
+
+        repetitiveBuilder(builder);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        story_mgr.getStory(3).getPointsManagement().addPoints(3);
+
+        builder.setSprint("Sprint 3");
+
+        story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
+
+        Story temp_story = story_mgr.getStory(1);
+
+        story_mgr.deleteStory(1);
+
+        story_mgr.clearAllStoriesFromDeletedStoryList();
+
+        temp_story = story_mgr.getStory(2);
+
+        story_mgr.deleteStory(2);
+
+        story_mgr.retrieveStoryFromDeletedStoryList(2);
+
+        story_mgr.completeStory(2);
+
+        story_mgr.retrieveStoryFromCompletedStoryList(2);
+
+        assertEquals(temp_story, story_mgr.getStory(2));
+    }
+
+    @Test
+    public void canGetListOfCompletedStoriesIds() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
+
+        repetitiveBuilder(builder);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        story_mgr.getStory(3).getPointsManagement().addPoints(3);
+
+        builder.setSprint("Sprint 3");
+
+        story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
+
+        Story temp_story = story_mgr.getStory(1);
+
+        story_mgr.deleteStory(1);
+
+        story_mgr.clearAllStoriesFromDeletedStoryList();
+
+        temp_story = story_mgr.getStory(2);
+
+        story_mgr.deleteStory(2);
+
+        story_mgr.retrieveStoryFromDeletedStoryList(2);
+
+        story_mgr.completeStory(2);
+
+        story_mgr.retrieveStoryFromCompletedStoryList(2);
+
+        story_mgr.completeStory(3);
+
+        assertEquals(3,story_mgr.getCompletedStoriesIds()[0]);
     }
 }
