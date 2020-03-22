@@ -100,7 +100,10 @@ class StoryManager {
     //Private Utilities Section
 
     private void transferStoryFromListToList(int id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
-        to_story_list.add(getIndex(id), from_story_list.get(getIndex(id)));
+        while(to_story_list.size()<from_story_list.size()) {
+            to_story_list.add(getIndex(id), null);
+        }
+        to_story_list.set(getIndex(id), from_story_list.get(getIndex(id)));
         from_story_list.set(getIndex(id), null);
     }
 
