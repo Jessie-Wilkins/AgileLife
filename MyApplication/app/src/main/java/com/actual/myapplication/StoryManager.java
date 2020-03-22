@@ -2,6 +2,13 @@ package com.actual.myapplication;
 
 import java.util.ArrayList;
 
+/**
+ * This class manages story objects and contains functions
+ * and lists for editing, adding, and deleting stories.
+ *
+ * @author jessiewilkins
+ * @since 2020-03-22
+ */
 class StoryManager {
     private static final ArrayList<Story> story_list = new ArrayList<>();
     private static StoryManager story_mgr;
@@ -66,15 +73,8 @@ class StoryManager {
         deleted_story_list.clear();
     }
 
-    public int[] getDeletedStoriesIds() {
-        int iter_index = 0;
-        int[] id_array = new int[deleted_story_list.size()];
-        for(Story del_story : deleted_story_list) {
-            if(del_story !=null) {
-                id_array[iter_index] = del_story.getId();
-                iter_index++;
-            }
-        }
+    public long[] getDeletedStoriesIds() {
+        long[] id_array = getStoryIds(deleted_story_list);
         return id_array;
     }
 
@@ -97,14 +97,23 @@ class StoryManager {
         transferStoryFromListToList(id, completed_story_list, story_list);
     }
 
+    public long[] getCompletedStoriesIds() {
+        long[] id_array = getStoryIds(completed_story_list);
+        return id_array;
+    }
+
     //Private Utilities Section
 
     private void transferStoryFromListToList(int id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
+        appendNullElements(id, from_story_list, to_story_list);
+        to_story_list.set(getIndex(id), from_story_list.get(getIndex(id)));
+        from_story_list.set(getIndex(id), null);
+    }
+
+    private void appendNullElements(int id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
         while(to_story_list.size()<from_story_list.size()) {
             to_story_list.add(getIndex(id), null);
         }
-        to_story_list.set(getIndex(id), from_story_list.get(getIndex(id)));
-        from_story_list.set(getIndex(id), null);
     }
 
     private int getIndex(int id) {
@@ -117,11 +126,11 @@ class StoryManager {
         }
     }
 
-    public int[] getCompletedStoriesIds() {
+    private long[] getStoryIds(ArrayList<Story> completed_story_list) {
         int iter_index = 0;
-        int[] id_array = new int[completed_story_list.size()];
-        for(Story comp_story : completed_story_list) {
-            if(comp_story !=null) {
+        long[] id_array = new long[completed_story_list.size()];
+        for (Story comp_story : completed_story_list) {
+            if (comp_story != null) {
                 id_array[iter_index] = comp_story.getId();
                 iter_index++;
             }
