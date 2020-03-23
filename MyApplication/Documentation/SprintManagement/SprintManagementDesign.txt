@@ -1,0 +1,18 @@
+Sprint System:
+
+I. Entering in Sprints
+    1. The user will be able to add a sprint.
+    2. The user will be able to define the sprint length.
+    3. The user will be able to enter the capacity for this sprint.
+    4. The user will be able to label the sprint.
+    5. The user will be able to adjust frequency of occurrence for the sprint and future sprints.
+
+II. Managing Sprints
+    1. The user will be able to add stories to a sprint.
+    2. The user will be able to see total completed points for the sprint.
+    3. The user will be able to see total points assigned for the sprint.
+    4. The user will be able to edit capacity, sprint length, and all other attributes of the sprint.
+    5. The user will be able to save sprint settings.
+    6. The user will be able to remove the current sprint or sprint settings.
+    7. The user will be able to load a new sprint from the saved sprint settings.
+    8. The user will be able to access future sprints into an indefinite period of time (whatever arbitrary calendar limit there is).
