@@ -1,5 +1,12 @@
 package com.actual.myapplication;
 
+/**
+ * Manages story details such as strings (titles, descriptions, etc.),
+ * points management object, and the status enum.
+ *
+ * @author jessiewilkins
+ * @since 2020-02
+ */
 class Story {
     private String title = "Default Title";
     private String description = "Default Description";
@@ -12,7 +19,7 @@ class Story {
         DONE
     }
     private String sprint = "Default Sprint";
-    private final int id;
+    private final long id;
 
     public Story() {
         id = IdGenerator.generateId();
@@ -70,7 +77,7 @@ class Story {
         return this.sprint;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 }

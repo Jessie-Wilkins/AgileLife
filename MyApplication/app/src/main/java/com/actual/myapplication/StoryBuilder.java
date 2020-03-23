@@ -1,5 +1,11 @@
 package com.actual.myapplication;
 
+/**
+ * Builds object for setting variables in story.
+ *
+ * @author jessiewilkins
+ * @since 2020-02
+ */
 class StoryBuilder {
     private static int builder_count = 0;
     private String title;

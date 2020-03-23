@@ -1,5 +1,15 @@
 package com.actual.myapplication;
 
+
+/**
+ * Manages Point System by adding and removing points.
+ * Manages several points variables involving assigned or total points,
+ * current uncompleted points, and completed points. It also keeps track of
+ * capacity.
+ *
+ * @author jessiewilkins
+ * @since 2020-02
+ */
 class PointsManagement {
     private int points = 0;
     private int capacity = 0;
