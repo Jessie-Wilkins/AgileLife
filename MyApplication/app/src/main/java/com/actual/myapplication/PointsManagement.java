@@ -52,6 +52,10 @@ class PointsManagement {
         this.capacity = subtractLatterFromFormerConditional(this.capacity, capacity, "capacity");
     }
 
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
     public int getCapacity() {
         return capacity;
     }

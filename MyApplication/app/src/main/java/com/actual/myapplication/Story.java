@@ -77,6 +77,10 @@ class Story {
         return this.sprint;
     }
 
+    public void setSprint(String sprint) {
+        this.sprint = sprint;
+    }
+
     public long getId() {
         return id;
     }

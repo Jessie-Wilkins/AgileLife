@@ -193,5 +193,32 @@ public class StoryTest {
         assertEquals(2, story_obj2.getId());
 
     }
+    @Test
+    public void canSetSprintIndividually() {
+        IdGenerator.resetId();
+        Story story_obj = new Story();
+        StoryBuilder.resetBuilderAsUninitiated();
+        StoryBuilder builder = StoryBuilder.initiateBuilder();
+
+        builder.setTitle("Title 1");
+
+        builder.setDescription("Description 1");
+
+        builder.setPoints(4);
+
+        builder.setStatus(Story.StoryStatus.IN_PROGRESS);
+
+        builder.setSprint("Sprint 1");
+
+        builder.setCompletedPoints(2);
+
+        story_obj.setStoryAttributes(builder);
+
+        Story story_obj2 = new Story();
+
+        story_obj2.setSprint("Sprint 2");
+
+        assertEquals("Sprint 2", story_obj2.getSprint());
+    }
 
 }

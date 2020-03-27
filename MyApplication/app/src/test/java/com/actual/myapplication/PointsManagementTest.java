@@ -113,4 +113,22 @@ public class PointsManagementTest {
         pnt_mgt_obj.setCompletedPoints(3);
         assertEquals(8, pnt_mgt_obj.getTotalPoints());
     }
+
+    @Test
+    public void canSetAndOverrideCurrentCapacity() {
+        PointsManagement pnt_mgt_obj = new PointsManagement();
+        pnt_mgt_obj.addPoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.removePoints(1);
+        pnt_mgt_obj.addCapacity(4);
+        pnt_mgt_obj.removeCapacity(1);
+        pnt_mgt_obj.removeCapacity(4);
+        pnt_mgt_obj.addPoints(3);
+        pnt_mgt_obj.completePoints(2);
+        int complete_points = pnt_mgt_obj.getCompletedPoints();
+        pnt_mgt_obj.setPoints(5);
+        pnt_mgt_obj.setCompletedPoints(3);
+        pnt_mgt_obj.setCapacity(4);
+        assertEquals(4, pnt_mgt_obj.getCapacity());
+    }
 }
