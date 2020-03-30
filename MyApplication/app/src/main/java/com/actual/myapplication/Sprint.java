@@ -5,8 +5,8 @@ class Sprint {
     private int length = 0;
     private int frequency = 0;
     private PointsManagement points_management = new PointsManagement();
-    private int capacity = 0;
     private StoryManager story_mgr = StoryManager.initiateStoryManager();
+    private StoryBuilder story_builder = StoryBuilder.initiateBuilder();
 
     public void setLabel(String label) {
         this.label = label;
@@ -41,8 +41,21 @@ class Sprint {
     }
 
     public void addExistingStory(int id) {
-        StoryBuilder builder = StoryBuilder.initiateBuilder();
-        builder.setSprint(getLabel());
-        story_mgr.getStory(id).setChangedStoryAttributes(builder);
+        story_mgr.getStory(id).setSprint(getLabel());
+    }
+
+    public void addNewStory() {
+        this.story_builder.setSprint(getLabel());
+        this.story_mgr.addStory(this.story_builder);
+    }
+
+    public void addNewStory(StoryBuilder story_builder) {
+        this.story_mgr.addStory(story_builder);
+    }
+
+    public int getTotalAssignedPoints() {
+        //for(int i = 0;)
+        //this.story_mgr.getStory().getSprint()
+        return 0;
     }
 }

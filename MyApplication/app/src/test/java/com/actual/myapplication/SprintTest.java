@@ -60,4 +60,54 @@ public class SprintTest {
         assertEquals("New Sprint", story_mgr.getStory(1).getSprint());
     }
 
+    @Test
+    public void canCreateStoryForSprintWithNoBuilder() {
+        Sprint spr_obj = new Sprint();
+        spr_obj.setLabel("New Sprint");
+        spr_obj.setLength(3);
+        spr_obj.setFrequencyInDays(14);
+        spr_obj.setCapacity(8);
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        spr_obj.addExistingStory(1);
+        spr_obj.addNewStory();
+        assertEquals("New Sprint", story_mgr.getStory(2).getSprint());
+    }
+
+    @Test
+    public void canCreateStoryForSprintWithBuilder() {
+        Sprint spr_obj = new Sprint();
+        spr_obj.setLabel("New Sprint");
+        spr_obj.setLength(3);
+        spr_obj.setFrequencyInDays(14);
+        spr_obj.setCapacity(8);
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        spr_obj.addExistingStory(1);
+        spr_obj.addNewStory();
+        StoryBuilder story_builder = StoryBuilder.initiateBuilder();
+        spr_obj.addNewStory(story_builder);
+        assertEquals("New Sprint", story_mgr.getStory(3).getSprint());
+    }
+
+    @Test
+    public void canGetTotalAssignedPointsForSprint() {
+        Sprint spr_obj = new Sprint();
+        spr_obj.setLabel("New Sprint");
+        spr_obj.setLength(3);
+        spr_obj.setFrequencyInDays(14);
+        spr_obj.setCapacity(8);
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        spr_obj.addExistingStory(1);
+        spr_obj.addNewStory();
+        StoryBuilder story_builder = StoryBuilder.initiateBuilder();
+        spr_obj.addNewStory(story_builder);
+        story_builder.setPoints(2);
+        story_mgr.getStory(1).setChangedStoryAttributes(story_builder);
+        story_mgr.getStory(2).setChangedStoryAttributes(story_builder);
+        story_mgr.getStory(3).setChangedStoryAttributes(story_builder);
+        assertEquals(6, spr_obj.getTotalAssignedPoints());
+    }
+
 }
