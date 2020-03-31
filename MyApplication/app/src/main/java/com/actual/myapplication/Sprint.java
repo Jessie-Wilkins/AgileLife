@@ -54,8 +54,14 @@ class Sprint {
     }
 
     public int getTotalAssignedPoints() {
-        //for(int i = 0;)
-        //this.story_mgr.getStory().getSprint()
-        return 0;
+        int totalAssignedPoints = 0;
+        long [] stories_ids = this.story_mgr.getStoriesIds();
+        for(long story_id : stories_ids) {
+            if(this.story_mgr.getStory(story_id).getSprint().equals(getLabel())) {
+                totalAssignedPoints += this.story_mgr.getStory(story_id).getPointsManagement().getTotalPoints();
+            }
+        }
+
+        return totalAssignedPoints;
     }
 }

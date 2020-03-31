@@ -92,6 +92,7 @@ public class SprintTest {
 
     @Test
     public void canGetTotalAssignedPointsForSprint() {
+        StoryBuilder.resetBuilderAsUninitiated();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -105,7 +106,9 @@ public class SprintTest {
         spr_obj.addNewStory(story_builder);
         story_builder.setPoints(2);
         story_mgr.getStory(1).setChangedStoryAttributes(story_builder);
+        story_builder.setPoints(2);
         story_mgr.getStory(2).setChangedStoryAttributes(story_builder);
+        story_builder.setPoints(2);
         story_mgr.getStory(3).setChangedStoryAttributes(story_builder);
         assertEquals(6, spr_obj.getTotalAssignedPoints());
     }

@@ -37,7 +37,7 @@ class StoryManager {
         story_list.add(new Story());
     }
 
-    public Story getStory(int id) {
+    public Story getStory(long id) {
         return story_list.get(getIndex(id));
     }
 
@@ -120,6 +120,10 @@ class StoryManager {
         return id - 1;
     }
 
+    private int getIndex(long id) {
+        return (int) id - 1;
+    }
+
     private void initializeEmptyList(ArrayList<Story> deleted_story_list) {
         if (deleted_story_list.isEmpty()) {
             deleted_story_list.add(0, null);
@@ -135,6 +139,11 @@ class StoryManager {
                 iter_index++;
             }
         }
+        return id_array;
+    }
+
+    public long[] getStoriesIds() {
+        long[] id_array = getStoryIds(story_list);
         return id_array;
     }
 }

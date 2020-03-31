@@ -2,8 +2,6 @@ package com.actual.myapplication;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
@@ -421,5 +419,45 @@ public class StoryManagementTest {
         story_mgr.completeStory(3);
 
         assertEquals(3,story_mgr.getCompletedStoriesIds()[0]);
+    }
+
+    @Test
+    public void canGetListOfNonDeletedAndNonCompletedStories() {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        StoryBuilder builder = getStoryBuilderSetup(story_mgr);
+
+        repetitiveBuilder(builder);
+
+        story_mgr.addStory(builder);
+
+        builder.setPoints(7);
+
+        story_mgr.editStory(3, builder);
+
+        story_mgr.getStory(3).getPointsManagement().addPoints(3);
+
+        builder.setSprint("Sprint 3");
+
+        story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
+
+        Story temp_story = story_mgr.getStory(1);
+
+        story_mgr.deleteStory(1);
+
+        story_mgr.clearAllStoriesFromDeletedStoryList();
+
+        temp_story = story_mgr.getStory(2);
+
+        story_mgr.deleteStory(2);
+
+        story_mgr.retrieveStoryFromDeletedStoryList(2);
+
+        story_mgr.completeStory(2);
+
+        story_mgr.retrieveStoryFromCompletedStoryList(2);
+
+        story_mgr.completeStory(3);
+
+        assertEquals(2, story_mgr.getStoriesIds()[0]);
     }
 }
