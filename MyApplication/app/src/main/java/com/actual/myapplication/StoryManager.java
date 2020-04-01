@@ -47,20 +47,20 @@ class StoryManager {
         story_list.add(story);
     }
 
-    public void editStory(int id, StoryBuilder builder) {
+    public void editStory(long id, StoryBuilder builder) {
         story_list.get(getIndex(id)).setStoryAttributes(builder);
     }
 
-    public void editStoryWithOnlyChangedAttributes(int id, StoryBuilder builder) {
+    public void editStoryWithOnlyChangedAttributes(long id, StoryBuilder builder) {
         story_list.get(getIndex(id)).setChangedStoryAttributes(builder);
     }
 
-    public void deleteStory(int id) {
+    public void deleteStory(long id) {
         initializeEmptyList(deleted_story_list);
         transferStoryFromListToList(id, story_list, deleted_story_list);
     }
 
-    public Story getDeletedStory(int id) {
+    public Story getDeletedStory(long id) {
         try {
             return deleted_story_list.get(getIndex(id));
         }
@@ -78,21 +78,21 @@ class StoryManager {
         return id_array;
     }
 
-    public void retrieveStoryFromDeletedStoryList(int id) {
+    public void retrieveStoryFromDeletedStoryList(long id) {
         initializeEmptyList(story_list);
         transferStoryFromListToList(id, deleted_story_list, story_list);
     }
 
-    public void completeStory(int id) {
+    public void completeStory(long id) {
         initializeEmptyList(completed_story_list);
         transferStoryFromListToList(id, story_list, completed_story_list);
     }
 
-    public Story getCompletedStory(int id) {
+    public Story getCompletedStory(long id) {
         return completed_story_list.get(getIndex(id));
     }
 
-    public void retrieveStoryFromCompletedStoryList(int id) {
+    public void retrieveStoryFromCompletedStoryList(long id) {
         initializeEmptyList(story_list);
         transferStoryFromListToList(id, completed_story_list, story_list);
     }
@@ -102,22 +102,23 @@ class StoryManager {
         return id_array;
     }
 
+    public long[] getStoriesIds() {
+        long[] id_array = getStoryIds(story_list);
+        return id_array;
+    }
+
     //Private Utilities Section
 
-    private void transferStoryFromListToList(int id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
+    private void transferStoryFromListToList(long id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
         appendNullElements(id, from_story_list, to_story_list);
         to_story_list.set(getIndex(id), from_story_list.get(getIndex(id)));
         from_story_list.set(getIndex(id), null);
     }
 
-    private void appendNullElements(int id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
+    private void appendNullElements(long id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
         while(to_story_list.size()<from_story_list.size()) {
             to_story_list.add(getIndex(id), null);
         }
-    }
-
-    private int getIndex(int id) {
-        return id - 1;
     }
 
     private int getIndex(long id) {
@@ -139,11 +140,6 @@ class StoryManager {
                 iter_index++;
             }
         }
-        return id_array;
-    }
-
-    public long[] getStoriesIds() {
-        long[] id_array = getStoryIds(story_list);
         return id_array;
     }
 }

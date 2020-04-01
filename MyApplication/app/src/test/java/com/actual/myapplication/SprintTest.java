@@ -76,6 +76,7 @@ public class SprintTest {
 
     @Test
     public void canCreateStoryForSprintWithBuilder() {
+        StoryBuilder.resetBuilderAsUninitiated();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -111,6 +112,32 @@ public class SprintTest {
         story_builder.setPoints(2);
         story_mgr.getStory(3).setChangedStoryAttributes(story_builder);
         assertEquals(6, spr_obj.getTotalAssignedPoints());
+    }
+
+    @Test
+    public void canGetTotalCompletedPoints() {
+        StoryBuilder.resetBuilderAsUninitiated();
+        Sprint spr_obj = new Sprint();
+        spr_obj.setLabel("New Sprint");
+        spr_obj.setLength(3);
+        spr_obj.setFrequencyInDays(14);
+        spr_obj.setCapacity(8);
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
+        story_mgr.addStory();
+        spr_obj.addExistingStory(1);
+        spr_obj.addNewStory();
+        StoryBuilder story_builder = StoryBuilder.initiateBuilder();
+        spr_obj.addNewStory(story_builder);
+        story_builder.setPoints(2);
+        story_mgr.getStory(1).setChangedStoryAttributes(story_builder);
+        story_builder.setPoints(2);
+        story_mgr.getStory(2).setChangedStoryAttributes(story_builder);
+        story_builder.setPoints(2);
+        story_mgr.getStory(3).setChangedStoryAttributes(story_builder);
+        story_mgr.getStory(1).getPointsManagement().completePoints(1);
+        story_mgr.getStory(2).getPointsManagement().completePoints(1);
+        story_mgr.getStory(3).getPointsManagement().completePoints(1);
+        assertEquals(3, spr_obj.getTotalCompletedPoints());
     }
 
 }

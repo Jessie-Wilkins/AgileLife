@@ -55,13 +55,37 @@ class Sprint {
 
     public int getTotalAssignedPoints() {
         int totalAssignedPoints = 0;
+
+        totalAssignedPoints = iterateThroughStoryIdsForTotalPoints(totalAssignedPoints, PointTypes.TOTAL_POINTS);
+
+        return totalAssignedPoints;
+    }
+
+    public int getTotalCompletedPoints() {
+        int totalCompletedPoints = 0;
+
+        totalCompletedPoints = iterateThroughStoryIdsForTotalPoints(totalCompletedPoints, PointTypes.COMPLETED_POINTS);
+
+        return totalCompletedPoints;
+
+    }
+
+    //Private Utilities
+    private enum PointTypes {
+        TOTAL_POINTS,
+        COMPLETED_POINTS
+    }
+
+    private int iterateThroughStoryIdsForTotalPoints(int totalPoints, PointTypes point_types) {
         long [] stories_ids = this.story_mgr.getStoriesIds();
         for(long story_id : stories_ids) {
             if(this.story_mgr.getStory(story_id).getSprint().equals(getLabel())) {
-                totalAssignedPoints += this.story_mgr.getStory(story_id).getPointsManagement().getTotalPoints();
+                if(point_types.equals(PointTypes.TOTAL_POINTS))
+                    totalPoints += this.story_mgr.getStory(story_id).getPointsManagement().getTotalPoints();
+                else
+                    totalPoints += this.story_mgr.getStory(story_id).getPointsManagement().getCompletedPoints();
             }
         }
-
-        return totalAssignedPoints;
+        return totalPoints;
     }
 }
