@@ -7,6 +7,7 @@ class Sprint {
     private PointsManagement points_management = new PointsManagement();
     private StoryManager story_mgr = StoryManager.initiateStoryManager();
     private StoryBuilder story_builder = StoryBuilder.initiateBuilder();
+    private long id = SprintIdGenerator.generateId();
 
     public void setLabel(String label) {
         this.label = label;
@@ -68,6 +69,10 @@ class Sprint {
 
         return totalCompletedPoints;
 
+    }
+
+    public long getId() {
+        return this.id;
     }
 
     //Private Utilities

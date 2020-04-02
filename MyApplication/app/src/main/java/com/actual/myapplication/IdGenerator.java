@@ -7,16 +7,19 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-02
  */
-public class IdGenerator {
+public abstract class IdGenerator {
 
-    private static long id=0;
+    private static long id = 0;
 
-    private IdGenerator() {
+    protected abstract long getId();
+
+
+    protected IdGenerator() {
 
     }
 
     public static long generateId() {
-        return ++id;
+        return getId();
     }
 
     public static void resetId() {
