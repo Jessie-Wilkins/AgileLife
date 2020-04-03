@@ -22,7 +22,7 @@ class Story {
     private final long id;
 
     public Story() {
-        id = IdGenerator.generateId();
+        id = StoryIdGenerator.generateId();
     }
 
     public String getTitle() {

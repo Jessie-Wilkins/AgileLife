@@ -9,17 +9,20 @@ package com.actual.myapplication;
  */
 public abstract class IdGenerator {
 
-    private static long id = 0;
+    private static long id;
 
-    protected abstract long getId();
+    protected static void setId(long inherited_id) {
+        id = inherited_id;
+    }
 
+    protected abstract void callInheritedId();
 
     protected IdGenerator() {
 
     }
 
     public static long generateId() {
-        return getId();
+        return ++id;
     }
 
     public static void resetId() {
