@@ -22,7 +22,7 @@ class StoryManager {
 
     public static StoryManager initiateStoryManager() {
         story_list.clear();
-        IdGenerator.resetId();
+        StoryIdGenerator.resetId();
         if(story_mgr_count == 0) {
             story_mgr_count++;
             story_mgr = new StoryManager();
