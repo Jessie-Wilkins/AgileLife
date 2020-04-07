@@ -7,12 +7,20 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-02
  */
-public class SprintIdGenerator extends IdGenerator{
+public class SprintIdGenerator {
 
     private static long id = 0;
 
-    @Override
-    protected void callInheritedId() {
-        setId(id);
+    protected SprintIdGenerator() {
+
     }
+
+    public static long generateId() {
+        return ++id;
+    }
+
+    public static void resetId() {
+        id = 0;
+    }
+
 }

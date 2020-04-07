@@ -9,6 +9,7 @@ class Sprint {
     private StoryBuilder story_builder = StoryBuilder.initiateBuilder();
     private long id = SprintIdGenerator.generateId();
 
+
     public void setLabel(String label) {
         this.label = label;
     }
