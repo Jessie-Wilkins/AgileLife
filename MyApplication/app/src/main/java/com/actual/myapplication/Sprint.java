@@ -43,11 +43,11 @@ class Sprint {
     }
 
     public void addExistingStory(int id) {
-        story_mgr.getStory(id).setSprint(getLabel());
+        story_mgr.getStory(id).setSprint(getIdPlusLabel());
     }
 
     public void addNewStory() {
-        this.story_builder.setSprint(getLabel());
+        this.story_builder.setSprint(getIdPlusLabel());
         this.story_mgr.addStory(this.story_builder);
     }
 
@@ -85,7 +85,7 @@ class Sprint {
     private int iterateThroughStoryIdsForTotalPoints(int totalPoints, PointTypes point_types) {
         long [] stories_ids = this.story_mgr.getStoriesIds();
         for(long story_id : stories_ids) {
-            if(this.story_mgr.getStory(story_id).getSprint().equals(getLabel())) {
+            if(this.story_mgr.getStory(story_id).getSprint().equals(getIdPlusLabel())) {
                 if(point_types.equals(PointTypes.TOTAL_POINTS))
                     totalPoints += this.story_mgr.getStory(story_id).getPointsManagement().getTotalPoints();
                 else
@@ -93,5 +93,9 @@ class Sprint {
             }
         }
         return totalPoints;
+    }
+
+    private String getIdPlusLabel() {
+        return this.id + ":" + getLabel();
     }
 }

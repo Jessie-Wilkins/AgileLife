@@ -15,6 +15,7 @@ public class SprintTest {
 
     @Test
     public void canSetLabel() {
+        SprintIdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         assertEquals("New Sprint", spr_obj.getLabel());
@@ -22,6 +23,7 @@ public class SprintTest {
 
     @Test
     public void canSetLength() {
+        SprintIdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -30,6 +32,7 @@ public class SprintTest {
 
     @Test
     public void canSetFrequency() {
+        SprintIdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -39,6 +42,7 @@ public class SprintTest {
 
     @Test
     public void canSetCapacity() {
+        SprintIdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -49,6 +53,7 @@ public class SprintTest {
 
     @Test
     public void canAddExistingStoryToSprint() {
+        SprintIdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -57,11 +62,12 @@ public class SprintTest {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
         story_mgr.addStory();
         spr_obj.addExistingStory(1);
-        assertEquals("New Sprint", story_mgr.getStory(1).getSprint());
+        assertEquals("1:New Sprint", story_mgr.getStory(1).getSprint());
     }
 
     @Test
     public void canCreateStoryForSprintWithNoBuilder() {
+        SprintIdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -71,12 +77,13 @@ public class SprintTest {
         story_mgr.addStory();
         spr_obj.addExistingStory(1);
         spr_obj.addNewStory();
-        assertEquals("New Sprint", story_mgr.getStory(2).getSprint());
+        assertEquals("1:New Sprint", story_mgr.getStory(2).getSprint());
     }
 
     @Test
     public void canCreateStoryForSprintWithBuilder() {
         StoryBuilder.resetBuilderAsUninitiated();
+        SprintIdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -88,7 +95,7 @@ public class SprintTest {
         spr_obj.addNewStory();
         StoryBuilder story_builder = StoryBuilder.initiateBuilder();
         spr_obj.addNewStory(story_builder);
-        assertEquals("New Sprint", story_mgr.getStory(3).getSprint());
+        assertEquals("1:New Sprint", story_mgr.getStory(3).getSprint());
     }
 
     @Test
