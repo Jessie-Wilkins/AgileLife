@@ -27,4 +27,28 @@ public class SprintManagerTest {
        assertEquals(sprint_manager, sprint_manager2);
    }
 
+   @Test
+   public void canInitiateSprintBuilder() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      assertThat(sprint_builder, instanceOf(SprintBuilder.class));
+   }
+
+   @Test
+   public void canOnlyCreateOneSprintBuilderObjectAtATime() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+      SprintBuilder sprint_builder2 = SprintBuilder.initiateSprintBuilder();
+
+      assertEquals(sprint_builder, sprint_builder2);
+   }
+
+   //@Test
+   public void canAddSprintToSprintList() {
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_manager.addSprint(sprint_builder);
+   }
+
 }

@@ -21,4 +21,8 @@ class SprintManager {
         }
 
     }
+
+    public void addSprint(SprintBuilder sprint_builder) {
+
+    }
 }
