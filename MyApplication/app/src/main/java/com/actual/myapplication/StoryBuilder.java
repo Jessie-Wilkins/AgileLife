@@ -11,7 +11,7 @@ class StoryBuilder {
     private String title;
     private String description;
     private int points;
-    private static StoryBuilder builder;
+    private static StoryBuilder builder = new StoryBuilder();
     private Story.StoryStatus status;
     private String sprint;
     private int completed_points;
@@ -27,19 +27,12 @@ class StoryBuilder {
     }
 
     public static StoryBuilder initiateBuilder() {
-        if(builder_count == 0) {
-            builder_count++;
-            builder = new StoryBuilder();
-            return builder;
-        }
-        else {
-            return builder;
-        }
+        return builder;
     }
 
     public static void resetBuilderAsUninitiated() {
         builder = null;
-        builder_count = 0;
+        builder = new StoryBuilder();
     }
 
     public void setTitle(String title) {

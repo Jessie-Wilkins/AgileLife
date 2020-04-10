@@ -11,8 +11,7 @@ import java.util.ArrayList;
  */
 class StoryManager {
     private static final ArrayList<Story> story_list = new ArrayList<>();
-    private static StoryManager story_mgr;
-    private static int story_mgr_count = 0;
+    private static StoryManager story_mgr = new StoryManager();
     private static final ArrayList<Story> deleted_story_list = new ArrayList<>();
     private static final ArrayList<Story> completed_story_list = new ArrayList<>();;
 
@@ -23,14 +22,8 @@ class StoryManager {
     public static StoryManager initiateStoryManager() {
         story_list.clear();
         StoryIdGenerator.resetId();
-        if(story_mgr_count == 0) {
-            story_mgr_count++;
-            story_mgr = new StoryManager();
-            return story_mgr;
-        }
-        else {
-            return story_mgr;
-        }
+        return story_mgr;
+
     }
 
     public void addStory() {

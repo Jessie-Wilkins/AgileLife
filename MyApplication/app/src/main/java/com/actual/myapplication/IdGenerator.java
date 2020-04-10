@@ -9,7 +9,7 @@ package com.actual.myapplication;
  */
 public abstract class IdGenerator {
 
-    private static long id = 0;
+    protected static long id;
 
     protected IdGenerator() {
 
@@ -18,6 +18,7 @@ public abstract class IdGenerator {
     public static long generateId() {
         return ++id;
     }
+
 
     public static void resetId() {
         id = 0;

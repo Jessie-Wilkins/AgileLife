@@ -7,20 +7,12 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-02
  */
-public class StoryIdGenerator {
+public class StoryIdGenerator extends IdGenerator{
 
     private static long id = 0;
 
     protected StoryIdGenerator() {
-
-    }
-
-    public static long generateId() {
-        return ++id;
-    }
-
-    public static void resetId() {
-        id = 0;
+        super.id = id;
     }
 
 }
