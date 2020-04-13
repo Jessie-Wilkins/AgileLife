@@ -12,8 +12,11 @@ public abstract class IdGenerator {
     protected static long id;
 
     protected IdGenerator() {
-
+         id = getChildId();
     }
+
+    protected abstract long getChildId();
+
 
     public static long generateId() {
         return ++id;

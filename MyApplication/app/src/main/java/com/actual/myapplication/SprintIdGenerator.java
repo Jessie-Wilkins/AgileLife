@@ -2,17 +2,22 @@ package com.actual.myapplication;
 
 /**
  * Manages id variable and the generation process
- * to ensure a unique id for story objects.
+ * to ensure a unique id for sprint objects.
  *
  * @author jessiewilkins
- * @since 2020-02
+ * @since 2020-04
  */
 public class SprintIdGenerator extends IdGenerator{
 
     private static long id = 0;
 
     protected SprintIdGenerator() {
-        super.id = id;
+
+    }
+
+    @Override
+    protected long getChildId() {
+        return id;
     }
 
    /* public static long generateId() {
