@@ -12,12 +12,18 @@ public class StoryIdGenerator extends IdGenerator{
     private static long id = 0;
 
     protected StoryIdGenerator() {
-        //super.id = id;
+
     }
 
-    @Override
+    protected void setChildId(long child_id) {
+        id = child_id;
+    }
+
     protected long getChildId() {
         return id;
     }
+
+
+
 
 }
