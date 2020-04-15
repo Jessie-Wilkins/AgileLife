@@ -16,7 +16,9 @@ public class StoryTest {
 
     @Test
     public void canAddStoryObject() {
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
+
         Story story_obj = new Story();
 
 
@@ -25,7 +27,9 @@ public class StoryTest {
 
     @Test
     public void canSetTitle() {
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
+
         Story story_obj = new Story();
         StoryBuilder.resetBuilderAsUninitiated();
         StoryBuilder builder = StoryBuilder.initiateBuilder();
@@ -39,7 +43,9 @@ public class StoryTest {
 
     @Test
     public void canSetDescription() {
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
+
         Story story_obj = new Story();
         StoryBuilder.resetBuilderAsUninitiated();
         StoryBuilder builder = StoryBuilder.initiateBuilder();
@@ -56,7 +62,9 @@ public class StoryTest {
 
     @Test
     public void canSetPoints() {
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
+
         Story story_obj = new Story();
         StoryBuilder.resetBuilderAsUninitiated();
         StoryBuilder builder = StoryBuilder.initiateBuilder();
@@ -75,7 +83,9 @@ public class StoryTest {
 
     @Test
     public void canSetStatus() {
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
+
         Story story_obj = new Story();
         StoryBuilder.resetBuilderAsUninitiated();
         StoryBuilder builder = StoryBuilder.initiateBuilder();
@@ -96,7 +106,9 @@ public class StoryTest {
 
     @Test
     public void canSetSprint() {
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
+
         Story story_obj = new Story();
         StoryBuilder.resetBuilderAsUninitiated();
         StoryBuilder builder = StoryBuilder.initiateBuilder();
@@ -119,7 +131,8 @@ public class StoryTest {
 
     @Test
     public void canSetCompletedPoints() {
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
         Story story_obj = new Story();
         StoryBuilder.resetBuilderAsUninitiated();
         StoryBuilder builder = StoryBuilder.initiateBuilder();
@@ -144,7 +157,8 @@ public class StoryTest {
 
     @Test
     public void canGetGeneratedId() {
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
         Story story_obj = new Story();
         StoryBuilder.resetBuilderAsUninitiated();
         StoryBuilder builder = StoryBuilder.initiateBuilder();
@@ -169,7 +183,9 @@ public class StoryTest {
 
     @Test
     public void canGetGeneratedUniqueId() {
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
+
         Story story_obj = new Story();
         StoryBuilder.resetBuilderAsUninitiated();
         StoryBuilder builder = StoryBuilder.initiateBuilder();
@@ -195,7 +211,9 @@ public class StoryTest {
     }
     @Test
     public void canSetSprintIndividually() {
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
+
         Story story_obj = new Story();
         StoryBuilder.resetBuilderAsUninitiated();
         StoryBuilder builder = StoryBuilder.initiateBuilder();

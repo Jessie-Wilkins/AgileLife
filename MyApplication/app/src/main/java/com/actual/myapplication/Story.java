@@ -22,7 +22,8 @@ class Story {
     private final long id;
 
     public Story() {
-        id = StoryIdGenerator.generateId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        id = IdGenerator.generateId();
     }
 
     public String getTitle() {

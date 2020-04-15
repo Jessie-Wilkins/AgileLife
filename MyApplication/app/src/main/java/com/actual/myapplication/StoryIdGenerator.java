@@ -7,22 +7,27 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-02
  */
-public class StoryIdGenerator extends IdGenerator{
+public class StoryIdGenerator implements IdGeneratorStrategy{
 
     private static long id = 0;
 
-    protected StoryIdGenerator() {
+    private StoryIdGenerator() {
 
     }
 
-    protected void setChildId(long child_id) {
-        id = child_id;
+    private static StoryIdGenerator id_generator = new StoryIdGenerator();
+
+    public static StoryIdGenerator getStoryIdGenerator() {
+        return id_generator;
     }
 
-    protected long getChildId() {
-        return id;
+    public long generateId() {
+        return ++id;
     }
 
+    public void resetId() {
+        id = 0;
+    }
 
 
 

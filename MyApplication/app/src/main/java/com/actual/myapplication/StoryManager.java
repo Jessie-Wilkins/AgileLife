@@ -21,7 +21,8 @@ class StoryManager {
 
     public static StoryManager initiateStoryManager() {
         story_list.clear();
-        StoryIdGenerator.resetId();
+        IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
+        IdGenerator.resetId();
         return story_mgr;
 
     }

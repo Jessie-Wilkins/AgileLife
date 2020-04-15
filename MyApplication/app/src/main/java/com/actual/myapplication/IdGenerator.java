@@ -7,28 +7,24 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-02
  */
- abstract class IdGenerator {
+ public class IdGenerator{
 
-    protected long id;
+    private static IdGeneratorStrategy strategy;
 
-    protected IdGenerator() {
+    private IdGenerator() {
 
     }
 
-    protected abstract void setChildId(long child_id);
+    public static void setStrategy(IdGeneratorStrategy strategy) {
+        IdGenerator.strategy = strategy;
+    }
 
-    protected abstract long getChildId();
-
-    public long generateId() {
-        id = getChildId();
-        ++id;
-        setChildId(id);
-        return id;
+    public static long generateId() {
+        return strategy.generateId();
     }
 
 
-    public void resetId() {
-        id = 0;
-        setChildId(0);
+    public static void resetId() {
+        strategy.resetId();
     }
 }

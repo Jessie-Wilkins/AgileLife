@@ -15,7 +15,8 @@ public class SprintTest {
 
     @Test
     public void canSetLabel() {
-        SprintIdGenerator.resetId();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         assertEquals("New Sprint", spr_obj.getLabel());
@@ -23,7 +24,8 @@ public class SprintTest {
 
     @Test
     public void canSetLength() {
-        SprintIdGenerator.resetId();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -32,7 +34,8 @@ public class SprintTest {
 
     @Test
     public void canSetFrequency() {
-        SprintIdGenerator.resetId();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -42,7 +45,8 @@ public class SprintTest {
 
     @Test
     public void canSetCapacity() {
-        SprintIdGenerator.resetId();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -53,7 +57,8 @@ public class SprintTest {
 
     @Test
     public void canAddExistingStoryToSprint() {
-        SprintIdGenerator.resetId();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -67,7 +72,8 @@ public class SprintTest {
 
     @Test
     public void canCreateStoryForSprintWithNoBuilder() {
-        SprintIdGenerator.resetId();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -83,7 +89,8 @@ public class SprintTest {
     @Test
     public void canCreateStoryForSprintWithBuilder() {
         StoryBuilder.resetBuilderAsUninitiated();
-        SprintIdGenerator.resetId();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -101,7 +108,8 @@ public class SprintTest {
     @Test
     public void canGetTotalAssignedPointsForSprint() {
         StoryBuilder.resetBuilderAsUninitiated();
-        SprintIdGenerator.resetId();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -125,7 +133,8 @@ public class SprintTest {
     @Test
     public void canGetTotalCompletedPoints() {
         StoryBuilder.resetBuilderAsUninitiated();
-        SprintIdGenerator.resetId();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);
@@ -152,7 +161,8 @@ public class SprintTest {
     @Test
     public void canGetUniqueIdForSprint() {
         StoryBuilder.resetBuilderAsUninitiated();
-        SprintIdGenerator.resetId();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         Sprint spr_obj = new Sprint();
         spr_obj.setLabel("New Sprint");
         spr_obj.setLength(3);

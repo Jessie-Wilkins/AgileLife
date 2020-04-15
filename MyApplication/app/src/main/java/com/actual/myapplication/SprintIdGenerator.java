@@ -7,25 +7,26 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-04
  */
-public class SprintIdGenerator extends IdGenerator{
+public class SprintIdGenerator implements IdGeneratorStrategy{
 
     private static long id = 0;
+
+    private static SprintIdGenerator id_generator = new SprintIdGenerator();
+
+    public static SprintIdGenerator getSprintIdGenerator() {
+        return id_generator;
+    }
 
     protected SprintIdGenerator() {
 
     }
 
-    @Override
-    protected long getChildId() {
-        return id;
-    }
-
-   /* public static long generateId() {
+    public long generateId() {
         return ++id;
     }
 
-    public static void resetId() {
+    public void resetId() {
         id = 0;
-    }*/
+    }
 
 }
