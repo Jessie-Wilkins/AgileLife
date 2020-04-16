@@ -4,6 +4,8 @@ class SprintManager {
 
     private static SprintManager sprint_manager = new SprintManager();
 
+    private Sprint sprint;
+
     private SprintManager() {
 
     }
@@ -13,6 +15,10 @@ class SprintManager {
     }
 
     public void addSprint(SprintBuilder sprint_builder) {
+        sprint = new Sprint();
+    }
 
+    public Sprint getSprint(long id) {
+        return sprint;
     }
 }

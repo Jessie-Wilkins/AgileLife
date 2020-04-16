@@ -42,13 +42,29 @@ public class SprintManagerTest {
       assertEquals(sprint_builder, sprint_builder2);
    }
 
-   //@Test
+   @Test
+   public  void canSetSprintLabelInBuilder() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      assertEquals("Test Label", sprint_builder.getLabel());
+   }
+
+   @Test
    public void canAddSprintToSprintList() {
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
       SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
 
       sprint_manager.addSprint(sprint_builder);
+
+      assertEquals(1, sprint_manager.getSprint(1).getId());
    }
 
 }
