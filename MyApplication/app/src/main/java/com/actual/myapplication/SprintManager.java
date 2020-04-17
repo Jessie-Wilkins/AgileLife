@@ -14,7 +14,7 @@ class SprintManager {
         return sprint_manager;
     }
 
-    public void addSprint(SprintBuilder sprint_builder) {
+    public void addSprint() {
         sprint = new Sprint();
     }
 

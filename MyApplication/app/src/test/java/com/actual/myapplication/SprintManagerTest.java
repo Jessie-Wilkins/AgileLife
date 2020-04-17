@@ -43,12 +43,51 @@ public class SprintManagerTest {
    }
 
    @Test
-   public  void canSetSprintLabelInBuilder() {
+   public void canSetSprintLabelInBuilder() {
       SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
 
       sprint_builder.setLabel("Test Label");
 
       assertEquals("Test Label", sprint_builder.getLabel());
+   }
+
+   @Test
+   public void canSetSprintLengthInBuilder() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      assertEquals(5, sprint_builder.getLength());
+   }
+
+   @Test
+   public void canSetSprintCapacityInBuilder() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      assertEquals(8, sprint_builder.getCapacity());
+   }
+
+   @Test
+   public void canSetSprintFrequencyInBuilder() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      assertEquals(14, sprint_builder.getFrequency());
    }
 
    @Test
@@ -62,9 +101,32 @@ public class SprintManagerTest {
 
       SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
 
-      sprint_manager.addSprint(sprint_builder);
+      sprint_manager.addSprint();
 
       assertEquals(1, sprint_manager.getSprint(1).getId());
+   }
+
+   @Test
+   public void canAddSprintToSprintListAndSetParametersWithBuilder() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint();
    }
 
 }
