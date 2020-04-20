@@ -8,11 +8,11 @@ class Sprint {
     private StoryManager story_mgr = StoryManager.initiateStoryManager();
     private StoryBuilder story_builder = StoryBuilder.initiateBuilder();
 
-    private long id = generateId();
+    private final long id;
 
-    private long generateId() {
+    public Sprint() {
         IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-        return IdGenerator.generateId();
+        id = IdGenerator.generateId();
     }
 
     public void setLabel(String label) {

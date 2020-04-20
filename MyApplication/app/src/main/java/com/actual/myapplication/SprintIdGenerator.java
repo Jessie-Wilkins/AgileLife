@@ -17,7 +17,7 @@ public class SprintIdGenerator implements IdGeneratorStrategy{
         return id_generator;
     }
 
-    protected SprintIdGenerator() {
+    private SprintIdGenerator() {
 
     }
 
