@@ -9,7 +9,7 @@ package com.actual.myapplication;
  */
 public class SprintIdGenerator implements IdGeneratorStrategy{
 
-    private static long id = 0;
+    private static int id = 0;
 
     private static SprintIdGenerator id_generator = new SprintIdGenerator();
 
@@ -21,7 +21,7 @@ public class SprintIdGenerator implements IdGeneratorStrategy{
 
     }
 
-    public long generateId() {
+    public int generateId() {
         return ++id;
     }
 

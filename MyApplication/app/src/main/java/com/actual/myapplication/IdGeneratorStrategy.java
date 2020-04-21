@@ -2,7 +2,7 @@ package com.actual.myapplication;
 
 interface IdGeneratorStrategy {
     
-    public long generateId();
+    public int generateId();
 
     public void resetId();
 }

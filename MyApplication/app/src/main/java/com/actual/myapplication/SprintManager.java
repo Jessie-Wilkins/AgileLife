@@ -8,6 +8,8 @@ class SprintManager {
 
     private static ArrayList<Sprint> sprint_list = new ArrayList<>();
 
+    private static ArrayList<Sprint> removed_sprint_list = new ArrayList<>();
+
     private SprintManager() {
 
     }
@@ -21,8 +23,8 @@ class SprintManager {
         sprint_list.add(new Sprint());
     }
 
-    public Sprint getSprint(long id) {
-        return sprint_list.get(getIndex((int) id));
+    public Sprint getSprint(int id) {
+        return sprint_list.get(getIndex(id));
     }
 
     private int getIndex(int id) {
@@ -38,7 +40,25 @@ class SprintManager {
         sprint_list.add(sprint);
     }
 
-    public void removeSprint(long id) {
-        sprint_list.set(getIndex((int) id), null);
+    public void removeSprint(int id) {
+        appendNullItemsToList();
+        moveToDeletedList(id);
     }
+
+    public Sprint getRemovedSprint(int i) {
+        return removed_sprint_list.get(getIndex(i));
+    }
+
+    private void moveToDeletedList(int id) {
+        Sprint temp_sprint = sprint_list.get(getIndex(id));
+        sprint_list.set(getIndex(id), null);
+        removed_sprint_list.set(getIndex(id), temp_sprint);
+    }
+
+    private void appendNullItemsToList() {
+        while(removed_sprint_list.size()<sprint_list.size()){
+            removed_sprint_list.add(null);
+        }
+    }
+
 }

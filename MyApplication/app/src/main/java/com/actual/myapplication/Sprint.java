@@ -8,7 +8,7 @@ class Sprint {
     private StoryManager story_mgr = StoryManager.initiateStoryManager();
     private StoryBuilder story_builder = StoryBuilder.initiateBuilder();
 
-    private final long id;
+    private final int id;
 
     public Sprint() {
         IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());

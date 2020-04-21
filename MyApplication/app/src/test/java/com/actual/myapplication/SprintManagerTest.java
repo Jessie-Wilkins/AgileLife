@@ -160,5 +160,35 @@ public class SprintManagerTest {
       assertEquals(null, sprint_manager.getSprint(1));
    }
 
+   @Test
+   public void canGetRemovedSprintFromRemovedList() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
 
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      assertEquals(1, sprint_manager.getRemovedSprint(1).getId());
+   }
+
+   @Test
+   public void canSaveSprintAndRemoveFromCurrentSprintList() {
+
+   }
 }

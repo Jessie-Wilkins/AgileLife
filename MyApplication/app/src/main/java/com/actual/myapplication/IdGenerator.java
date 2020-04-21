@@ -19,7 +19,7 @@ package com.actual.myapplication;
         IdGenerator.strategy = strategy;
     }
 
-    public static long generateId() {
+    public static int generateId() {
         return strategy.generateId();
     }
 

@@ -9,7 +9,7 @@ package com.actual.myapplication;
  */
 public class StoryIdGenerator implements IdGeneratorStrategy{
 
-    private static long id = 0;
+    private static int id = 0;
 
     private StoryIdGenerator() {
 
@@ -21,7 +21,7 @@ public class StoryIdGenerator implements IdGeneratorStrategy{
         return id_generator;
     }
 
-    public long generateId() {
+    public int generateId() {
         return ++id;
     }
 
