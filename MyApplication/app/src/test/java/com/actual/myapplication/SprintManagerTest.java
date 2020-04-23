@@ -189,6 +189,99 @@ public class SprintManagerTest {
 
    @Test
    public void canSaveSprintAndRemoveFromCurrentSprintList() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
 
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      assertEquals(null, sprint_manager.getSprint(3));
    }
+
+   @Test
+   public void canSaveSprintToSavedSprintList() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      assertEquals(3, sprint_manager.getSavedSprint(3).getId());
+   }
+
+   @Test
+   public void canLoadSprintFromSavedSprintListToCurrentSprintList() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      assertEquals(3, sprint_manager.getSprint(3).getId());
+   }
+
+   @Test
+   public void canRetrieveDeletedSprintIntoCurrentSprintList() {}
 }
