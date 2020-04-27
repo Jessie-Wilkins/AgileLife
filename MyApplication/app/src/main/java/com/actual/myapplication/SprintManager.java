@@ -61,6 +61,19 @@ class SprintManager {
         moveFromCurrentListToOtherList(saved_sprint_list, current_sprint_list, id);
     }
 
+    public void retrieveDeletedSprint(int id) {
+        appendNullItemsToList(current_sprint_list);
+        moveFromCurrentListToOtherList(removed_sprint_list, current_sprint_list, id);
+    }
+
+    public Sprint getNextOccuringVersionOfSprint(int id) {
+        Sprint sprint = new Sprint();
+        sprint.setLabel(sprint_manager.getSprint(id).getLabel());
+        sprint.setLength(sprint_manager.getSprint(id).getLength());
+        sprint.setFrequencyInDays(sprint_manager.getSprint(id).getFrequencyInDays());
+        return sprint;
+    }
+
     //Private Utilities Section
 
     private int getIndex(int id) {

@@ -81,6 +81,14 @@ class Sprint {
         return this.id;
     }
 
+    public int getPreviousSprintId() {
+        return 2;
+    }
+
+    public int getFutureSprintId(int id) {
+        return IdGenerator.generateId();
+    }
+
     //Private Utilities
     private enum PointTypes {
         TOTAL_POINTS,

@@ -283,5 +283,249 @@ public class SprintManagerTest {
    }
 
    @Test
-   public void canRetrieveDeletedSprintIntoCurrentSprintList() {}
+   public void canRetrieveDeletedSprintIntoCurrentSprintList() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      assertEquals(1, sprint_manager.getSprint(1).getId());
+   }
+
+   @Test
+   public void canGetFutureSprint() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      assertEquals(4,  sprint_manager.getNextOccuringVersionOfSprint(2).getId());
+   }
+
+   @Test
+   public void canGetPreviousSprintToFutureSprint() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      assertEquals(2,  sprint_manager.getNextOccuringVersionOfSprint(2).getPreviousSprintId());
+   }
+
+   @Test
+   public void canGetSameLabelFromFutureSprint() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      assertEquals("Test Label",  sprint_manager.getNextOccuringVersionOfSprint(2).getLabel());
+   }
+
+   @Test
+   public void canGetSameLengthFromFutureSprint() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      assertEquals(5,  sprint_manager.getNextOccuringVersionOfSprint(2).getLength());
+   }
+
+   @Test
+   public void canGetSameFrequencyFromFutureSprint() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      assertEquals(14,  sprint_manager.getNextOccuringVersionOfSprint(2).getFrequencyInDays());
+   }
+
+   @Test
+   public void canGetSameFutureSprintOnTheSecondCall() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      sprint_manager.getNextOccuringVersionOfSprint(2);
+
+      assertEquals(4, sprint_manager.getNextOccuringVersionOfSprint(2).getId());
+   }
 }
