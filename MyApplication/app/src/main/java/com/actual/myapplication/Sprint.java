@@ -9,6 +9,7 @@ class Sprint {
     private StoryBuilder story_builder = StoryBuilder.initiateBuilder();
 
     private final int id;
+    private int future_sprint_id = 0;
 
     public Sprint() {
         IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
@@ -77,7 +78,7 @@ class Sprint {
 
     }
 
-    public long getId() {
+    public int getId() {
         return this.id;
     }
 
@@ -85,8 +86,12 @@ class Sprint {
         return 2;
     }
 
-    public int getFutureSprintId(int id) {
-        return IdGenerator.generateId();
+    public int getFutureSprintId() {
+        return future_sprint_id;
+    }
+
+    public void setFutureSprintId(int id) {
+        future_sprint_id = id;
     }
 
     //Private Utilities

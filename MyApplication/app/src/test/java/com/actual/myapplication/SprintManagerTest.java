@@ -349,7 +349,7 @@ public class SprintManagerTest {
 
       sprint_manager.retrieveDeletedSprint(1);
 
-      assertEquals(4,  sprint_manager.getNextOccuringVersionOfSprint(2).getId());
+      assertEquals(4,  sprint_manager.getNextOccurringVersionOfSprint(2).getId());
    }
 
    @Test
@@ -384,7 +384,7 @@ public class SprintManagerTest {
 
       sprint_manager.retrieveDeletedSprint(1);
 
-      assertEquals(2,  sprint_manager.getNextOccuringVersionOfSprint(2).getPreviousSprintId());
+      assertEquals(2,  sprint_manager.getNextOccurringVersionOfSprint(2).getPreviousSprintId());
    }
 
    @Test
@@ -419,7 +419,7 @@ public class SprintManagerTest {
 
       sprint_manager.retrieveDeletedSprint(1);
 
-      assertEquals("Test Label",  sprint_manager.getNextOccuringVersionOfSprint(2).getLabel());
+      assertEquals("Test Label",  sprint_manager.getNextOccurringVersionOfSprint(2).getLabel());
    }
 
    @Test
@@ -454,7 +454,7 @@ public class SprintManagerTest {
 
       sprint_manager.retrieveDeletedSprint(1);
 
-      assertEquals(5,  sprint_manager.getNextOccuringVersionOfSprint(2).getLength());
+      assertEquals(5,  sprint_manager.getNextOccurringVersionOfSprint(2).getLength());
    }
 
    @Test
@@ -489,7 +489,7 @@ public class SprintManagerTest {
 
       sprint_manager.retrieveDeletedSprint(1);
 
-      assertEquals(14,  sprint_manager.getNextOccuringVersionOfSprint(2).getFrequencyInDays());
+      assertEquals(14,  sprint_manager.getNextOccurringVersionOfSprint(2).getFrequencyInDays());
    }
 
    @Test
@@ -524,8 +524,45 @@ public class SprintManagerTest {
 
       sprint_manager.retrieveDeletedSprint(1);
 
-      sprint_manager.getNextOccuringVersionOfSprint(2);
+      sprint_manager.getNextOccurringVersionOfSprint(2);
 
-      assertEquals(4, sprint_manager.getNextOccuringVersionOfSprint(2).getId());
+      assertEquals(4, sprint_manager.getNextOccurringVersionOfSprint(2).getId());
+   }
+
+   @Test
+   public void canGetFutureSprintFromTheFutureSprintList() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      sprint_manager.getNextOccurringVersionOfSprint(2);
+
+      assertEquals(4, sprint_manager.getFutureSprint(4).getId());
    }
 }

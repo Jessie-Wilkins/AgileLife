@@ -9,7 +9,10 @@ class SprintManager {
 
     private static ArrayList<Sprint> current_sprint_list = new ArrayList<>();
 
+    private static ArrayList<Sprint> future_sprint_list = new ArrayList<>();
+
     private static ArrayList<Sprint> removed_sprint_list = new ArrayList<>();
+
     private ArrayList<Sprint> saved_sprint_list = new ArrayList<>();
 
     private SprintManager() {
@@ -66,12 +69,20 @@ class SprintManager {
         moveFromCurrentListToOtherList(removed_sprint_list, current_sprint_list, id);
     }
 
-    public Sprint getNextOccuringVersionOfSprint(int id) {
-        Sprint sprint = new Sprint();
-        sprint.setLabel(sprint_manager.getSprint(id).getLabel());
-        sprint.setLength(sprint_manager.getSprint(id).getLength());
-        sprint.setFrequencyInDays(sprint_manager.getSprint(id).getFrequencyInDays());
-        return sprint;
+    public Sprint getNextOccurringVersionOfSprint(int id) {
+
+        if(sprint_manager.getSprint(id).getFutureSprintId() == 0) {
+            SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+            sprint_builder.setLabel(sprint_manager.getSprint(id).getLabel());
+            sprint_builder.setLength(sprint_manager.getSprint(id).getLength());
+            sprint_builder.setFrequency(sprint_manager.getSprint(id).getFrequencyInDays());
+            sprint_manager.addSprint(sprint_builder);
+            sprint_manager.appendNullItemsToList(future_sprint_list);
+            sprint_manager.moveFromCurrentListToOtherList(current_sprint_list, future_sprint_list, current_sprint_list.get(current_sprint_list.size()-1).getId());
+            sprint_manager.getSprint(id).setFutureSprintId(future_sprint_list.get(future_sprint_list.size()-1).getId());
+        }
+
+        return sprint_manager.getSprint(sprint_manager.getSprint(id).getFutureSprintId());
     }
 
     //Private Utilities Section
@@ -90,5 +101,9 @@ class SprintManager {
         while(specific_sprint_list.size()< current_sprint_list.size()){
             specific_sprint_list.add(null);
         }
+    }
+
+    public Sprint getFutureSprint(int id) {
+        return future_sprint_list.get(getIndex(id));
     }
 }

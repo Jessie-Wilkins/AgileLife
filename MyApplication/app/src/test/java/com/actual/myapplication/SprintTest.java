@@ -214,7 +214,9 @@ public class SprintTest {
         story_mgr.getStory(2).getPointsManagement().completePoints(1);
         story_mgr.getStory(3).getPointsManagement().completePoints(1);
         Sprint spr_obj2 = new Sprint();
-        assertEquals(3, spr_obj2.getFutureSprintId(2));
+        spr_obj2.setFutureSprintId(3);
+        assertEquals(3, spr_obj2.getFutureSprintId());
     }
+
 
 }
