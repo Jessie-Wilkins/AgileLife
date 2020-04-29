@@ -15,6 +15,8 @@ class SprintManager {
 
     private ArrayList<Sprint> saved_sprint_list = new ArrayList<>();
 
+    private final SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
     private SprintManager() {
 
     }
@@ -72,17 +74,19 @@ class SprintManager {
     public Sprint getNextOccurringVersionOfSprint(int id) {
 
         if(sprint_manager.getSprint(id).getFutureSprintId() == 0) {
-            SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-            sprint_builder.setLabel(sprint_manager.getSprint(id).getLabel());
-            sprint_builder.setLength(sprint_manager.getSprint(id).getLength());
-            sprint_builder.setFrequency(sprint_manager.getSprint(id).getFrequencyInDays());
-            sprint_manager.addSprint(sprint_builder);
-            sprint_manager.appendNullItemsToList(future_sprint_list);
-            sprint_manager.moveFromCurrentListToOtherList(current_sprint_list, future_sprint_list, current_sprint_list.get(current_sprint_list.size()-1).getId());
-            sprint_manager.getSprint(id).setFutureSprintId(future_sprint_list.get(future_sprint_list.size()-1).getId());
+            createFutureSprint(id);
         }
 
-        return sprint_manager.getSprint(sprint_manager.getSprint(id).getFutureSprintId());
+        return sprint_manager.getFutureSprint(sprint_manager.getSprint(id).getFutureSprintId());
+    }
+
+    public Sprint getFutureSprint(int id) {
+        return future_sprint_list.get(getIndex(id));
+    }
+
+    public void setFutureSprintAsCurrentSprint(int id) {
+        sprint_manager.appendNullItemsToList(current_sprint_list);
+        sprint_manager.moveFromCurrentListToOtherList(future_sprint_list, current_sprint_list, id);
     }
 
     //Private Utilities Section
@@ -103,7 +107,16 @@ class SprintManager {
         }
     }
 
-    public Sprint getFutureSprint(int id) {
-        return future_sprint_list.get(getIndex(id));
+    private void createFutureSprint(int id) {
+        sprint_builder.setLabel(sprint_manager.getSprint(id).getLabel());
+        sprint_builder.setLength(sprint_manager.getSprint(id).getLength());
+        sprint_builder.setFrequency(sprint_manager.getSprint(id).getFrequencyInDays());
+        sprint_manager.addSprint(sprint_builder);
+        sprint_manager.appendNullItemsToList(future_sprint_list);
+        sprint_manager.moveFromCurrentListToOtherList(current_sprint_list, future_sprint_list, current_sprint_list.get(current_sprint_list.size()-1).getId());
+        sprint_manager.getSprint(id).setFutureSprintId(future_sprint_list.get(future_sprint_list.size()-1).getId());
+        sprint_manager.getFutureSprint(future_sprint_list.get(future_sprint_list.size()-1).getId()).setPastSprintId(id);
     }
+
+
 }

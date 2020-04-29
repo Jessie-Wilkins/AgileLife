@@ -10,6 +10,7 @@ class Sprint {
 
     private final int id;
     private int future_sprint_id = 0;
+    private int past_sprint_id = 0;
 
     public Sprint() {
         IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
@@ -92,6 +93,14 @@ class Sprint {
 
     public void setFutureSprintId(int id) {
         future_sprint_id = id;
+    }
+
+    public int getPastSprintId() {
+        return past_sprint_id;
+    }
+
+    public void setPastSprintId(int id) {
+        past_sprint_id = id;
     }
 
     //Private Utilities

@@ -565,4 +565,121 @@ public class SprintManagerTest {
 
       assertEquals(4, sprint_manager.getFutureSprint(4).getId());
    }
+
+   @Test
+   public void canSetFutureSprintAsCurrentSprint() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      sprint_manager.getNextOccurringVersionOfSprint(2);
+
+      sprint_manager.setFutureSprintAsCurrentSprint(4);
+
+      assertEquals(4, sprint_manager.getSprint(4).getId());
+   }
+
+   @Test
+   public void canGetSprintPreviousToCurrentSprint() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      sprint_manager.getNextOccurringVersionOfSprint(2);
+
+      sprint_manager.setFutureSprintAsCurrentSprint(4);
+
+      assertEquals(2, sprint_manager.getSprint(4).getPastSprintId());
+   }
+
+   @Test
+   public void canNotGetPreviousSprintToFirstGenSprints() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      sprint_manager.getNextOccurringVersionOfSprint(2);
+
+      sprint_manager.setFutureSprintAsCurrentSprint(4);
+
+      assertEquals(0, sprint_manager.getSprint(1).getPastSprintId());
+   }
 }
