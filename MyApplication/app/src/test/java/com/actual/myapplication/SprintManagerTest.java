@@ -682,4 +682,82 @@ public class SprintManagerTest {
 
       assertEquals(0, sprint_manager.getSprint(1).getPastSprintId());
    }
+
+   @Test
+   public void canGetAnotherSeparatePreviousSprintToADifferentFutureSprint() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      sprint_manager.getNextOccurringVersionOfSprint(2);
+
+      sprint_manager.setFutureSprintAsCurrentSprint(4);
+
+      assertEquals(1, sprint_manager.getNextOccurringVersionOfSprint(1).getPastSprintId());
+   }
+
+   @Test
+   public void canGetPreviousSprintDirectly() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      sprint_manager.addSprint(sprint_builder);
+
+      sprint_manager.removeSprint(1);
+
+      sprint_manager.addSprint();
+
+      sprint_manager.saveSprint(3);
+
+      sprint_manager.loadSprint(3);
+
+      sprint_manager.retrieveDeletedSprint(1);
+
+      sprint_manager.getNextOccurringVersionOfSprint(2);
+
+      sprint_manager.setFutureSprintAsCurrentSprint(4);
+
+      assertEquals(2, sprint_manager.getPastSprint(2).getId());
+   }
 }

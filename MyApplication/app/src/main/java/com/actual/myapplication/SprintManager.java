@@ -13,7 +13,7 @@ class SprintManager {
 
     private static ArrayList<Sprint> removed_sprint_list = new ArrayList<>();
 
-    private ArrayList<Sprint> saved_sprint_list = new ArrayList<>();
+    private static ArrayList<Sprint> saved_sprint_list = new ArrayList<>();
 
     private final SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
 
@@ -23,6 +23,9 @@ class SprintManager {
 
     public static SprintManager initiateSprintManager() {
         current_sprint_list.clear();
+        saved_sprint_list.clear();
+        removed_sprint_list.clear();
+        future_sprint_list.clear();
         return sprint_manager;
     }
 
@@ -87,6 +90,10 @@ class SprintManager {
     public void setFutureSprintAsCurrentSprint(int id) {
         sprint_manager.appendNullItemsToList(current_sprint_list);
         sprint_manager.moveFromCurrentListToOtherList(future_sprint_list, current_sprint_list, id);
+        sprint_manager.addToPastSprintList();
+    }
+
+    private void addToPastSprintList() {
     }
 
     //Private Utilities Section
@@ -119,4 +126,7 @@ class SprintManager {
     }
 
 
+    public Sprint getPastSprint(int id) {
+        return null;
+    }
 }
