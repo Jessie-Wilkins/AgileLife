@@ -14,6 +14,26 @@ import static org.junit.Assert.assertThat;
  */
 public class SprintManagerTest {
 
+   //Private Utilities
+   private SprintBuilder prepSprintCreation() {
+      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
+
+      sprint_builder.setLabel("Test Label");
+
+      sprint_builder.setLength(5);
+
+      sprint_builder.setCapacity(8);
+
+      sprint_builder.setFrequency(14);
+
+      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+
+      IdGenerator.resetId();
+      return sprint_builder;
+   }
+
+   //Tests
+
    @Test
     public void canInitiateSprintManager() {
        SprintManager sprint_manager = SprintManager.initiateSprintManager();
@@ -108,19 +128,7 @@ public class SprintManagerTest {
 
    @Test
    public void canAddSprintToSprintListAndSetParametersWithBuilder() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -133,19 +141,7 @@ public class SprintManagerTest {
 
    @Test
    public void canRemoveSprintFromSprintList() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -162,19 +158,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetRemovedSprintFromRemovedList() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -189,19 +173,7 @@ public class SprintManagerTest {
 
    @Test
    public void canSaveSprintAndRemoveFromCurrentSprintList() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -220,19 +192,7 @@ public class SprintManagerTest {
 
    @Test
    public void canSaveSprintToSavedSprintList() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -251,19 +211,7 @@ public class SprintManagerTest {
 
    @Test
    public void canLoadSprintFromSavedSprintListToCurrentSprintList() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -284,19 +232,7 @@ public class SprintManagerTest {
 
    @Test
    public void canRetrieveDeletedSprintIntoCurrentSprintList() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -319,19 +255,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetFutureSprint() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -354,19 +278,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetPreviousSprintToFutureSprint() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -389,19 +301,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetSameLabelFromFutureSprint() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -424,19 +324,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetSameLengthFromFutureSprint() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -459,19 +347,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetSameFrequencyFromFutureSprint() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -494,19 +370,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetSameFutureSprintOnTheSecondCall() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -531,19 +395,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetFutureSprintFromTheFutureSprintList() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -568,19 +420,7 @@ public class SprintManagerTest {
 
    @Test
    public void canSetFutureSprintAsCurrentSprint() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -607,19 +447,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetSprintPreviousToCurrentSprint() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -646,19 +474,7 @@ public class SprintManagerTest {
 
    @Test
    public void canNotGetPreviousSprintToFirstGenSprints() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -685,19 +501,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetAnotherSeparatePreviousSprintToADifferentFutureSprint() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
@@ -724,19 +528,7 @@ public class SprintManagerTest {
 
    @Test
    public void canGetPreviousSprintDirectly() {
-      SprintBuilder sprint_builder = SprintBuilder.initiateSprintBuilder();
-
-      sprint_builder.setLabel("Test Label");
-
-      sprint_builder.setLength(5);
-
-      sprint_builder.setCapacity(8);
-
-      sprint_builder.setFrequency(14);
-
-      IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
-
-      IdGenerator.resetId();
+      SprintBuilder sprint_builder = prepSprintCreation();
 
       SprintManager sprint_manager = SprintManager.initiateSprintManager();
 
