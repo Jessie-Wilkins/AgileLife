@@ -12,31 +12,58 @@ class Sprint {
     private int future_sprint_id = 0;
     private int past_sprint_id = 0;
 
+    /**
+     * Sets the id generator strategy.
+     */
     public Sprint() {
         IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
         id = IdGenerator.generateId();
     }
 
+    /**
+     * Sets the label or title of the sprint
+     * @param label
+     */
     public void setLabel(String label) {
         this.label = label;
     }
 
+    /**
+     * Gets the label or title of the sprint
+     * @return label
+     */
     public String getLabel() {
         return this.label;
     }
 
+    /**
+     * Sets the length of the sprint (in days)
+     * @param length
+     */
     public void setLength(int length) {
         this.length = length;
     }
 
+    /**
+     * Gets the length of the sprint (in days)
+     * @return length
+     */
     public int getLength() {
         return length;
     }
 
+    /**
+     * Sets the frequency of the sprint (in days)
+     * @param frequency
+     */
     public void setFrequencyInDays(int frequency) {
         this.frequency = frequency;
     }
 
+    /**
+     * Get the frequency of the sprint (in days)
+     * @return
+     */
     public int getFrequencyInDays() {
         return this.frequency;
     }

@@ -154,6 +154,10 @@ class SprintManager {
         sprint_manager.addToPastSprintList(sprint_manager.getSprint(id).getPastSprintId());
     }
 
+    /**
+     * Adds the current sprint to the past sprint list
+     * @param id an integer that identifies each sprint
+     */
     private void addToPastSprintList(int id) {
         sprint_manager.appendNullItemsToList(past_sprint_list);
         sprint_manager.moveFromCurrentListToOtherList(current_sprint_list, past_sprint_list, id);
