@@ -296,7 +296,7 @@ public class SprintManagerTest {
 
       sprint_manager.retrieveDeletedSprint(1);
 
-      assertEquals(2,  sprint_manager.getNextOccurringVersionOfSprint(2).getPreviousSprintId());
+      assertEquals(2,  sprint_manager.getNextOccurringVersionOfSprint(2).getPastSprintId());
    }
 
    @Test

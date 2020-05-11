@@ -19,6 +19,11 @@ class StoryManager {
 
     }
 
+    /**
+     * Initiates story manager statically by clearing previous lists
+     * and story ids.
+     * @return story_mgr
+     */
     public static StoryManager initiateStoryManager() {
         story_list.clear();
         IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
@@ -27,33 +32,68 @@ class StoryManager {
 
     }
 
+    /**
+     * Adds a story with default parameters
+     */
     public void addStory() {
         story_list.add(new Story());
     }
 
+    /**
+     * Gets the specified story from the story list
+     * @param id
+     * @return Story (via story_list)
+     */
     public Story getStory(long id) {
         return story_list.get(getIndex(id));
     }
 
+    /**
+     * Adds a story with the parameters from the story builder
+     * @param builder
+     */
     public void addStory(StoryBuilder builder) {
         Story story = new Story();
         story.setStoryAttributes(builder);
         story_list.add(story);
     }
 
+    /**
+     * Edits an existing specified story with parameters
+     * specified in the story builder
+     * @param id
+     * @param builder
+     */
     public void editStory(long id, StoryBuilder builder) {
         story_list.get(getIndex(id)).setStoryAttributes(builder);
     }
 
+    /**
+     * Edits an existing specified story with only
+     * attributes that have changed in the builder
+     * from the last "building"
+     * @param id
+     * @param builder
+     */
     public void editStoryWithOnlyChangedAttributes(long id, StoryBuilder builder) {
         story_list.get(getIndex(id)).setChangedStoryAttributes(builder);
     }
 
+    /**
+     * Deletes the story with the specified id
+     * @param id
+     */
     public void deleteStory(long id) {
         initializeEmptyList(deleted_story_list);
         transferStoryFromListToList(id, story_list, deleted_story_list);
     }
 
+    /**
+     * Gets the deleted story from the deleted
+     * list with the specified id.
+     * @param id
+     * @return Story (via deleted_story_list)
+     */
     public Story getDeletedStory(long id) {
         try {
             return deleted_story_list.get(getIndex(id));
@@ -63,6 +103,9 @@ class StoryManager {
         }
     }
 
+    /**
+     *
+     */
     public void clearAllStoriesFromDeletedStoryList() {
         deleted_story_list.clear();
     }

@@ -1,5 +1,11 @@
 package com.actual.myapplication;
 
+/**
+ * This class builds sprint objects with the given fields.
+ *
+ * @author jessiewilkins
+ * @since 2020-04-01
+ */
 class SprintBuilder {
 
     private static SprintBuilder sprint_builder = new SprintBuilder();

@@ -1,5 +1,12 @@
 package com.actual.myapplication;
 
+/**
+ * This class represents a sprint and contains methods and fields for
+ * manipulating and holding relevant information.
+ *
+ * @author jessiewilkins
+ * @since 2020-04-01
+ */
 class Sprint {
     private String label = "Default Label";
     private int length = 0;
@@ -62,33 +69,56 @@ class Sprint {
 
     /**
      * Get the frequency of the sprint (in days)
-     * @return
+     * @return frequency
      */
     public int getFrequencyInDays() {
         return this.frequency;
     }
 
+    /**
+     * Set the capacity of the sprint point object
+     * @param capacity
+     */
     public void setCapacity(int capacity) {
         this.points_management.setCapacity(capacity);
     }
 
+    /**
+     * Gets the capacity of the sprint
+     * @return capacity (via points_management)
+     */
     public int getCapacity() {
         return this.points_management.getCapacity();
     }
 
+    /**
+     * Adds a story from the story manager using the story id
+     * @param id
+     */
     public void addExistingStory(int id) {
         story_mgr.getStory(id).setSprint(getIdPlusLabel());
     }
 
+    /**
+     * Add brand new story to sprint
+     */
     public void addNewStory() {
         this.story_builder.setSprint(getIdPlusLabel());
         this.story_mgr.addStory(this.story_builder);
     }
 
+    /**
+     * Add new story based on story builder attributes
+     * @param story_builder
+     */
     public void addNewStory(StoryBuilder story_builder) {
         this.story_mgr.addStory(story_builder);
     }
 
+    /**
+     * Gets the total assigned points from the stories assigned to the sprint
+     * @return totalAssignedPoints
+     */
     public int getTotalAssignedPoints() {
         int totalAssignedPoints = 0;
 
@@ -97,6 +127,10 @@ class Sprint {
         return totalAssignedPoints;
     }
 
+    /**
+     * Gets the total completed points from the stories assigned to the sprint
+     * @return totalCompletedPoints
+     */
     public int getTotalCompletedPoints() {
         int totalCompletedPoints = 0;
 
@@ -106,26 +140,42 @@ class Sprint {
 
     }
 
+    /**
+     * Gets the sprint id
+     * @return id
+     */
     public int getId() {
         return this.id;
     }
 
-    public int getPreviousSprintId() {
-        return 2;
-    }
-
+    /**
+     * Gets the future sprint id
+     * @return future_sprint_id
+     */
     public int getFutureSprintId() {
         return future_sprint_id;
     }
 
+    /**
+     * Set the future sprint id
+     * @param id
+     */
     public void setFutureSprintId(int id) {
         future_sprint_id = id;
     }
 
+    /**
+     * Gets the past sprint id
+     * @return past_sprint_id
+     */
     public int getPastSprintId() {
         return past_sprint_id;
     }
 
+    /**
+     * Sets the past sprint id
+     * @param id
+     */
     public void setPastSprintId(int id) {
         past_sprint_id = id;
     }

@@ -3,6 +3,13 @@ package com.actual.myapplication;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class manages sprint objects and contains functions
+ * and lists for editing, adding, and deleting sprints.
+ *
+ * @author jessiewilkins
+ * @since 2020-04-01
+ */
 class SprintManager {
 
     private static SprintManager sprint_manager = new SprintManager();
@@ -163,6 +170,10 @@ class SprintManager {
         sprint_manager.moveFromCurrentListToOtherList(current_sprint_list, past_sprint_list, id);
     }
 
+    public Sprint getPastSprint(int id) {
+        return past_sprint_list.get(getIndex(id));
+    }
+
     //Private Utilities Section
 
     private int getIndex(int id) {
@@ -190,10 +201,5 @@ class SprintManager {
         sprint_manager.moveFromCurrentListToOtherList(current_sprint_list, future_sprint_list, current_sprint_list.get(current_sprint_list.size()-1).getId());
         sprint_manager.getSprint(id).setFutureSprintId(future_sprint_list.get(future_sprint_list.size()-1).getId());
         sprint_manager.getFutureSprint(future_sprint_list.get(future_sprint_list.size()-1).getId()).setPastSprintId(id);
-    }
-
-
-    public Sprint getPastSprint(int id) {
-        return past_sprint_list.get(getIndex(id));
     }
 }
