@@ -104,41 +104,71 @@ class StoryManager {
     }
 
     /**
-     *
+     *Clears story objects from deleted story list
      */
     public void clearAllStoriesFromDeletedStoryList() {
         deleted_story_list.clear();
     }
 
+    /**
+     * Gets the ids of all of the deleted stories
+     * @return id_array
+     */
     public long[] getDeletedStoriesIds() {
         long[] id_array = getStoryIds(deleted_story_list);
         return id_array;
     }
 
+    /**
+     * Retrieves a story from the deleted story list via id
+     * @param id
+     */
     public void retrieveStoryFromDeletedStoryList(long id) {
         initializeEmptyList(story_list);
         transferStoryFromListToList(id, deleted_story_list, story_list);
     }
 
+    /**
+     * Transfers story from the story list to the completed story list
+     * @param id
+     */
     public void completeStory(long id) {
         initializeEmptyList(completed_story_list);
         transferStoryFromListToList(id, story_list, completed_story_list);
     }
 
+    /**
+     * Gets a completed story from the story list by id
+     * @param id
+     * @return Story
+     */
     public Story getCompletedStory(long id) {
         return completed_story_list.get(getIndex(id));
     }
 
+    /**
+     * Retrieves completed stories from the completed
+     * story list and transfers them to the story list
+     * @param id
+     */
     public void retrieveStoryFromCompletedStoryList(long id) {
         initializeEmptyList(story_list);
         transferStoryFromListToList(id, completed_story_list, story_list);
     }
 
+    /**
+     * Gets the ids of all the completed stories
+     * @return id_array
+     */
     public long[] getCompletedStoriesIds() {
         long[] id_array = getStoryIds(completed_story_list);
         return id_array;
     }
 
+    /**
+     * Gets the ids of all the non-deleted, non-completed stories
+     * @return id_array
+     */
     public long[] getStoriesIds() {
         long[] id_array = getStoryIds(story_list);
         return id_array;

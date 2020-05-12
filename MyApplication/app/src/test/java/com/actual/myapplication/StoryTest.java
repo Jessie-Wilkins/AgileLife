@@ -2,7 +2,6 @@ package com.actual.myapplication;
 
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
@@ -121,11 +120,11 @@ public class StoryTest {
 
         builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
-        builder.setSprint("Sprint 1");
+        builder.setSprintTitleAndId("Sprint 1");
 
         story_obj.setStoryAttributes(builder);
 
-        assertEquals("Sprint 1", story_obj.getSprint());
+        assertEquals("Sprint 1", story_obj.getSprintTitleAndId());
 
     }
 
@@ -145,7 +144,7 @@ public class StoryTest {
 
         builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
-        builder.setSprint("Sprint 1");
+        builder.setSprintTitleAndId("Sprint 1");
 
         builder.setCompletedPoints(2);
 
@@ -171,7 +170,7 @@ public class StoryTest {
 
         builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
-        builder.setSprint("Sprint 1");
+        builder.setSprintTitleAndId("Sprint 1");
 
         builder.setCompletedPoints(2);
 
@@ -198,7 +197,7 @@ public class StoryTest {
 
         builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
-        builder.setSprint("Sprint 1");
+        builder.setSprintTitleAndId("Sprint 1");
 
         builder.setCompletedPoints(2);
 
@@ -226,7 +225,7 @@ public class StoryTest {
 
         builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
-        builder.setSprint("Sprint 1");
+        builder.setSprintTitleAndId("Sprint 1");
 
         builder.setCompletedPoints(2);
 
@@ -234,9 +233,9 @@ public class StoryTest {
 
         Story story_obj2 = new Story();
 
-        story_obj2.setSprint("Sprint 2");
+        story_obj2.setSprintTitleAndId("Sprint 2");
 
-        assertEquals("Sprint 2", story_obj2.getSprint());
+        assertEquals("Sprint 2", story_obj2.getSprintTitleAndId());
     }
 
 }

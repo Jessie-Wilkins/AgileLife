@@ -18,27 +18,44 @@ class Story {
         IN_PROGRESS,
         DONE
     }
-    private String sprint = "Default Sprint";
+    private String sprint_title_id = "Default Sprint";
     private final long id;
 
+    /**
+     * Creates a story object and creates an id for it
+     */
     public Story() {
         IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
         id = IdGenerator.generateId();
     }
 
+    /**
+     * Get the title of the story
+     * @return title
+     */
     public String getTitle() {
         return this.title;
     }
 
+    /**
+     * Sets the story attributes from a story builder
+     * @param attributes
+     */
     public void setStoryAttributes(StoryBuilder attributes) {
         this.title = attributes.getTitle();
         this.description = attributes.getDescription();
         this.points_management.setPoints(attributes.getPoints());
         this.status = attributes.getStatus();
-        this.sprint = attributes.getSprint();
+        this.sprint_title_id = attributes.getSprintTitleAndId();
         this.points_management.setCompletedPoints(attributes.getCompleted_points());
         attributes.setAttributesToNotChanged();
     }
+
+    /**
+     * Sets the story attributes from a story builder
+     * based only on attributes that have changed
+     * @param attributes
+     */
     public void setChangedStoryAttributes(StoryBuilder attributes) {
         if(attributes.isTitleChanged()) {
             this.title = attributes.getTitle();
@@ -53,7 +70,7 @@ class Story {
             this.status = attributes.getStatus();
         }
         if(attributes.isSprintChanged()) {
-            this.sprint = attributes.getSprint();
+            this.sprint_title_id = attributes.getSprintTitleAndId();
         }
         if(attributes.areCompletedPointsChanged()) {
             this.points_management.setCompletedPoints(attributes.getCompleted_points());
@@ -62,26 +79,50 @@ class Story {
 
     }
 
+    /**
+     * Gets the description from the story
+     * @return description
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Gets the point management object from the story
+     * @return points_management
+     */
     public PointsManagement getPointsManagement() {
         return this.points_management;
     }
 
+    /**
+     * Gets the status from the story
+     * @return status
+     */
     public StoryStatus getStatus() {
         return this.status;
     }
 
-    public String getSprint() {
-        return this.sprint;
+    /**
+     * Gets the sprint title/id from the story
+     * @return sprint
+     */
+    public String getSprintTitleAndId() {
+        return this.sprint_title_id;
     }
 
-    public void setSprint(String sprint) {
-        this.sprint = sprint;
+    /**
+     * Sets the sprint title/id
+     * @param sprint
+     */
+    public void setSprintTitleAndId(String sprint) {
+        this.sprint_title_id = sprint;
     }
 
+    /**
+     * Gets the id of the story
+     * @return id
+     */
     public long getId() {
         return id;
     }

@@ -23,7 +23,7 @@ public class StoryManagementTest {
 
         builder.setStatus(Story.StoryStatus.IN_PROGRESS);
 
-        builder.setSprint("Sprint 1");
+        builder.setSprintTitleAndId("Sprint 1");
 
         builder.setCompletedPoints(2);
     }
@@ -61,7 +61,7 @@ public class StoryManagementTest {
         repetitiveBuilder(builder);
 
         story_mgr.addStory(builder);
-        assertEquals("Sprint 1", story_mgr.getStory(3).getSprint());
+        assertEquals("Sprint 1", story_mgr.getStory(3).getSprintTitleAndId());
     }
 
     @Test
@@ -113,11 +113,11 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
-        assertEquals("Sprint 3", story_mgr.getStory(2).getSprint());
+        assertEquals("Sprint 3", story_mgr.getStory(2).getSprintTitleAndId());
 
     }
 
@@ -136,11 +136,11 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
-        assertNotEquals("Sprint 3", story_mgr.getStory(3).getSprint());
+        assertNotEquals("Sprint 3", story_mgr.getStory(3).getSprintTitleAndId());
     }
 
     @Test
@@ -158,7 +158,7 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
@@ -180,7 +180,7 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
@@ -204,7 +204,7 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
@@ -230,7 +230,7 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
@@ -258,7 +258,7 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
@@ -288,7 +288,7 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
@@ -322,7 +322,7 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
@@ -358,7 +358,7 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
@@ -396,7 +396,7 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 
@@ -436,7 +436,7 @@ public class StoryManagementTest {
 
         story_mgr.getStory(3).getPointsManagement().addPoints(3);
 
-        builder.setSprint("Sprint 3");
+        builder.setSprintTitleAndId("Sprint 3");
 
         story_mgr.editStoryWithOnlyChangedAttributes(2, builder);
 

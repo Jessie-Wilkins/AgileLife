@@ -2,7 +2,6 @@ package com.actual.myapplication;
 
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -67,7 +66,7 @@ public class SprintTest {
         StoryManager story_mgr = StoryManager.initiateStoryManager();
         story_mgr.addStory();
         spr_obj.addExistingStory(1);
-        assertEquals("1:New Sprint", story_mgr.getStory(1).getSprint());
+        assertEquals("1:New Sprint", story_mgr.getStory(1).getSprintTitleAndId());
     }
 
     @Test
@@ -83,7 +82,7 @@ public class SprintTest {
         story_mgr.addStory();
         spr_obj.addExistingStory(1);
         spr_obj.addNewStory();
-        assertEquals("1:New Sprint", story_mgr.getStory(2).getSprint());
+        assertEquals("1:New Sprint", story_mgr.getStory(2).getSprintTitleAndId());
     }
 
     @Test
@@ -102,7 +101,7 @@ public class SprintTest {
         spr_obj.addNewStory();
         StoryBuilder story_builder = StoryBuilder.initiateBuilder();
         spr_obj.addNewStory(story_builder);
-        assertEquals("1:New Sprint", story_mgr.getStory(3).getSprint());
+        assertEquals("1:New Sprint", story_mgr.getStory(3).getSprintTitleAndId());
     }
 
     @Test

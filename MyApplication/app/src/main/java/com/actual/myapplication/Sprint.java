@@ -96,14 +96,14 @@ class Sprint {
      * @param id
      */
     public void addExistingStory(int id) {
-        story_mgr.getStory(id).setSprint(getIdPlusLabel());
+        story_mgr.getStory(id).setSprintTitleAndId(getIdPlusLabel());
     }
 
     /**
      * Add brand new story to sprint
      */
     public void addNewStory() {
-        this.story_builder.setSprint(getIdPlusLabel());
+        this.story_builder.setSprintTitleAndId(getIdPlusLabel());
         this.story_mgr.addStory(this.story_builder);
     }
 
@@ -189,7 +189,7 @@ class Sprint {
     private int iterateThroughStoryIdsForTotalPoints(int totalPoints, PointTypes point_types) {
         long [] stories_ids = this.story_mgr.getStoriesIds();
         for(long story_id : stories_ids) {
-            if(this.story_mgr.getStory(story_id).getSprint().equals(getIdPlusLabel())) {
+            if(this.story_mgr.getStory(story_id).getSprintTitleAndId().equals(getIdPlusLabel())) {
                 if(point_types.equals(PointTypes.TOTAL_POINTS))
                     totalPoints += this.story_mgr.getStory(story_id).getPointsManagement().getTotalPoints();
                 else
