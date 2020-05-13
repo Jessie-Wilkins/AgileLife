@@ -1,8 +1,12 @@
 package com.actual.myapplication;
 
+/**
+ * The Interface that serves as the template for concrete strategies
+ * @since 2020-04
+ */
 interface IdGeneratorStrategy {
     
-    public int generateId();
+    int generateId();
 
-    public void resetId();
+    void resetId();
 }

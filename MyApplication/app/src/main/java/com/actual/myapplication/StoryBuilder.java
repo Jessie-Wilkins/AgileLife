@@ -161,7 +161,7 @@ class StoryBuilder {
     }
 
     /**
-     * Returns boolean based on whether
+     * Returns boolean based on whether the description has changed
      * @return
      */
     public boolean isDescriptionChanged() {
@@ -176,6 +176,10 @@ class StoryBuilder {
         this.descriptionChanged = descriptionChanged;
     }
 
+    /**
+     * Returns boolean based on whether the status has changed or not
+     * @return
+     */
     public boolean isStatusChanged() {
         return statusChanged;
     }
@@ -188,6 +192,10 @@ class StoryBuilder {
         this.statusChanged = statusChanged;
     }
 
+    /**
+     * Returns boolean based on whether the sprint title/id has changed or not
+     * @return
+     */
     public boolean isSprintChanged() {
         return sprintChanged;
     }
@@ -200,6 +208,10 @@ class StoryBuilder {
         this.sprintChanged = sprintChanged;
     }
 
+    /**
+     * Returns boolean based on whether the points have changed or not
+     * @return
+     */
     public boolean arePointsChanged() {
         return this.points_changed;
     }
@@ -212,6 +224,10 @@ class StoryBuilder {
         this.points_changed = points_changed;
     }
 
+    /**
+     * Returns boolean based on whether the completed points have changed or not
+     * @return
+     */
     public boolean areCompletedPointsChanged() {
         return this.completed_points_changed;
     }
