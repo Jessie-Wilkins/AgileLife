@@ -1,15 +1,16 @@
 package com.actual.myapplication.Theories;
 
-import org.junit.Test;
+import net.jqwik.api.*;
+//import org.junit.Test;
+//import org.junit.Test;
 
-import org.junit.experimental.theories.*;
-import org.junit.runner.RunWith;
-import java.util.Random;
-import static org.junit.Assert.assertThat;
+//import static org.junit.Assert.assertEquals;
 
-@RunWith(value = Theories.class)
 public class PointsManagementTheories {
-    private static Random random_int = new Random();
-    public static int [] randomly_generated_values = new int[100];
+
+    @Property
+    boolean tests(@ForAll int test_value) {
+        return Math.abs(test_value) >= 0;
+    }
 
 }
