@@ -1,16 +1,16 @@
 package com.actual.myapplication.Theories;
 
 import net.jqwik.api.*;
-//import org.junit.Test;
-//import org.junit.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-//import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class PointsManagementTheories {
 
     @Property
-    boolean tests(@ForAll int test_value) {
-        return Math.abs(test_value) >= 0;
+    public void tests(@ForAll int test_value) {
+        assertEquals(true, Math.abs(test_value) >= 0);
     }
 
 }
