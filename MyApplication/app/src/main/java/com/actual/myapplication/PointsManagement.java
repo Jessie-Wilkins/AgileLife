@@ -10,7 +10,7 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-02
  */
-class PointsManagement {
+public class PointsManagement {
     private int points = 0;
     private int capacity = 0;
     private int completed_points = 0;
