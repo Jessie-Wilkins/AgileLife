@@ -91,7 +91,9 @@ public class PointsManagement {
      * @param capacity
      */
     public void setCapacity(int capacity) {
-        this.capacity = capacity;
+        if(capacity>=0) {
+            this.capacity = capacity;
+        }
     }
 
     /**
@@ -123,7 +125,7 @@ public class PointsManagement {
     //Private Utilities Section
 
     private boolean formerIsGreaterThanOrEqualLatter(int former, int latter) {
-        return former >= latter;
+        return former >= latter && former-latter > 0;
     }
 
     private int subtractLatterFromFormerConditional(int former, int latter, String object_of_message) {
