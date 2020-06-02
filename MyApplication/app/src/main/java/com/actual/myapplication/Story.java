@@ -7,7 +7,7 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-02
  */
-class Story {
+public class Story {
     private String title = "Default Title";
     private String description = "Default Description";
     private final PointsManagement points_management = new PointsManagement();

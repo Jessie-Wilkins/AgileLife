@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author jessiewilkins
  * @since 2020-03-22
  */
-class StoryManager {
+public class StoryManager {
     private static final ArrayList<Story> story_list = new ArrayList<>();
     private static StoryManager story_mgr = new StoryManager();
     private static final ArrayList<Story> deleted_story_list = new ArrayList<>();

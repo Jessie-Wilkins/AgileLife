@@ -7,7 +7,7 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-04-01
  */
-class Sprint {
+public class Sprint {
     private String label = "Default Label";
     private int length = 0;
     private int frequency = 0;

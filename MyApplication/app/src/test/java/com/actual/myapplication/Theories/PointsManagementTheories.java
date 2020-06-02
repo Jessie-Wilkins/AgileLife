@@ -37,7 +37,6 @@ public class PointsManagementTheories {
         PointsManagement points_management = new PointsManagement();
         points_management.addCapacity(capacity1);
         points_management.removeCapacity(capacity2);
-        System.out.println(capacity1+"-"+capacity2+"="+(capacity1+capacity2));
         assertEquals(true, points_management.getCapacity()>=0);
     }
 
