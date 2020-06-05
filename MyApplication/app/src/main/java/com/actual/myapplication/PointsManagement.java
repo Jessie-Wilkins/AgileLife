@@ -125,7 +125,7 @@ public class PointsManagement {
     //Private Utilities Section
 
     private boolean formerIsGreaterThanOrEqualLatter(int former, int latter) {
-        return former >= latter && former-latter > 0;
+        return former >= latter && former-latter >= 0;
     }
 
     private int subtractLatterFromFormerConditional(int former, int latter, String object_of_message) {

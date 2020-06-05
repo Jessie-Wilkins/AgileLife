@@ -1,6 +1,5 @@
 package com.actual.myapplication.Theories;
 
-import com.actual.myapplication.Story;
 import com.actual.myapplication.StoryManager;
 import com.pholser.junit.quickcheck.Property;
 import com.pholser.junit.quickcheck.generator.InRange;
@@ -15,9 +14,9 @@ import static org.junit.Assert.assertEquals;
 @RunWith(JUnitQuickcheck.class)
 public class StoryManagerTheories {
 
-   private StoryManager story_mgr = StoryManager.initiateStoryManager();
+    @Property public void testThatStoriesDeletedKeepTheSameIdEveryTime(@InRange(minInt = 1, maxInt = 9999999)int amount_of_times_to_generate) {
 
-    @Property public void testThatStoriesDeletedKeepTheSameIdEveryTime(@InRange(minInt = 1, maxInt = 1000000)int amount_of_times_to_generate) {
+        StoryManager story_mgr = StoryManager.initiateStoryManager();
 
         long story_id;
 

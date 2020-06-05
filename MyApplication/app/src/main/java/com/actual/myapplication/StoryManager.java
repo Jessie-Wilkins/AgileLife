@@ -26,6 +26,8 @@ public class StoryManager {
      */
     public static StoryManager initiateStoryManager() {
         story_list.clear();
+        deleted_story_list.clear();
+        completed_story_list.clear();
         IdGenerator.setStrategy(StoryIdGenerator.getStoryIdGenerator());
         IdGenerator.resetId();
         return story_mgr;
@@ -177,14 +179,14 @@ public class StoryManager {
     //Private Utilities Section
 
     private void transferStoryFromListToList(long id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
-        appendNullElements(id, from_story_list, to_story_list);
+        appendNullElements(from_story_list, to_story_list);
         to_story_list.set(getIndex(id), from_story_list.get(getIndex(id)));
         from_story_list.set(getIndex(id), null);
     }
 
-    private void appendNullElements(long id, ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
+    private void appendNullElements(ArrayList<Story> from_story_list, ArrayList<Story> to_story_list) {
         while(to_story_list.size()<from_story_list.size()) {
-            to_story_list.add(getIndex(id), null);
+            to_story_list.add(null);
         }
     }
 
