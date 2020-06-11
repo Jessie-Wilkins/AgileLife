@@ -13,7 +13,7 @@ public class StoryTheories {
 
     private ArrayList<Integer> id_array = new ArrayList<>();
 
-    @Property public void testThatStoriesCanGenerateAUniqueIdEveryTime(@InRange(minInt = 1, maxInt = 9999999)int amount_of_times_to_generate) {
+    @Property public void testThatStoriesCanGenerateAUniqueIdEveryTime(@InRange(minInt = 1, maxInt = 999999)int amount_of_times_to_generate) {
         Story story;
         for(int i = 0; i<amount_of_times_to_generate; i++) {
             story = new Story();

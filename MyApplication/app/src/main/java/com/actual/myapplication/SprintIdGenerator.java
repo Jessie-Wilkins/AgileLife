@@ -13,12 +13,12 @@ public class SprintIdGenerator implements IdGeneratorStrategy{
 
     private static SprintIdGenerator id_generator = new SprintIdGenerator();
 
-    public static SprintIdGenerator getSprintIdGenerator() {
-        return id_generator;
-    }
-
     private SprintIdGenerator() {
 
+    }
+
+    public static SprintIdGenerator getSprintIdGenerator() {
+        return id_generator;
     }
 
     public int generateId() {

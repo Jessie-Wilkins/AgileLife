@@ -10,10 +10,10 @@ import java.util.ArrayList;
  * @since 2020-03-22
  */
 public class StoryManager {
-    private static final ArrayList<Story> story_list = new ArrayList<>();
+    private static ArrayList<Story> story_list = new ArrayList<>();
     private static StoryManager story_mgr = new StoryManager();
-    private static final ArrayList<Story> deleted_story_list = new ArrayList<>();
-    private static final ArrayList<Story> completed_story_list = new ArrayList<>();;
+    private static ArrayList<Story> deleted_story_list = new ArrayList<>();
+    private static ArrayList<Story> completed_story_list = new ArrayList<>();;
 
     private StoryManager() {
 
@@ -208,7 +208,9 @@ public class StoryManager {
                 id_array[iter_index] = comp_story.getId();
                 iter_index++;
             }
+
         }
+
         return id_array;
     }
 }

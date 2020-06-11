@@ -11,11 +11,11 @@ public class StoryIdGenerator implements IdGeneratorStrategy{
 
     private static int id = 0;
 
+    private static StoryIdGenerator id_generator = new StoryIdGenerator();
+
     private StoryIdGenerator() {
 
     }
-
-    private static StoryIdGenerator id_generator = new StoryIdGenerator();
 
     public static StoryIdGenerator getStoryIdGenerator() {
         return id_generator;

@@ -6,7 +6,7 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-02
  */
-class StoryBuilder {
+public class StoryBuilder {
     private String title;
     private String description;
     private int points;
