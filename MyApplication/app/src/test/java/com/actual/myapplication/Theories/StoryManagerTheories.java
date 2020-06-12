@@ -1,5 +1,6 @@
 package com.actual.myapplication.Theories;
 
+import com.actual.myapplication.Story;
 import com.actual.myapplication.StoryBuilder;
 import com.actual.myapplication.StoryManager;
 import com.pholser.junit.quickcheck.Property;
@@ -129,9 +130,28 @@ public class StoryManagerTheories {
         assertEquals(completed_id, uncompleted_id);
     }
 
-    @Property public void testThatCreatingAStoryWithABuilderAllowsStoryToReturnSameAssignedValuesEveryTime() {
+    @Property public void testThatCreatingAStoryWithABuilderAllowsStoryToReturnSameAssignedValuesEveryTime(String title, String description, @InRange(minInt = 1, maxInt = 999999) int points, Story.StoryStatus status, String sprint_title, @InRange(minInt = 1, maxInt = 999999) int completed_points) {
+
         StoryBuilder.resetBuilderAsUninitiated();
         StoryBuilder story_builder = StoryBuilder.initiateBuilder();
+
+        StoryManager story_manager = StoryManager.initiateStoryManager();
+
+        story_builder.setTitle(title);
+
+        story_builder.setDescription(description);
+
+        story_builder.setPoints(points);
+
+        story_builder.setStatus(status);
+
+        story_builder.setSprintTitleAndId(sprint_title);
+
+        story_builder.setCompletedPoints(completed_points);
+
+        story_manager.addStory(story_builder);
+
+
     }
 
 }
