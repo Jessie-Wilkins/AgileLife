@@ -10,7 +10,7 @@ import java.util.List;
  * @author jessiewilkins
  * @since 2020-04-01
  */
-class SprintManager {
+public class SprintManager {
 
     private static SprintManager sprint_manager = new SprintManager();
 
@@ -39,6 +39,8 @@ class SprintManager {
         saved_sprint_list.clear();
         removed_sprint_list.clear();
         future_sprint_list.clear();
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        IdGenerator.resetId();
         return sprint_manager;
     }
 
@@ -132,7 +134,6 @@ class SprintManager {
      * @return
      */
     public Sprint getNextOccurringVersionOfSprint(int id) {
-
         if(sprint_manager.getSprint(id).getFutureSprintId() == 0) {
             createFutureSprint(id);
         }

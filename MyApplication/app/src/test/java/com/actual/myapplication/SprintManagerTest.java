@@ -151,8 +151,6 @@ public class SprintManagerTest {
 
       sprint_manager.removeSprint(1);
 
-      System.out.println(Integer.MAX_VALUE);
-
       assertEquals(null, sprint_manager.getSprint(1));
    }
 
