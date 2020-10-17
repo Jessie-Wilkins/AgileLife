@@ -202,13 +202,22 @@ public class StoryManager {
 
     private long[] getStoryIds(ArrayList<Story> completed_story_list) {
         int iter_index = 0;
-        long[] id_array = new long[completed_story_list.size()];
-        for (Story comp_story : completed_story_list) {
-            if (comp_story != null) {
-                id_array[iter_index] = comp_story.getId();
-                iter_index++;
-            }
 
+        int max_length = 0;
+
+        ArrayList<Long> temp_id_list = new ArrayList<>();
+
+        for(Story comp_story : completed_story_list) {
+            if (comp_story != null && comp_story.getId()!=0) {
+                max_length++;
+                temp_id_list.add(comp_story.getId());
+            }
+        }
+
+        long[] id_array = new long[max_length];
+        for (Long id : temp_id_list) {
+            id_array[iter_index] = id;
+            iter_index++;
         }
 
         return id_array;
