@@ -201,7 +201,6 @@ public class StoryManager {
     }
 
     private long[] getStoryIds(ArrayList<Story> completed_story_list) {
-        int iter_index = 0;
 
         int max_length = 0;
 
@@ -215,9 +214,8 @@ public class StoryManager {
         }
 
         long[] id_array = new long[max_length];
-        for (Long id : temp_id_list) {
-            id_array[iter_index] = id;
-            iter_index++;
+        for (int i=0; i< id_array.length; i++) {
+            id_array[i] = temp_id_list.get(i);
         }
 
         return id_array;
