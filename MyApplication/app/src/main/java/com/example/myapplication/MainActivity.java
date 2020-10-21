@@ -23,19 +23,30 @@ public class MainActivity extends AppCompatActivity {
 
         StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
 
-        EditText editPoints = findViewById(R.id.editPoints);
+        addPoints(storyBuilder);
 
-        EditText editTitle = findViewById(R.id.editTitle);
+        addTitle(storyBuilder);
 
-        System.out.println(editPoints.getText().toString());
+        addDescription(storyBuilder);
 
-        if(editPoints.getText().toString() != null && !editPoints.getText().toString().isEmpty()) {
-            storyBuilder.setPoints(Integer.parseInt(editPoints.getEditableText().toString()));
+        storyManager.addStory(storyBuilder);
+
+    }
+
+    private void addDescription(StoryBuilder storyBuilder) {
+        EditText editDescription = findViewById(R.id.editDescription);
+
+        if(editDescription.getText().toString() != null && !editDescription.getText().toString().isEmpty()) {
+            storyBuilder.setDescription(editDescription.getText().toString());
         }
 
         else {
-            System.out.println("Points were not successfully added");
+            System.out.println("Description was not successfully added");
         }
+    }
+
+    private void addTitle(StoryBuilder storyBuilder) {
+        EditText editTitle = findViewById(R.id.editTitle);
 
         if(editTitle.getText().toString() != null && !editTitle.getText().toString().isEmpty()) {
             storyBuilder.setTitle(editTitle.getText().toString());
@@ -44,20 +55,17 @@ public class MainActivity extends AppCompatActivity {
         else {
             System.out.println("Title was not successfully added");
         }
+    }
 
-        storyManager.addStory(storyBuilder);
+    private void addPoints(StoryBuilder storyBuilder) {
+        EditText editPoints = findViewById(R.id.editPoints);
 
-        if(storyManager.getStory(storyManager.getStoriesIds()[storyManager.getStoriesIds().length-1])!= null) {
-            System.out.print("Added story #"+ storyManager.getStory(storyManager.getStoriesIds()[storyManager.getStoriesIds().length-1]).getId());
+        if(editPoints.getText().toString() != null && !editPoints.getText().toString().isEmpty()) {
+            storyBuilder.setPoints(Integer.parseInt(editPoints.getEditableText().toString()));
         }
 
-        if(storyManager.getStory(storyManager.getStoriesIds()[storyManager.getStoriesIds().length-1]).getPointsManagement().getPoints() != 0) {
-            System.out.println(" with these points: "+storyManager.getStory(storyManager.getStoriesIds().length).getPointsManagement().getPoints());
+        else {
+            System.out.println("Points were not successfully added");
         }
-
-        if(storyManager.getStory(storyManager.getStoriesIds()[storyManager.getStoriesIds().length-1]).getTitle() != null) {
-            System.out.println(" with this title: "+storyManager.getStory(storyManager.getStoriesIds().length).getTitle());
-        }
-
     }
 }

@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
 
-    StoryManager storyManager = StoryManager.initiateStoryManager();
+    StoryManager storyManager;
 
     @Test
     public void useAppContext() {
@@ -44,11 +44,49 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void addPointsToNewStory() {
+        storyManager = StoryManager.initiateStoryManager();
         onView(withId(R.id.editPoints))
                 .perform(typeText("4"), closeSoftKeyboard());
         onView(withId(R.id.button)).perform(click());
 
         assertEquals(4, storyManager.getStory(1).getPointsManagement().getPoints());
+    }
+
+    @Test
+    public void addTitleToNewStory() {
+        storyManager = StoryManager.initiateStoryManager();
+        onView(withId(R.id.editTitle))
+                .perform(typeText("Test Title"), closeSoftKeyboard());
+        onView(withId(R.id.button)).perform(click());
+
+        assertEquals("Test Title", storyManager.getStory(1).getTitle());
+    }
+
+    @Test
+    public void addDescriptionToNewStory() {
+        storyManager = StoryManager.initiateStoryManager();
+        onView(withId(R.id.editDescription))
+                .perform(typeText("This is a test description"), closeSoftKeyboard());
+        onView(withId(R.id.button)).perform(click());
+
+        assertEquals("This is a test description", storyManager.getStory(1).getDescription());
+    }
+
+    @Test
+    public void addPointsAndTitleAndDescriptionToNewStory() {
+        storyManager = StoryManager.initiateStoryManager();
+        onView(withId(R.id.editDescription))
+                .perform(typeText("This is a test description"), closeSoftKeyboard());
+        onView(withId(R.id.editPoints))
+                .perform(typeText("4"), closeSoftKeyboard());
+        onView(withId(R.id.editTitle))
+                .perform(typeText("Test Title"), closeSoftKeyboard());
+        onView(withId(R.id.button)).perform(click());
+
+        assertEquals("This is a test description"+"4"+"Test Title",
+                storyManager.getStory(1).getDescription()
+                +storyManager.getStory(1).getPointsManagement().getPoints()
+                +storyManager.getStory(1).getTitle());
     }
 
 }
