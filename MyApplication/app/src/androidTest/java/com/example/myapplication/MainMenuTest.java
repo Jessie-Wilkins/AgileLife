@@ -39,4 +39,10 @@ public class MainMenuTest {
     public ActivityScenarioRule<MainMenu> activityScenarioRule
             = new ActivityScenarioRule<>(MainMenu.class);
 
+    @Test
+    public void AddStoryButtonGoesToNewActivity() {
+        onView(withId(R.id.)).perform(click());
+
+    }
+
 }
