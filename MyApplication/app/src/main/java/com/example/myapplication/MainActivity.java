@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.actual.myapplication.StoryBuilder;
 import com.actual.myapplication.StoryManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         storyManager.addStory(storyBuilder);
 
+        Intent myIntent = new Intent(view.getContext(), MainMenu.class);
+        startActivityForResult(myIntent, 0);
     }
 
     private void addDescription(StoryBuilder storyBuilder) {

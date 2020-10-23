@@ -17,6 +17,8 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.*;
 
@@ -89,4 +91,18 @@ public class ExampleInstrumentedTest {
                 +storyManager.getStory(1).getTitle());
     }
 
+    @Test
+    public void buttonTakesUserBackToMenu() {
+        storyManager = StoryManager.initiateStoryManager();
+        onView(withId(R.id.editDescription))
+                .perform(typeText("This is a test description"), closeSoftKeyboard());
+        onView(withId(R.id.editPoints))
+                .perform(typeText("4"), closeSoftKeyboard());
+        onView(withId(R.id.editTitle))
+                .perform(typeText("Test Title"), closeSoftKeyboard());
+        onView(withId(R.id.button)).perform(click());
+
+        onView(withId(R.id.addNewStoryBtn)).check(matches(isDisplayed()));
+
+    }
 }

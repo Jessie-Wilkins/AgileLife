@@ -33,7 +33,7 @@ public class MainMenuTest {
 
     @Before
     public void setUp() {
-        ActivityScenario<MainMenu> scenario = ActivityScenario.launch(MainMenu.class);
+        ActivityScenario.launch(MainMenu.class);
     }
 
 
