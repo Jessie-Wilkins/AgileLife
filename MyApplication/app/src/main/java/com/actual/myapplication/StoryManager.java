@@ -35,6 +35,13 @@ public class StoryManager {
     }
 
     /**
+     * Returns Existing StoryManager
+     */
+    public static StoryManager getExistingStoryManager() {
+        return story_mgr;
+    }
+
+    /**
      * Adds a story with default parameters
      */
     public void addStory() {
