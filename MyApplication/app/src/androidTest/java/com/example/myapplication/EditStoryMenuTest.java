@@ -36,16 +36,11 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class EditStoryMenuTest {
 
-    StoryManager storyManager;
+
 
     @Before
     public void setUp() {
-        storyManager = StoryManager.initiateStoryManager();
 
-        StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
-        storyBuilder.setPoints(8);
-
-        storyManager.addStory(storyBuilder);
     }
 
 
