@@ -20,7 +20,14 @@ public class EditStoryMenu extends AppCompatActivity {
 
     }
 
-    public void getPoints(View view) {
+    @Override
+    protected void onPostResume() {
+        getPoints();
+        super.onPostResume();
+
+    }
+
+    public void getPoints() {
 
         StoryManager storyManager = StoryManager.initiateStoryManager();
 
