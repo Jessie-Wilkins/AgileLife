@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.EditText;
 import android.content.Intent;
@@ -8,6 +9,9 @@ import android.view.View;
 
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -36,15 +40,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class EditStoryMenuTest {
 
-
-
-    @Before
-    public void setUp() {
-
-    }
-
-
-
     @Test
     public void useAppContext() {
         // Context of the app under test.
@@ -59,7 +54,12 @@ public class EditStoryMenuTest {
 
     @Test
     public void ExistingStoryPointsValueIsShown() {
+        StoryManager storyManager = StoryManager.initiateStoryManager();
 
+        StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
+        storyBuilder.setPoints(8);
+        activityScenarioRule.getScenario();
+        storyManager.addStory(storyBuilder);
         onView(withId(R.id.editPointsAgain)).check(matches(withText("8")));
 
     }
