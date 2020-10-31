@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".EditStoryMenu"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".AddStoryMenu"></activity>
         <activity android:name=".MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

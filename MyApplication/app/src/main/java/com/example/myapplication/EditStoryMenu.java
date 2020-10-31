@@ -13,14 +13,21 @@ import com.actual.myapplication.StoryManager;
 
 public class EditStoryMenu extends AppCompatActivity {
     EditText editPoints;
+    StoryManager storyManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_story_menu);
-        StoryManager storyManager = StoryManager.getExistingStoryManager();
         editPoints = findViewById(R.id.editPointsAgain);
-        editPoints.setText("7");
+        storyManager = StoryManager.getExistingStoryManager();
+        if(storyManager.getStoriesIds().length > 0) {
+            editPoints.setText(String.valueOf(storyManager.getStory(1).getPointsManagement().getPoints()));
+        }
+        else {
+            editPoints.setText("7");
+        }
+
     }
 
     public void getPoints() {

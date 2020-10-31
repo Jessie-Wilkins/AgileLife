@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.content.Context;
-import android.view.View;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -41,8 +40,8 @@ public class ExampleInstrumentedTest {
     }
 
     @Rule
-    public ActivityScenarioRule<MainActivity> activityScenarioRule
-            = new ActivityScenarioRule<>(MainActivity.class);
+    public ActivityScenarioRule<AddStoryMenu> activityScenarioRule
+            = new ActivityScenarioRule<>(AddStoryMenu.class);
 
     @Test
     public void addPointsToNewStory() {

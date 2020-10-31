@@ -7,6 +7,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.actual.myapplication.StoryBuilder;
 import com.actual.myapplication.StoryManager;
 
 import org.junit.Before;
@@ -21,6 +22,7 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -31,9 +33,13 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class MainMenuTest {
 
+    StoryManager storyManager;
     @Before
     public void setUp() {
-        ActivityScenario.launch(MainMenu.class);
+       storyManager = StoryManager.getExistingStoryManager();
+        StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
+        storyBuilder.setPoints(9);
+        storyManager.addStory(storyBuilder);
     }
 
 
@@ -60,6 +66,12 @@ public class MainMenuTest {
     public void EditStoryButtonGoesToNewActivity() {
         onView(withId(R.id.editStoryBtn)).perform(click());
         onView(withId(R.id.pointsTextView)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void AssigningStoryPointsCausesPointsValueInEditStoryMenuToBeShown() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withId(R.id.editPointsAgain)).check(matches(withText("9")));
     }
 
 }

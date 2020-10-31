@@ -54,12 +54,12 @@ public class EditStoryMenuTest {
 
     @Test
     public void ExistingStoryPointsValueIsShown() {
-        StoryManager storyManager = StoryManager.initiateStoryManager();
+        StoryManager storyManager = StoryManager.getExistingStoryManager();
 
         StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
         storyBuilder.setPoints(8);
-        activityScenarioRule.getScenario();
         storyManager.addStory(storyBuilder);
+        activityScenarioRule.getScenario();
         onView(withId(R.id.editPointsAgain)).check(matches(withText("8")));
 
     }

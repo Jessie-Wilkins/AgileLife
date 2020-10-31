@@ -2,14 +2,12 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.actual.myapplication.StoryBuilder;
-import com.actual.myapplication.StoryManager;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
+
+import com.actual.myapplication.StoryBuilder;
+import com.actual.myapplication.StoryManager;
 
 
 public class MainMenu extends AppCompatActivity {
@@ -21,8 +19,9 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void goToAddNewStoryMenu(View view) {
-        Intent myIntent = new Intent(view.getContext(), MainActivity.class);
+        Intent myIntent = new Intent(view.getContext(), AddStoryMenu.class);
         startActivityForResult(myIntent, 0);
+
     }
 
     public void goToEditStoryMenu(View view) {
