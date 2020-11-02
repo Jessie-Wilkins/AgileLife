@@ -40,6 +40,17 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class EditStoryMenuTest {
 
+    StoryManager storyManager;
+    @Before
+    public void setUp() {
+        storyManager = StoryManager.getExistingStoryManager();
+        StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
+        storyBuilder.setPoints(9);
+        storyBuilder.setDescription("Test Description");
+        storyBuilder.setTitle("Test Title");
+        storyManager.addStory(storyBuilder);
+    }
+
     @Test
     public void useAppContext() {
         // Context of the app under test.
@@ -49,19 +60,34 @@ public class EditStoryMenuTest {
     }
 
     @Rule
-    public ActivityScenarioRule<EditStoryMenu> activityScenarioRule
-            = new ActivityScenarioRule<>(EditStoryMenu.class);
+    public ActivityScenarioRule<MainMenu> activityScenarioRule
+            = new ActivityScenarioRule<>(MainMenu.class);
 
     @Test
-    public void ExistingStoryPointsValueIsShown() {
-   /*     StoryManager storyManager = StoryManager.getExistingStoryManager();
-
-        StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
-        storyBuilder.setPoints(8);
-        storyManager.addStory(storyBuilder);
-        activityScenarioRule.getScenario();
-        onView(withId(R.id.editPointsAgain)).check(matches(withText("8")));
-*/
+    public void AssigningStoryPointsCausesPointsValueInEditStoryMenuToBeShown() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withId(R.id.editPointsAgain)).check(matches(withText("9")));
     }
+
+    @Test
+    public void AssigningStoryDescriptionCausesDescriptionValueInEditStoryMenuToBeShown()  {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withId(R.id.editDescriptionAgain)).check(matches(withText("Test Description")));
+    }
+
+    @Test
+    public void AssigningStoryTitleCausesTitleValueInEditStoryMenuToBeShown()  {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withId(R.id.editTitleAgain)).check(matches(withText("Test Title")));
+    }
+
+    @Test
+    public void ChangingPointsInEditStoryMenuChangesActualStoryPointsValue() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withId(R.id.editPointsAgain)).perform(ViewActions.clearText(), ViewActions.typeText("7"));
+        onView(withId(R.id.editStoryMenuBtn)).perform(click());
+        assertEquals(7, storyManager.getStory(1).getPointsManagement().getPoints());
+    }
+
 
 }

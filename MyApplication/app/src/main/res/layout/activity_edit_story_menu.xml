@@ -20,8 +20,8 @@
         android:id="@+id/editStoryMenuBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="addStory"
-        android:text="Button"
+        android:onClick="changeStoryPoints"
+        android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

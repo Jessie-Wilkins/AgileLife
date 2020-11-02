@@ -33,16 +33,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class MainMenuTest {
 
-    StoryManager storyManager;
-    @Before
-    public void setUp() {
-       storyManager = StoryManager.getExistingStoryManager();
-        StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
-        storyBuilder.setPoints(9);
-        storyManager.addStory(storyBuilder);
-    }
-
-
     @Test
     public void useAppContext() {
         // Context of the app under test.
@@ -66,12 +56,6 @@ public class MainMenuTest {
     public void EditStoryButtonGoesToNewActivity() {
         onView(withId(R.id.editStoryBtn)).perform(click());
         onView(withId(R.id.pointsTextView)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void AssigningStoryPointsCausesPointsValueInEditStoryMenuToBeShown() {
-        onView(withId(R.id.editStoryBtn)).perform(click());
-        onView(withId(R.id.editPointsAgain)).check(matches(withText("9")));
     }
 
 }
