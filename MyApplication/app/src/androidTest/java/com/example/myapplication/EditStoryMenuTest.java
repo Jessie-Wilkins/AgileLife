@@ -43,7 +43,7 @@ public class EditStoryMenuTest {
     StoryManager storyManager;
     @Before
     public void setUp() {
-        storyManager = StoryManager.getExistingStoryManager();
+        storyManager = StoryManager.initiateStoryManager();
         StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
         storyBuilder.setPoints(9);
         storyBuilder.setDescription("Test Description");
@@ -65,28 +65,24 @@ public class EditStoryMenuTest {
 
     @Test
     public void AssigningStoryPointsCausesPointsValueInEditStoryMenuToBeShown() {
-        setUp();
         onView(withId(R.id.editStoryBtn)).perform(click());
         onView(withId(R.id.editPointsAgain)).check(matches(withText("9")));
     }
 
     @Test
     public void AssigningStoryDescriptionCausesDescriptionValueInEditStoryMenuToBeShown()  {
-        setUp();
         onView(withId(R.id.editStoryBtn)).perform(click());
         onView(withId(R.id.editDescriptionAgain)).check(matches(withText("Test Description")));
     }
 
     @Test
     public void AssigningStoryTitleCausesTitleValueInEditStoryMenuToBeShown()  {
-        setUp();
         onView(withId(R.id.editStoryBtn)).perform(click());
         onView(withId(R.id.editTitleAgain)).check(matches(withText("Test Title")));
     }
 
     @Test
     public void ChangingPointsInEditStoryMenuChangesActualStoryPointsValue() {
-        setUp();
         onView(withId(R.id.editStoryBtn)).perform(click());
         onView(withId(R.id.editPointsAgain)).perform(ViewActions.replaceText("7"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.editStoryMenuBtn)).perform(click());
