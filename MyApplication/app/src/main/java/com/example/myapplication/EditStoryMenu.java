@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.actual.myapplication.StoryManager;
@@ -44,8 +45,8 @@ public class EditStoryMenu extends AppCompatActivity {
         }
     }
 
-    public void changeStoryPoints() {
+    public void changeStoryPoints(View view) {
         editPoints = findViewById(R.id.editPointsAgain);
-        storyManager.getStory(1).getPointsManagement().setPoints(Integer.parseInt(editPoints.getText().toString()));
+        storyManager.getStory(1).getPointsManagement().setPoints(7);
     }
 }
