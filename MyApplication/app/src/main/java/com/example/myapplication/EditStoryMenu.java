@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.actual.myapplication.StoryBuilder;
 import com.actual.myapplication.StoryManager;
 
 public class EditStoryMenu extends AppCompatActivity {
@@ -13,6 +14,7 @@ public class EditStoryMenu extends AppCompatActivity {
     EditText editDescription;
     EditText editTitle;
     StoryManager storyManager;
+    StoryBuilder storyBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,32 @@ public class EditStoryMenu extends AppCompatActivity {
         }
     }
 
-    public void changeStoryPoints(View view) {
+    public void changeStoryAttributes(View view) {
+        storyBuilder = StoryBuilder.initiateBuilder();
+        setStoryDescription();
+        setStoryPoints();
+        setStoryTitle();
+        storyManager.getStory(1).setChangedStoryAttributes(storyBuilder);
+    }
+
+    private void setStoryPoints() {
         editPoints = findViewById(R.id.editPointsAgain);
-        storyManager.getStory(1).getPointsManagement().setPoints(7);
+        if(!editPoints.getText().toString().trim().isEmpty()) {
+            storyBuilder.setPoints(Integer.parseInt(editPoints.getText().toString()));
+        }
+    }
+
+    private void setStoryDescription() {
+        editDescription = findViewById(R.id.editDescriptionAgain);
+        if(!editDescription.getText().toString().trim().isEmpty()) {
+            storyBuilder.setDescription(editDescription.getText().toString());
+        }
+    }
+
+    private void setStoryTitle() {
+        editDescription = findViewById(R.id.editTitleAgain);
+        if(!editTitle.getText().toString().trim().isEmpty()) {
+            storyBuilder.setTitle(editTitle.getText().toString());
+        }
     }
 }

@@ -89,5 +89,44 @@ public class EditStoryMenuTest {
         assertEquals(7, storyManager.getStory(1).getPointsManagement().getPoints());
     }
 
+    @Test
+    public void ChangingDescriptionInEditStoryMenuChangesActualStoryDescription() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withId(R.id.editDescriptionAgain)).perform(ViewActions.replaceText("New Description"));
+        onView(withId(R.id.editStoryMenuBtn)).perform(click());
+        assertEquals("New Description", storyManager.getStory(1).getDescription());
+    }
+
+    @Test
+    public void ChangingTitleInEditStoryMenuChangesActualStoryTitle() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withId(R.id.editTitleAgain)).perform(ViewActions.replaceText("New Title"));
+        onView(withId(R.id.editStoryMenuBtn)).perform(click());
+        assertEquals("New Title", storyManager.getStory(1).getTitle());
+    }
+
+    @Test
+    public void GivingTheStoryABlankPointsValueDoesNotChangeTheStoryPointsValue() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withId(R.id.editPointsAgain)).perform(ViewActions.replaceText(""));
+        onView(withId(R.id.editStoryMenuBtn)).perform(click());
+        assertEquals(9, storyManager.getStory(1).getPointsManagement().getPoints());
+    }
+
+    @Test
+    public void GivingTheStoryABlankTitleDoesNotChangeTheStoryTitle() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withId(R.id.editTitleAgain)).perform(ViewActions.replaceText(""));
+        onView(withId(R.id.editStoryMenuBtn)).perform(click());
+        assertEquals("Test Title", storyManager.getStory(1).getTitle());
+    }
+
+    @Test
+    public void GivingTheStoryABlankDescriptionDoesNotChangeTheStoryDescription() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withId(R.id.editDescriptionAgain)).perform(ViewActions.replaceText(""));
+        onView(withId(R.id.editStoryMenuBtn)).perform(click());
+        assertEquals("Test Description", storyManager.getStory(1).getDescription());
+    }
 
 }

@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditStoryMenu"></activity>
-        <activity android:name=".AddStoryMenu"></activity>
+        <activity android:name=".StoryList"></activity>
+        <activity android:name=".EditStoryMenu" />
+        <activity android:name=".AddStoryMenu" />
         <activity android:name=".MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
