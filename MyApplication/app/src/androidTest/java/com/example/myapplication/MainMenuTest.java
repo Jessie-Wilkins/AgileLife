@@ -47,7 +47,7 @@ public class MainMenuTest {
     @Test
     public void EditStoryButtonGoesToNewActivity() {
         onView(withId(R.id.editStoryBtn)).perform(click());
-        onView(withId(R.id.storyListScroll)).check(matches(isDisplayed()));
+        onView(withId(R.id.storyListView)).check(matches(isDisplayed()));
     }
 
 }

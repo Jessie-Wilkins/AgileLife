@@ -19,6 +19,8 @@ import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withChild;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.AllOf.allOf;
@@ -53,12 +55,7 @@ public class StoryListMenuTest {
     @Test
     public void StoryListMenuShowsStoryFromList() {
         onView(withId(R.id.editStoryBtn)).perform(click());
-        onView(withId(R.id.storyListScroll)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Test Title"))).perform(click());
-        onView(withId(R.id.storyListScroll))
-                .check(matches(withText(containsString("Test Title"))));
-
-
+        onView(withId(R.id.storyListView)).check(matches(withText("Test Title")));
     }
 
 }
