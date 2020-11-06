@@ -51,14 +51,6 @@ public class EditStoryMenuTest {
         storyManager.addStory(storyBuilder);
     }
 
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
-        assertEquals("com.example.myapplication", appContext.getPackageName());
-    }
-
     @Rule
     public ActivityScenarioRule<MainMenu> activityScenarioRule
             = new ActivityScenarioRule<>(MainMenu.class);

@@ -25,7 +25,7 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void goToEditStoryMenu(View view) {
-        Intent myIntent = new Intent(view.getContext(), EditStoryMenu.class);
+        Intent myIntent = new Intent(view.getContext(), StoryListMenu.class);
         startActivityForResult(myIntent, 0);
     }
 }
