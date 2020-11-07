@@ -55,7 +55,7 @@ public class StoryListMenuTest {
     @Test
     public void StoryListMenuShowsStoryFromList() {
         onView(withId(R.id.editStoryBtn)).perform(click());
-        onView(withId(R.id.storyListView)).check(matches(withText("Test Title")));
+        onView(withText("Test Title")).check(matches(isDisplayed()));
     }
 
 }
