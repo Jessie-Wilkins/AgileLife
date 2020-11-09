@@ -28,4 +28,16 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addNewStoryBtn" />
+
+    <Button
+        android:id="@+id/addNewSprintBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:onClick="goToAddNewSprintMenu"
+        android:text="Add New Sprint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editStoryBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

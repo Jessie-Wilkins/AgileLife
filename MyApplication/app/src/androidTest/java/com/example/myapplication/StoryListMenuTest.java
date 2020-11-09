@@ -46,6 +46,10 @@ public class StoryListMenuTest {
         storyBuilder.setDescription("Test Description");
         storyBuilder.setTitle("Test Title");
         storyManager.addStory(storyBuilder);
+        storyBuilder.setPoints(10);
+        storyBuilder.setTitle("Second Title");
+        storyBuilder.setDescription("Second Description");
+        storyManager.addStory(storyBuilder);
     }
 
     @Rule
@@ -56,6 +60,26 @@ public class StoryListMenuTest {
     public void StoryListMenuShowsStoryFromList() {
         onView(withId(R.id.editStoryBtn)).perform(click());
         onView(withText("Test Title")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void StoryListMenuShowsSecondTitleThatWasAdded() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(withText("Second Title")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void StoryListMenuTakesUserToEditStoryMenuWhenItemIsClickedOn() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(allOf(withText("Test Title"))).perform(click());
+        onView(withId(R.id.editTitleAgain)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void StoryListMenuTakesUserToEditStoryMenuWithSameStoryTitleWhenItemIsClickedOn() {
+        onView(withId(R.id.editStoryBtn)).perform(click());
+        onView(allOf(withText("Second Title"))).perform(click());
+        onView(withId(R.id.editTitleAgain)).check(matches(withText("Second Title")));
     }
 
 }

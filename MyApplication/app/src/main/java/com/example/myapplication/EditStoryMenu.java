@@ -15,12 +15,14 @@ public class EditStoryMenu extends AppCompatActivity {
     EditText editTitle;
     StoryManager storyManager;
     StoryBuilder storyBuilder;
+    long storyId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_story_menu);
         storyManager = StoryManager.getExistingStoryManager();
+        storyId = getIntent().getExtras().getInt("storyId");
         getStoryPoints();
         getStoryDescription();
         getStoryTitle();
@@ -29,21 +31,21 @@ public class EditStoryMenu extends AppCompatActivity {
     protected void getStoryPoints() {
         editPoints = findViewById(R.id.editPointsAgain);
         if(storyManager.getStoriesIds().length > 0) {
-            editPoints.setText(String.valueOf(storyManager.getStory(1).getPointsManagement().getPoints()));
+            editPoints.setText(String.valueOf(storyManager.getStory(storyId).getPointsManagement().getPoints()));
         }
     }
 
     protected void getStoryDescription() {
         if (storyManager.getStoriesIds().length > 0) {
             editDescription = findViewById(R.id.editDescriptionAgain);
-            editDescription.setText(storyManager.getStory(1).getDescription());
+            editDescription.setText(storyManager.getStory(storyId).getDescription());
         }
     }
 
     protected void getStoryTitle() {
         if (storyManager.getStoriesIds().length > 0) {
             editTitle = findViewById(R.id.editTitleAgain);
-            editTitle.setText(storyManager.getStory(1).getTitle());
+            editTitle.setText(storyManager.getStory(storyId).getTitle());
         }
     }
 
@@ -52,7 +54,7 @@ public class EditStoryMenu extends AppCompatActivity {
         setStoryDescription();
         setStoryPoints();
         setStoryTitle();
-        storyManager.getStory(1).setChangedStoryAttributes(storyBuilder);
+        storyManager.getStory(storyId).setChangedStoryAttributes(storyBuilder);
     }
 
     private void setStoryPoints() {

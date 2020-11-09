@@ -8,8 +8,8 @@
 
     <ListView
         android:id="@+id/storyListView"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="416dp"
+        android:layout_height="672dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
