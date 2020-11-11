@@ -35,9 +35,19 @@ public class AddSprintMenuTest {
         sprintManager = SprintManager.initiateSprintManager();
         onView(withId(R.id.addSprintTitleEditText))
                 .perform(typeText("Test Title"), closeSoftKeyboard());
-        onView(withId(R.id.button)).perform(click());
+        onView(withId(R.id.addSprintSubmitBtn)).perform(click());
 
         assertEquals("Test Title", sprintManager.getSprint(1).getLabel());
+    }
+
+    @Test
+    public void addLengthToNewSprint() {
+        sprintManager = SprintManager.initiateSprintManager();
+        onView(withId(R.id.addSprintLengthEditText))
+                .perform(typeText("7"), closeSoftKeyboard());
+        onView(withId(R.id.addSprintSubmitBtn)).perform(click());
+
+        assertEquals(7, sprintManager.getSprint(1).getLength());
     }
 
 }

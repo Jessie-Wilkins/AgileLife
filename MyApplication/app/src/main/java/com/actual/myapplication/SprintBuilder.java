@@ -6,7 +6,7 @@ package com.actual.myapplication;
  * @author jessiewilkins
  * @since 2020-04-01
  */
-class SprintBuilder {
+public class SprintBuilder {
 
     private static SprintBuilder sprint_builder = new SprintBuilder();
 
