@@ -24,30 +24,54 @@ public class AddSprintMenu extends AppCompatActivity {
     public void addSprint(View view) {
         addSprintTitle();
         addSprintLength();
+        addSprintFrequency();
+        addSprintCapacity();
         sprintManager.addSprint(sprintBuilder);
     }
 
     private void addSprintTitle() {
-        EditText editDescription = findViewById(R.id.addSprintTitleEditText);
+        EditText editTitle = findViewById(R.id.addSprintTitleEditText);
 
-        if(editDescription.getText().toString() != null && !editDescription.getText().toString().isEmpty()) {
-            sprintBuilder.setLabel(editDescription.getText().toString());
-        }
-
-        else {
-            System.out.println("Description was not successfully added");
-        }
+        determineIfValueCanBeAdded(editTitle);
     }
 
     private void addSprintLength() {
-        EditText editDescription = findViewById(R.id.addSprintLengthEditText);
+        EditText editLength = findViewById(R.id.addSprintLengthEditText);
 
-        if(editDescription.getText().toString() != null && !editDescription.getText().toString().isEmpty()) {
-            sprintBuilder.setLength(Integer.parseInt(editDescription.getText().toString()));
-        }
+        determineIfValueCanBeAdded(editLength);
+    }
 
-        else {
-            System.out.println("Description was not successfully added");
+    private void addSprintFrequency() {
+        EditText editFrequency = findViewById(R.id.addSprintFrequencyEditText);
+
+        determineIfValueCanBeAdded(editFrequency);
+    }
+
+    private void addSprintCapacity() {
+        EditText editCapacity = findViewById(R.id.addSprintCapacityEditText);
+
+        determineIfValueCanBeAdded(editCapacity);
+    }
+
+    private void determineIfValueCanBeAdded(EditText editText) {
+
+        if(editText.getText().toString() != null && !editText.getText().toString().isEmpty()) {
+
+            if(editText.getId() == R.id.addSprintTitleEditText) {
+                sprintBuilder.setLabel(editText.getText().toString());
+            }
+
+            else if(editText.getId() == R.id.addSprintLengthEditText) {
+                sprintBuilder.setLength(Integer.parseInt(editText.getText().toString()));
+            }
+
+            else if(editText.getId() == R.id.addSprintFrequencyEditText) {
+                sprintBuilder.setFrequency(Integer.parseInt(editText.getText().toString()));
+            }
+
+            else if(editText.getId() == R.id.addSprintCapacityEditText) {
+                sprintBuilder.setCapacity(Integer.parseInt(editText.getText().toString()));
+            }
         }
     }
 }

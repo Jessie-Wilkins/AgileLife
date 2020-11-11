@@ -50,4 +50,24 @@ public class AddSprintMenuTest {
         assertEquals(7, sprintManager.getSprint(1).getLength());
     }
 
+    @Test
+    public void addFrequencyToNewSprint() {
+        sprintManager = SprintManager.initiateSprintManager();
+        onView(withId(R.id.addSprintFrequencyEditText))
+                .perform(typeText("9"), closeSoftKeyboard());
+        onView(withId(R.id.addSprintSubmitBtn)).perform(click());
+
+        assertEquals(9, sprintManager.getSprint(1).getFrequencyInDays());
+    }
+
+    @Test
+    public void addCapacityToNewSprint() {
+        sprintManager = SprintManager.initiateSprintManager();
+        onView(withId(R.id.addSprintCapacityEditText))
+                .perform(typeText("14"), closeSoftKeyboard());
+        onView(withId(R.id.addSprintSubmitBtn)).perform(click());
+
+        assertEquals(14, sprintManager.getSprint(1).getCapacity());
+    }
+
 }
