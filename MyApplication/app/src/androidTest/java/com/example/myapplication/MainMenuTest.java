@@ -46,4 +46,10 @@ public class MainMenuTest {
         onView(withId(R.id.textSprintTitle)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void EditSprintButtonGoesToSprintListActivity() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
+        onView(withId(R.id.sprintListView)).check(matches(isDisplayed()));
+    }
+
 }

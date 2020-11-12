@@ -13,6 +13,8 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertEquals;
 
@@ -68,6 +70,22 @@ public class AddSprintMenuTest {
         onView(withId(R.id.addSprintSubmitBtn)).perform(click());
 
         assertEquals(14, sprintManager.getSprint(1).getCapacity());
+    }
+
+    @Test
+    public void addingNewSprintTakesUserToMainMenu() {
+        sprintManager = SprintManager.initiateSprintManager();
+        onView(withId(R.id.addSprintTitleEditText))
+                .perform(typeText("Test Title"), closeSoftKeyboard());
+        onView(withId(R.id.addSprintLengthEditText))
+                .perform(typeText("7"), closeSoftKeyboard());
+        onView(withId(R.id.addSprintFrequencyEditText))
+                .perform(typeText("9"), closeSoftKeyboard());
+        onView(withId(R.id.addSprintCapacityEditText))
+                .perform(typeText("14"), closeSoftKeyboard());
+        onView(withId(R.id.addSprintSubmitBtn)).perform(click());
+
+       onView(withId(R.id.addNewSprintBtn)).check(matches(isDisplayed()));
     }
 
 }
