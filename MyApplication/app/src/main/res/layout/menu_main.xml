@@ -21,11 +21,10 @@
         android:id="@+id/editStoryBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="40dp"
         android:onClick="goToEditStoryMenu"
         android:text="Edit Story"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addNewStoryBtn" />
 
@@ -33,7 +32,7 @@
         android:id="@+id/addNewSprintBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="48dp"
         android:onClick="goToAddNewSprintMenu"
         android:text="Add New Sprint"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +44,11 @@
         android:id="@+id/editSprintBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:onClick="goToEditSprintMenu"
         android:text="Edit Sprint"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="413dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addNewSprintBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
