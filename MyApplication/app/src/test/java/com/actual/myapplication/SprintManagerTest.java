@@ -550,4 +550,43 @@ public class SprintManagerTest {
 
       assertEquals(2, sprint_manager.getPastSprint(2).getId());
    }
+
+   @Test
+   public void canGetExistingSprintManager() {
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      SprintManager sprintManager = SprintManager.getExistingSprintManager();
+
+      assertThat(sprintManager, instanceOf(SprintManager.class));
+   }
+
+   @Test
+   public void canGetValuesOfExistingSprintManager() {
+      SprintManager sprint_manager = SprintManager.initiateSprintManager();
+
+      sprint_manager.addSprint();
+
+      SprintManager sprintManager = SprintManager.getExistingSprintManager();
+
+      assertEquals(1, sprintManager.getSprint(1).getId());
+   }
+
+   @Test
+   public void canGetNewExistingSprintManagerIfNonExists() {
+      SprintManager sprintManager = SprintManager.getExistingSprintManager();
+
+      sprintManager.addSprint();
+
+      assertEquals(1, sprintManager.getSprint(1).getId());
+   }
+
+   @Test
+   public void gettingSprintThatDoesNotExistReturnsNull() {
+      SprintManager sprintManager = SprintManager.initiateSprintManager();
+
+      assertEquals(null, sprintManager.getSprint(1));
+
+   }
 }

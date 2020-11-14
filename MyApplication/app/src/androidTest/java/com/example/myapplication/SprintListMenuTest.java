@@ -33,13 +33,12 @@ public class SprintListMenuTest {
     @Before
     public void setUp() {
         sprintManager = SprintManager.initiateSprintManager();
-
-        sprintManager.addSprint();
         SprintBuilder sprintBuilder = SprintBuilder.initiateSprintBuilder();
         sprintBuilder.setLabel("Test Title");
         sprintBuilder.setLength(7);
         sprintBuilder.setFrequency(14);
         sprintBuilder.setCapacity(16);
+        sprintManager.addSprint(sprintBuilder);
     }
 
     @Rule

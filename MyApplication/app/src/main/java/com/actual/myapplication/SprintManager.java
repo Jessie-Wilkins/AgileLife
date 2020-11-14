@@ -44,6 +44,11 @@ public class SprintManager {
         return sprint_manager;
     }
 
+    public static SprintManager getExistingSprintManager() {
+        IdGenerator.setStrategy(SprintIdGenerator.getSprintIdGenerator());
+        return sprint_manager;
+    }
+
     /**
      * Adds a new sprint with default values
      */
@@ -57,7 +62,13 @@ public class SprintManager {
      * @return Sprint
      */
     public Sprint getSprint(int id) {
-        return current_sprint_list.get(getIndex(id));
+        if(current_sprint_list.size() <id) {
+            return null;
+        }
+        else {
+            return current_sprint_list.get(getIndex(id));
+        }
+
     }
 
     /**

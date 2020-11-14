@@ -17,7 +17,7 @@ public class SprintListMenu extends AppCompatActivity {
 
     ListView listView;
 
-    SprintManager sprintManager = SprintManager.initiateSprintManager();
+    SprintManager sprintManager = SprintManager.getExistingSprintManager();
 
     ArrayAdapter<String> arrayAdapter;
 
@@ -27,29 +27,33 @@ public class SprintListMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sprint_list_menu);
+        createSprintList();
     }
-        private void createSprintList() {
-            iterativeSprintAdd();
-            addToAdapter();
-        }
 
-        private void addToAdapter() {
-            listView = findViewById(R.id.sprintListView);
-            arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
-            listView.setAdapter(arrayAdapter);
-            arrayAdapter.notifyDataSetChanged();
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    private void createSprintList() {
+        iterativeSprintAdd();
+        addToAdapter();
+    }
 
-                }
-            });
-        }
+    private void addToAdapter() {
+        listView = findViewById(R.id.sprintListView);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
+        listView.setAdapter(arrayAdapter);
+        arrayAdapter.notifyDataSetChanged();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+    }
 
     private void iterativeSprintAdd() {
         arrayList = new ArrayList<>();
-        /*for(long id : storyManager.getStoriesIds()) {
-            arrayList.add(storyManager.getStory(id).getTitle());
-        }*/
+        int id = 1;
+        while(sprintManager.getSprint(id) != null) {
+            arrayList.add(sprintManager.getSprint(id).getLabel());
+            id++;
+        }
     }
 }
