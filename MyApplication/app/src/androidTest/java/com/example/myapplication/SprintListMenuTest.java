@@ -39,6 +39,11 @@ public class SprintListMenuTest {
         sprintBuilder.setFrequency(14);
         sprintBuilder.setCapacity(16);
         sprintManager.addSprint(sprintBuilder);
+        sprintBuilder.setLabel("Second Title");
+        sprintBuilder.setLength(4);
+        sprintBuilder.setFrequency(7);
+        sprintBuilder.setCapacity(7);
+        sprintManager.addSprint(sprintBuilder);
     }
 
     @Rule
@@ -49,6 +54,26 @@ public class SprintListMenuTest {
     public void SprintListMenuShowsSprintFromList() {
         onView(withId(R.id.editSprintBtn)).perform(click());
         onView(withText("Test Title")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void SprintListMenuShowsSecondSprintFromList() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
+        onView(withText("Second Title")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void SprintListMenuTakesUserToEditSprintMenuWhenItemIsClickedOn() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
+        onView(allOf(withText("Test Title"))).perform(click());
+        onView(withId(R.id.editSprintTitleTextView)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void SprintListMenuTakesUserToEditSprintMenuWithSameSprintTitleWhenItemIsClickedOn() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
+        onView(allOf(withText("Second Title"))).perform(click());
+        onView(withId(R.id.editSprintTitleEditText)).check(matches(withText("Second Title")));
     }
 
 }

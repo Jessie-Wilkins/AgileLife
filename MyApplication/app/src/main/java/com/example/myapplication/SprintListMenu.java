@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -43,10 +44,19 @@ public class SprintListMenu extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                goToEditSprintMenu(view, position);
             }
         });
     }
+
+    private void goToEditSprintMenu(View view, int position) {
+        Intent myIntent = new Intent(view.getContext(), EditSprintMenu.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("sprintId", position+1);
+        myIntent.putExtras(bundle);
+        startActivityForResult(myIntent, 0);
+    }
+
 
     private void iterativeSprintAdd() {
         arrayList = new ArrayList<>();
