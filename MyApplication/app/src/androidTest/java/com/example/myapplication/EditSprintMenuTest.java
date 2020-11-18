@@ -5,6 +5,8 @@ import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.actual.myapplication.SprintBuilder;
+import com.actual.myapplication.SprintManager;
 import com.actual.myapplication.StoryBuilder;
 import com.actual.myapplication.StoryManager;
 
@@ -29,94 +31,120 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class EditSprintMenuTest {
 
-    StoryManager storyManager;
+    SprintManager sprintManager;
     @Before
     public void setUp() {
-        storyManager = StoryManager.initiateStoryManager();
-        StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
-        storyBuilder.setPoints(9);
-        storyBuilder.setDescription("Test Description");
-        storyBuilder.setTitle("Test Title");
-        storyManager.addStory(storyBuilder);
+        sprintManager = SprintManager.initiateSprintManager();
+        SprintBuilder sprintBuilder = SprintBuilder.initiateSprintBuilder();
+        sprintBuilder.setCapacity(9);
+        sprintBuilder.setLabel("Test Title");
+        sprintBuilder.setFrequency(14);
+        sprintBuilder.setLength(7);
+        sprintManager.addSprint(sprintBuilder);
     }
 
     @Rule
     public ActivityScenarioRule<MainMenu> activityScenarioRule
             = new ActivityScenarioRule<>(MainMenu.class);
 
-   /* @Test
-    public void AssigningStoryPointsCausesPointsValueInEditStoryMenuToBeShown() {
-        onView(withId(R.id.editStoryBtn)).perform(click());
+  @Test
+    public void AssigningSprintCapacityCausesPointsValueInEditSprintMenuToBeShown() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
         onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editPointsAgain)).check(matches(withText("9")));
+        onView(withId(R.id.editSprintCapacityEditText)).check(matches(withText("9")));
+    }
+
+   @Test
+    public void AssigningSprintTitleCausesTitleValueInEditSprintMenuToBeShown()  {
+        onView(withId(R.id.editSprintBtn)).perform(click());
+        onView(allOf(withText("Test Title"))).perform(click());
+        onView(withId(R.id.editSprintTitleEditText)).check(matches(withText("Test Title")));
     }
 
     @Test
-    public void AssigningStoryDescriptionCausesDescriptionValueInEditStoryMenuToBeShown()  {
-        onView(withId(R.id.editStoryBtn)).perform(click());
+    public void AssigningSprintFrequencyCausesFrequencyValueInEditSprintMenuToBeShown()  {
+        onView(withId(R.id.editSprintBtn)).perform(click());
         onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editDescriptionAgain)).check(matches(withText("Test Description")));
+        onView(withId(R.id.editSprintFrequencyEditText)).check(matches(withText("14")));
     }
 
     @Test
-    public void AssigningStoryTitleCausesTitleValueInEditStoryMenuToBeShown()  {
-        onView(withId(R.id.editStoryBtn)).perform(click());
+    public void AssigningSprintLengthCausesLengthValueInEditSprintMenuToBeShown()  {
+        onView(withId(R.id.editSprintBtn)).perform(click());
         onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editTitleAgain)).check(matches(withText("Test Title")));
+        onView(withId(R.id.editSprintLengthEditText)).check(matches(withText("7")));
     }
 
     @Test
-    public void ChangingPointsInEditStoryMenuChangesActualStoryPointsValue() {
-        onView(withId(R.id.editStoryBtn)).perform(click());
+    public void ChangingCapacityInEditSprintMenuChangesActualSprintCapacityValue() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
         onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editPointsAgain)).perform(ViewActions.replaceText("7"), ViewActions.closeSoftKeyboard());
-        onView(withId(R.id.editStoryMenuBtn)).perform(click());
-        assertEquals(7, storyManager.getStory(1).getPointsManagement().getPoints());
+        onView(withId(R.id.editSprintCapacityEditText)).perform(ViewActions.replaceText("7"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editSprintSubmitBtn)).perform(click());
+        assertEquals(7, sprintManager.getSprint(1).getCapacity());
     }
 
     @Test
-    public void ChangingDescriptionInEditStoryMenuChangesActualStoryDescription() {
-        onView(withId(R.id.editStoryBtn)).perform(click());
+    public void ChangingTitleInEditSprintMenuChangesActualSprintTitle() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
         onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editDescriptionAgain)).perform(ViewActions.replaceText("New Description"));
-        onView(withId(R.id.editStoryMenuBtn)).perform(click());
-        assertEquals("New Description", storyManager.getStory(1).getDescription());
+        onView(withId(R.id.editSprintTitleEditText)).perform(ViewActions.replaceText("New Title"));
+        onView(withId(R.id.editSprintSubmitBtn)).perform(click());
+        assertEquals("New Title", sprintManager.getSprint(1).getLabel());
     }
 
     @Test
-    public void ChangingTitleInEditStoryMenuChangesActualStoryTitle() {
-        onView(withId(R.id.editStoryBtn)).perform(click());
+    public void ChangingFrequencyInEditSprintMenuChangesActualSprintFrequency() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
         onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editTitleAgain)).perform(ViewActions.replaceText("New Title"));
-        onView(withId(R.id.editStoryMenuBtn)).perform(click());
-        assertEquals("New Title", storyManager.getStory(1).getTitle());
+        onView(withId(R.id.editSprintFrequencyEditText)).perform(ViewActions.replaceText("16"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editSprintSubmitBtn)).perform(click());
+        assertEquals(16, sprintManager.getSprint(1).getFrequencyInDays());
     }
 
     @Test
-    public void GivingTheStoryABlankPointsValueDoesNotChangeTheStoryPointsValue() {
-        onView(withId(R.id.editStoryBtn)).perform(click());
+    public void ChangingLengthInEditSprintMenuChangesActualSprintLength() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
         onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editPointsAgain)).perform(ViewActions.replaceText(""));
-        onView(withId(R.id.editStoryMenuBtn)).perform(click());
-        assertEquals(9, storyManager.getStory(1).getPointsManagement().getPoints());
+        onView(withId(R.id.editSprintLengthEditText)).perform(ViewActions.replaceText("9"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editSprintSubmitBtn)).perform(click());
+        assertEquals(9, sprintManager.getSprint(1).getLength());
     }
 
     @Test
-    public void GivingTheStoryABlankTitleDoesNotChangeTheStoryTitle() {
-        onView(withId(R.id.editStoryBtn)).perform(click());
+    public void GivingTheSprintABlankTitleValueDoesNotChangeTheSprintTitleValue() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
         onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editTitleAgain)).perform(ViewActions.replaceText(""));
-        onView(withId(R.id.editStoryMenuBtn)).perform(click());
-        assertEquals("Test Title", storyManager.getStory(1).getTitle());
+        onView(withId(R.id.editSprintTitleEditText)).perform(ViewActions.replaceText(""), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editSprintSubmitBtn)).perform(click());
+        assertEquals("Test Title", sprintManager.getSprint(1).getLabel());
     }
 
     @Test
-    public void GivingTheStoryABlankDescriptionDoesNotChangeTheStoryDescription() {
-        onView(withId(R.id.editStoryBtn)).perform(click());
+    public void GivingTheSprintABlankCapacityValueDoesNotChangeTheSprintCapacityValue() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
         onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editDescriptionAgain)).perform(ViewActions.replaceText(""));
-        onView(withId(R.id.editStoryMenuBtn)).perform(click());
-        assertEquals("Test Description", storyManager.getStory(1).getDescription());
-    }*/
+        onView(withId(R.id.editSprintCapacityEditText)).perform(ViewActions.replaceText(""), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editSprintSubmitBtn)).perform(click());
+        assertEquals("9", sprintManager.getSprint(1).getCapacity());
+    }
+
+    @Test
+    public void GivingTheSprintABlankFrequencyValueDoesNotChangeTheSprintFrequencyValue() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
+        onView(allOf(withText("Test Title"))).perform(click());
+        onView(withId(R.id.editSprintFrequencyEditText)).perform(ViewActions.replaceText(""), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editSprintSubmitBtn)).perform(click());
+        assertEquals("14", sprintManager.getSprint(1).getFrequencyInDays());
+    }
+
+    @Test
+    public void GivingTheSprintABlankLengthValueDoesNotChangeTheSprintLengthValue() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
+        onView(allOf(withText("Test Title"))).perform(click());
+        onView(withId(R.id.editSprintLengthEditText)).perform(ViewActions.replaceText(""), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.editSprintSubmitBtn)).perform(click());
+        assertEquals("7", sprintManager.getSprint(1).getLength());
+    }
 
 }
