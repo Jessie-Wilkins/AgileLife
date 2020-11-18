@@ -38,4 +38,9 @@ public class MainMenu extends AppCompatActivity {
         Intent myIntent = new Intent(view.getContext(), SprintListMenu.class);
         startActivityForResult(myIntent, 0);
     }
+
+    public void goToAddStoryToSprintMenu(View view) {
+        Intent myIntent = new Intent(view.getContext(), MainMenu.class);
+        startActivityForResult(myIntent, 0);
+    }
 }

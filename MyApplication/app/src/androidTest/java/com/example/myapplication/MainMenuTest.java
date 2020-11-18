@@ -52,4 +52,10 @@ public class MainMenuTest {
         onView(withId(R.id.sprintListView)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void AddStoryToSprintButtonGoesToAddStoryToSprintMenu() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
+        onView(withId(R.id.addStoryToSprintChooseSprintTextView)).check(matches(isDisplayed()));
+    }
+
 }

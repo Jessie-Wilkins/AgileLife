@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -57,6 +58,8 @@ public class EditSprintMenu extends AppCompatActivity {
         setSprintLabel();
         setSprintFrequency();
         setSprintLength();
+        Intent myIntent = new Intent(view.getContext(), MainMenu.class);
+        startActivityForResult(myIntent, 0);
     }
 
     private void setSprintCapacity() {

@@ -1,5 +1,7 @@
 package com.actual.myapplication;
 
+import java.util.ArrayList;
+
 /**
  * This class represents a sprint and contains methods and fields for
  * manipulating and holding relevant information.
@@ -12,7 +14,7 @@ public class Sprint {
     private int length = 0;
     private int frequency = 0;
     private PointsManagement points_management = new PointsManagement();
-    private StoryManager story_mgr = StoryManager.initiateStoryManager();
+    private StoryManager story_mgr = StoryManager.getExistingStoryManager();
     private StoryBuilder story_builder = StoryBuilder.initiateBuilder();
 
     private final int id;
@@ -178,6 +180,18 @@ public class Sprint {
      */
     public void setPastSprintId(int id) {
         past_sprint_id = id;
+    }
+
+    public ArrayList<Story> getStoryList() {
+        ArrayList<Story> storyArrayList = new ArrayList<>();
+        long [] stories_ids = this.story_mgr.getStoriesIds();
+        for(long story_id : stories_ids) {
+            if(this.story_mgr.getStory(story_id).getSprintTitleAndId().equals(getIdPlusLabel())) {
+                storyArrayList.add(this.story_mgr.getStory(story_id));
+            }
+        }
+
+        return storyArrayList;
     }
 
     //Private Utilities

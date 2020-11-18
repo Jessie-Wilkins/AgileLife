@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.AllOf.allOf;
@@ -126,7 +127,7 @@ public class EditSprintMenuTest {
         onView(allOf(withText("Test Title"))).perform(click());
         onView(withId(R.id.editSprintCapacityEditText)).perform(ViewActions.replaceText(""), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.editSprintSubmitBtn)).perform(click());
-        assertEquals("9", sprintManager.getSprint(1).getCapacity());
+        assertEquals(9, sprintManager.getSprint(1).getCapacity());
     }
 
     @Test
@@ -135,7 +136,7 @@ public class EditSprintMenuTest {
         onView(allOf(withText("Test Title"))).perform(click());
         onView(withId(R.id.editSprintFrequencyEditText)).perform(ViewActions.replaceText(""), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.editSprintSubmitBtn)).perform(click());
-        assertEquals("14", sprintManager.getSprint(1).getFrequencyInDays());
+        assertEquals(14, sprintManager.getSprint(1).getFrequencyInDays());
     }
 
     @Test
@@ -144,7 +145,15 @@ public class EditSprintMenuTest {
         onView(allOf(withText("Test Title"))).perform(click());
         onView(withId(R.id.editSprintLengthEditText)).perform(ViewActions.replaceText(""), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.editSprintSubmitBtn)).perform(click());
-        assertEquals("7", sprintManager.getSprint(1).getLength());
+        assertEquals(7, sprintManager.getSprint(1).getLength());
+    }
+
+    @Test
+    public void SubmittingTheEditedSprintShouldTakeUserBackToMainMenu() {
+        onView(withId(R.id.editSprintBtn)).perform(click());
+        onView(allOf(withText("Test Title"))).perform(click());
+        onView(withId(R.id.editSprintSubmitBtn)).perform(click());
+        onView(withId(R.id.addNewStoryBtn)).check(matches(isDisplayed()));
     }
 
 }
