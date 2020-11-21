@@ -40,7 +40,7 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void goToAddStoryToSprintMenu(View view) {
-        Intent myIntent = new Intent(view.getContext(), MainMenu.class);
+        Intent myIntent = new Intent(view.getContext(), AddStoryToSprintMenu.class);
         startActivityForResult(myIntent, 0);
     }
 }

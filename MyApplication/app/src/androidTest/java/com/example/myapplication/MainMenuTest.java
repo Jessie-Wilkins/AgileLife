@@ -54,8 +54,8 @@ public class MainMenuTest {
 
     @Test
     public void AddStoryToSprintButtonGoesToAddStoryToSprintMenu() {
-        onView(withId(R.id.editSprintBtn)).perform(click());
-        onView(withId(R.id.addStoryToSprintChooseSprintTextView)).check(matches(isDisplayed()));
+        onView(withId(R.id.addStoryToSprintButton)).perform(click());
+        onView(withId(R.id.addStoryToSprintChooseSprintView)).check(matches(isDisplayed()));
     }
 
 }
