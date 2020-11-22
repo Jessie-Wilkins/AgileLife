@@ -45,15 +45,20 @@ public class AddStoryToSprintMenuTest {
         sprintManager = SprintManager.initiateSprintManager();
         SprintBuilder sprintBuilder = SprintBuilder.initiateSprintBuilder();
         sprintBuilder.setCapacity(9);
-        sprintBuilder.setLabel("Test Title");
+        sprintBuilder.setLabel("Sprint Title");
         sprintBuilder.setFrequency(14);
         sprintBuilder.setLength(7);
+        sprintManager.addSprint(sprintBuilder);
+        sprintBuilder.setCapacity(12);
+        sprintBuilder.setLabel("Sprint Title2");
+        sprintBuilder.setFrequency(7);
+        sprintBuilder.setLength(3);
         sprintManager.addSprint(sprintBuilder);
         storyManager = StoryManager.initiateStoryManager();
         StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
         storyBuilder.setPoints(9);
-        storyBuilder.setDescription("Test Description");
-        storyBuilder.setTitle("Test Title");
+        storyBuilder.setDescription("Story Description");
+        storyBuilder.setTitle("Story Title");
         storyManager.addStory(storyBuilder);
     }
 
@@ -65,10 +70,16 @@ public class AddStoryToSprintMenuTest {
     public void sprintChooserCanSelectExistingSprint() {
         onView(withId(R.id.addStoryToSprintButton)).perform(click());
         onView(withId(R.id.addStoryToSprintChooseSprintSpinner)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Test Title"))).perform(click());
-        onView(withId(R.id.addStoryToSprintChooseSprintSpinner))
-                .check(matches(withText(containsString("Test Title"))));
+        onData(allOf(is(instanceOf(String.class)), is("Sprint Title"))).perform(click());
+        onView(withText("Sprint Title")).check(matches(isDisplayed()));
+    }
 
+    @Test
+    public void sprintChooserCanSelectAnotherExistingSprint() {
+        onView(withId(R.id.addStoryToSprintButton)).perform(click());
+        onView(withId(R.id.addStoryToSprintChooseSprintSpinner)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Sprint Title2"))).perform(click());
+        onView(withText("Sprint Title2")).check(matches(isDisplayed()));
     }
 
 }
