@@ -26,4 +26,33 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addStoryToSprintChooseSprintView" />
+
+    <TextView
+        android:id="@+id/addStoryToSprintChooseStoryTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Choose Story"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addStoryToSprintChooseSprintSpinner" />
+
+    <Spinner
+        android:id="@+id/addStoryToSprintChooseStorySpinner"
+        android:layout_width="310dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addStoryToSprintChooseStoryTextView" />
+
+    <Button
+        android:id="@+id/addStoryToSprintSubmitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addStoryToSprintChooseStorySpinner" />
 </androidx.constraintlayout.widget.ConstraintLayout>
