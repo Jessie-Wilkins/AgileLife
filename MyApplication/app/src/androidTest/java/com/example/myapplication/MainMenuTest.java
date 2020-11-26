@@ -58,4 +58,10 @@ public class MainMenuTest {
         onView(withId(R.id.addStoryToSprintChooseSprintView)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void ViewCurrentSprintButtonGoesToViewCurrentSprintMenu() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintTitleTextView)).check(matches(isDisplayed()));
+    }
+
 }

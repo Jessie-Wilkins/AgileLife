@@ -2,9 +2,9 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -15,20 +15,19 @@ import java.util.ArrayList;
 
 public class AddStoryToSprintMenu extends AppCompatActivity {
 
-    Spinner spinner;
+    private Spinner spinner;
 
-    SprintManager sprintManager = SprintManager.getExistingSprintManager();
+    private SprintManager sprintManager = SprintManager.getExistingSprintManager();
 
-    StoryManager storyManager = StoryManager.getExistingStoryManager();
+    private StoryManager storyManager = StoryManager.getExistingStoryManager();
 
-    ArrayAdapter<String> arrayAdapter;
+    private ArrayAdapter<String> arrayAdapter;
 
-    ArrayList<String> arrayList;
+    private ArrayList<String> arrayList;
 
-    public static int sprintOrStoryId;
+    private static int sprintId;
 
-    private int sprintId;
-
+    private static int storyId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,18 +37,41 @@ public class AddStoryToSprintMenu extends AppCompatActivity {
         populateStorySpinner();
     }
 
-    public void addStoryToSprint() {
-        spinner = findViewById(R.id.addStoryToSprintChooseSprintSpinner);
-        spinner.setOnItemSelectedListener(new AddStoryToSprintSpinner());
-        sprintId = sprintOrStoryId;
-        spinner = findViewById(R.id.addStoryToSprintChooseSprintSpinner);
-        spinner.setOnItemSelectedListener(new AddStoryToSprintSpinner());
-
+    public void addStoryToSprint(View view) {
+        storyManager.getStory(getStoryId()).setSprintTitleAndId(sprintManager.getSprint(getSprintId()).getIdPlusLabel());
+        goToMainMenu(view);
     }
+
+    private void goToMainMenu(View view) {
+        Intent myIntent = new Intent(view.getContext(), MainMenu.class);
+        startActivityForResult(myIntent, 0);
+    }
+
+    public static int getSprintId() {
+        return sprintId;
+    }
+
+    public static void setSprintId(int sprintId) {
+        AddStoryToSprintMenu.sprintId = sprintId;
+    }
+
+    public static int getStoryId() {
+        return storyId;
+    }
+
+    public static void setStoryId(int storyId) {
+        AddStoryToSprintMenu.storyId = storyId;
+    }
+
 
     private void populateSprintSpinner() {
         spinner = findViewById(R.id.addStoryToSprintChooseSprintSpinner);
         iterativeSprintAdd();
+        setArrayAdapterForSpinner();
+        spinner.setOnItemSelectedListener(new AddStoryToSprintSprintSpinner());
+    }
+
+    private void setArrayAdapterForSpinner() {
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
@@ -67,11 +89,9 @@ public class AddStoryToSprintMenu extends AppCompatActivity {
     private void populateStorySpinner() {
         spinner = findViewById(R.id.addStoryToSprintChooseStorySpinner);
         iterativeStoryAdd();
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(arrayAdapter);
+        setArrayAdapterForSpinner();
+        spinner.setOnItemSelectedListener(new AddStoryToSprintStorySpinner());
     }
-
 
     private void iterativeStoryAdd() {
         arrayList = new ArrayList<>();

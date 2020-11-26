@@ -213,7 +213,7 @@ public class Sprint {
         return totalPoints;
     }
 
-    private String getIdPlusLabel() {
+    public String getIdPlusLabel() {
         return this.id + ":" + getLabel();
     }
 }

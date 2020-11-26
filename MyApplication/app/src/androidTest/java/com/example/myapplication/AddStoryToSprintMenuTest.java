@@ -98,7 +98,18 @@ public class AddStoryToSprintMenuTest {
         onView(withId(R.id.addStoryToSprintChooseSprintSpinner)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Sprint Title2"))).perform(click());
         onView(withId(R.id.addStoryToSprintSubmitBtn)).perform(click());
-        assertEquals("Story Title", sprintManager.getSprint(2).getStoryList().get(0));
+        assertEquals("Story Title", sprintManager.getSprint(2).getStoryList().get(0).getTitle());
+    }
+
+    @Test
+    public void clickingAddStoryToSprintSubmitButtonWillTakeUserBackToMainMenu() {
+        onView(withId(R.id.addStoryToSprintButton)).perform(click());
+        onView(withId(R.id.addStoryToSprintChooseStorySpinner)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Story Title"))).perform(click());
+        onView(withId(R.id.addStoryToSprintChooseSprintSpinner)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Sprint Title2"))).perform(click());
+        onView(withId(R.id.addStoryToSprintSubmitBtn)).perform(click());
+        onView(withId(R.id.addStoryToSprintButton)).check(matches(isDisplayed()));
     }
 
 }
