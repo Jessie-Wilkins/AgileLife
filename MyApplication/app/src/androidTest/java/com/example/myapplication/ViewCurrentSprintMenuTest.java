@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.AllOf.allOf;
@@ -92,6 +93,24 @@ public class ViewCurrentSprintMenuTest {
         storyManager.getStory(2).getPointsManagement().completePoints(2);
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintTotalCompletedPointsTextView)).check(matches(withText("Sprint Total Completed Points:\n2")));
+    }
+
+    @Test
+    public void viewCurrentSprintMenuShowsStoryTextView() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintStoriesTextView)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void viewCurrentSprintMenuShowsStoryListView() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintStoriesListView)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void viewCurrentSprintMenuShowsExistingStoryInStoryListView() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withText("Story Title")).check(matches(isDisplayed()));
     }
 
    /* @Test

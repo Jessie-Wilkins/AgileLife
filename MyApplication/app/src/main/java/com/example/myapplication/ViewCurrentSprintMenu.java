@@ -3,13 +3,21 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.actual.myapplication.SprintManager;
 
+import java.util.ArrayList;
+
 public class ViewCurrentSprintMenu extends AppCompatActivity {
 
     SprintManager sprintManager;
+
+    ArrayList<String> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +34,7 @@ public class ViewCurrentSprintMenu extends AppCompatActivity {
         retrieveSprintLength();
         retrieveSprintTotalPoints();
         retrieveSprintTotalCompletedPoints();
+        retrieveSprintStories();
     }
 
     private void retrieveSprintTitle() {
@@ -74,5 +83,35 @@ public class ViewCurrentSprintMenu extends AppCompatActivity {
         TextView viewCurrentSprintLength = findViewById(R.id.viewCurrentSprintTotalCompletedPointsTextView);
 
         viewCurrentSprintLength.setText(new StringBuilder().append("Sprint Total Completed Points:\n").append(sprintManager.getSprint(1).getTotalCompletedPoints()).toString());
+    }
+
+    private void retrieveSprintStories() {
+        iterativeSprintAdd();
+        addToAdapter();
+    }
+
+    private void createSprintList() {
+        iterativeSprintAdd();
+        addToAdapter();
+    }
+
+    private void addToAdapter() {
+        ListView listView = findViewById(R.id.sprintListView);
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
+        listView.setAdapter(arrayAdapter);
+        /*arrayAdapter.notifyDataSetChanged();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                goToEditSprintMenu(view, position);
+            }
+        });*/
+    }
+
+    private void iterativeStoryAdd() {
+        arrayList = new ArrayList<>();
+        for(long id : storyManager.getStoriesIds()) {
+            arrayList.add(storyManager.getStory(id).getTitle());
+        }
     }
 }
