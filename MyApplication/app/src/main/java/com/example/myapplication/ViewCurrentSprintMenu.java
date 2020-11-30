@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,12 +11,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.actual.myapplication.SprintManager;
+import com.actual.myapplication.StoryManager;
 
 import java.util.ArrayList;
 
 public class ViewCurrentSprintMenu extends AppCompatActivity {
 
     SprintManager sprintManager;
+
+    StoryManager storyManager;
 
     ArrayList<String> arrayList;
 
@@ -28,6 +32,7 @@ public class ViewCurrentSprintMenu extends AppCompatActivity {
 
     private void retrieveSprintAttributes() {
         sprintManager = SprintManager.getExistingSprintManager();
+        storyManager = StoryManager.getExistingStoryManager();
         retrieveSprintTitle();
         retrieveSprintCapacity();
         retrieveSprintFrequency();
@@ -86,26 +91,21 @@ public class ViewCurrentSprintMenu extends AppCompatActivity {
     }
 
     private void retrieveSprintStories() {
-        iterativeSprintAdd();
-        addToAdapter();
-    }
-
-    private void createSprintList() {
-        iterativeSprintAdd();
+        iterativeStoryAdd();
         addToAdapter();
     }
 
     private void addToAdapter() {
-        ListView listView = findViewById(R.id.sprintListView);
+        ListView listView = findViewById(R.id.viewCurrentSprintStoriesListView);
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(arrayAdapter);
-        /*arrayAdapter.notifyDataSetChanged();
+        arrayAdapter.notifyDataSetChanged();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                goToEditSprintMenu(view, position);
+                goToViewCurrentStoryMenu(view, position);
             }
-        });*/
+        });
     }
 
     private void iterativeStoryAdd() {
@@ -113,5 +113,13 @@ public class ViewCurrentSprintMenu extends AppCompatActivity {
         for(long id : storyManager.getStoriesIds()) {
             arrayList.add(storyManager.getStory(id).getTitle());
         }
+    }
+
+    private void goToViewCurrentStoryMenu(View view, int position) {
+        Intent myIntent = new Intent(view.getContext(), ViewCurrentStoryMenu.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("storyId", position+1);
+        myIntent.putExtras(bundle);
+        startActivityForResult(myIntent, 0);
     }
 }

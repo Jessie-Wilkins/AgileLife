@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -113,24 +114,18 @@ public class ViewCurrentSprintMenuTest {
         onView(withText("Story Title")).check(matches(isDisplayed()));
     }
 
-   /* @Test
-    public void SprintListMenuShowsSecondSprintFromList() {
-        onView(withId(R.id.editSprintBtn)).perform(click());
-        onView(withText("Second Title")).check(matches(isDisplayed()));
+    @Test
+    public void viewCurrentSprintMenuShowsAnotherExistingStoryInStoryListView() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withText("Story Title2")).check(matches(isDisplayed()));
     }
 
     @Test
-    public void SprintListMenuTakesUserToEditSprintMenuWhenItemIsClickedOn() {
-        onView(withId(R.id.editSprintBtn)).perform(click());
-        onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editSprintTitleTextView)).check(matches(isDisplayed()));
+    public void clickingOnStoryTitleTakesUserToStoryPage() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(allOf(withText("Story Title2"))).perform();
+        onView(allOf(withText("Story Title2"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(withText("Story Title2")));
     }
-
-    @Test
-    public void SprintListMenuTakesUserToEditSprintMenuWithSameSprintTitleWhenItemIsClickedOn() {
-        onView(withId(R.id.editSprintBtn)).perform(click());
-        onView(allOf(withText("Second Title"))).perform(click());
-        onView(withId(R.id.editSprintTitleEditText)).check(matches(withText("Second Title")));
-    }*/
 
 }
