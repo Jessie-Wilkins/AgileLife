@@ -123,7 +123,7 @@ public class ViewCurrentSprintMenuTest {
     @Test
     public void clickingOnStoryTitleTakesUserToStoryPage() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
-        onView(allOf(withText("Story Title2"))).perform();
+        onView(allOf(withText("Story Title2"))).perform(scrollTo());
         onView(allOf(withText("Story Title2"))).perform(click());
         onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(withText("Story Title2")));
     }
