@@ -19,10 +19,6 @@ public class ViewCurrentSprintMenu extends AppCompatActivity {
 
     SprintManager sprintManager;
 
-    StoryManager storyManager;
-
-    ArrayList<String> arrayList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,16 +26,24 @@ public class ViewCurrentSprintMenu extends AppCompatActivity {
         retrieveSprintAttributes();
     }
 
+    public void goToCurrentStoryListMenu(View view) {
+        Intent myIntent = new Intent(view.getContext(), CurrentStoryListMenu.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("sprintId", 1);
+        myIntent.putExtras(bundle);
+        startActivityForResult(myIntent, 0);
+    }
+
     private void retrieveSprintAttributes() {
         sprintManager = SprintManager.getExistingSprintManager();
-        storyManager = StoryManager.getExistingStoryManager();
+
         retrieveSprintTitle();
         retrieveSprintCapacity();
         retrieveSprintFrequency();
         retrieveSprintLength();
         retrieveSprintTotalPoints();
         retrieveSprintTotalCompletedPoints();
-        retrieveSprintStories();
+
     }
 
     private void retrieveSprintTitle() {
@@ -88,38 +92,5 @@ public class ViewCurrentSprintMenu extends AppCompatActivity {
         TextView viewCurrentSprintLength = findViewById(R.id.viewCurrentSprintTotalCompletedPointsTextView);
 
         viewCurrentSprintLength.setText(new StringBuilder().append("Sprint Total Completed Points:\n").append(sprintManager.getSprint(1).getTotalCompletedPoints()).toString());
-    }
-
-    private void retrieveSprintStories() {
-        iterativeStoryAdd();
-        addToAdapter();
-    }
-
-    private void addToAdapter() {
-        ListView listView = findViewById(R.id.viewCurrentSprintStoriesListView);
-        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
-        listView.setAdapter(arrayAdapter);
-        arrayAdapter.notifyDataSetChanged();
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                goToViewCurrentStoryMenu(view, position);
-            }
-        });
-    }
-
-    private void iterativeStoryAdd() {
-        arrayList = new ArrayList<>();
-        for(long id : storyManager.getStoriesIds()) {
-            arrayList.add(storyManager.getStory(id).getTitle());
-        }
-    }
-
-    private void goToViewCurrentStoryMenu(View view, int position) {
-        Intent myIntent = new Intent(view.getContext(), ViewCurrentStoryMenu.class);
-        Bundle bundle = new Bundle();
-        bundle.putInt("storyId", position+1);
-        myIntent.putExtras(bundle);
-        startActivityForResult(myIntent, 0);
     }
 }

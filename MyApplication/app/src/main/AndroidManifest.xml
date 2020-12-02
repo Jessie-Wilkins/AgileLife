@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewCurrentStoryMenu"/>
+        <activity android:name=".CurrentStoryListMenu"></activity>
+        <activity android:name=".ViewCurrentStoryMenu" />
         <activity android:name=".ViewCurrentSprintMenu" />
         <activity android:name=".AddStoryToSprintSprintSpinner" />
         <activity android:name=".AddStoryToSprintMenu" />
