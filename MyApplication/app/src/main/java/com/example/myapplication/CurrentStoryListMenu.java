@@ -42,6 +42,10 @@ public class CurrentStoryListMenu extends AppCompatActivity {
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
+        setTheCurrentStoryListener(listView);
+    }
+
+    private void setTheCurrentStoryListener(ListView listView) {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

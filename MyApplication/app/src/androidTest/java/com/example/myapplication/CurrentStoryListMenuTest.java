@@ -40,18 +40,32 @@ public class CurrentStoryListMenuTest {
         sprintBuilder.setFrequency(14);
         sprintBuilder.setCapacity(16);
         sprintManager.addSprint(sprintBuilder);
+
         storyManager = StoryManager.initiateStoryManager();
         StoryBuilder storyBuilder = StoryBuilder.initiateBuilder();
         storyBuilder.setPoints(9);
         storyBuilder.setDescription("Story Description");
         storyBuilder.setTitle("Story Title");
         storyManager.addStory(storyBuilder);
+
         storyBuilder.setPoints(4);
         storyBuilder.setDescription("Story Description2");
         storyBuilder.setTitle("Story Title2");
         storyManager.addStory(storyBuilder);
+
+        storyBuilder.setPoints(3);
+        storyBuilder.setDescription("Story Description3");
+        storyBuilder.setTitle("Story Title3");
+        storyManager.addStory(storyBuilder);
+
+        storyBuilder.setPoints(1);
+        storyBuilder.setDescription("Story Description4");
+        storyBuilder.setTitle("Story Title4");
+        storyManager.addStory(storyBuilder);
+
         storyManager.getStory(1).setSprintTitleAndId(sprintManager.getSprint(1).getIdPlusLabel());
         storyManager.getStory(2).setSprintTitleAndId(sprintManager.getSprint(1).getIdPlusLabel());
+        storyManager.getStory(4).setSprintTitleAndId(sprintManager.getSprint(1).getIdPlusLabel());
     }
 
     @Rule
@@ -65,24 +79,45 @@ public class CurrentStoryListMenuTest {
         onView(withText("Story Title")).check(matches(isDisplayed()));
     }
 
-    /*@Test
-    public void SprintListMenuShowsSecondSprintFromList() {
-        onView(withId(R.id.editSprintBtn)).perform(click());
-        onView(withText("Second Title")).check(matches(isDisplayed()));
+    @Test
+    public void CurrentStoryListMenuShowsSecondStoryFromCurrentSprint() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(withText("Story Title2")).check(matches(isDisplayed()));
     }
 
     @Test
-    public void SprintListMenuTakesUserToEditSprintMenuWhenItemIsClickedOn() {
-        onView(withId(R.id.editSprintBtn)).perform(click());
-        onView(allOf(withText("Test Title"))).perform(click());
-        onView(withId(R.id.editSprintTitleTextView)).check(matches(isDisplayed()));
+    public void CurrentStoryListMenuTakesUserToCurrentStoryMenuWhenOneOfTheItemsIsClicked() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void SprintListMenuTakesUserToEditSprintMenuWithSameSprintTitleWhenItemIsClickedOn() {
-        onView(withId(R.id.editSprintBtn)).perform(click());
-        onView(allOf(withText("Second Title"))).perform(click());
-        onView(withId(R.id.editSprintTitleEditText)).check(matches(withText("Second Title")));
-    }*/
+    public void CurrentStoryListMenuTakesUserToCurrentStoryMenuWithCorrelatedTitleWhenOneOfTheItemsIsClicked() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(withText("Story Title")));
+    }
+
+    @Test
+    public void CurrentStoryListMenuTakesUserToAnotherCurrentStoryMenuWithCorrelatedTitleWhenOneOfTheItemsIsClicked() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("Story Title2"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(withText("Story Title2")));
+    }
+
+    @Test
+    public void CurrentStoryListMenuTakesUserToCurrentStoryWithNonContiguousIdWhenCorrelatedTitleIsClicked() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("Story Title4"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(withText("Story Title4 ")));
+
+    }
+
 
 }

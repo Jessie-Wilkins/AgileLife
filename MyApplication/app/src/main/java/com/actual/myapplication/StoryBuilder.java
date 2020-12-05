@@ -12,7 +12,7 @@ public class StoryBuilder {
     private int points;
     private static StoryBuilder builder = new StoryBuilder();
     private Story.StoryStatus status;
-    private String sprint_title_id;
+    private String sprint_title_id = "DefaultSprint";
     private int completed_points;
     private boolean completed_points_changed = false;
     private boolean points_changed = false;

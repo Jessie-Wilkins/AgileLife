@@ -17,15 +17,19 @@ public class ViewCurrentStoryMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_current_story_menu);
-        storyManager = StoryManager.getExistingStoryManager();
-        //storyId = getIntent().getExtras().getInt("storyId");
+        initiateStoryValues();
         getStoryTitle();
+    }
+
+    private void initiateStoryValues() {
+        storyManager = StoryManager.getExistingStoryManager();
+        storyId = getIntent().getExtras().getInt("storyId");
     }
 
     protected void getStoryTitle() {
         if (storyManager.getStoriesIds().length > 0) {
             editTitle = findViewById(R.id.viewCurrentStoryTitleTextView);
-            //editTitle.setText(storyManager.getStory(storyId).getTitle());
+            editTitle.setText(storyManager.getStory(storyId).getTitle());
         }
     }
 }
