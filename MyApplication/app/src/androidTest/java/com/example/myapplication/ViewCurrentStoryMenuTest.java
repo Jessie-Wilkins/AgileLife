@@ -27,7 +27,7 @@ import static org.hamcrest.core.AllOf.allOf;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class CurrentStoryListMenuTest {
+public class ViewCurrentStoryMenuTest {
 
     SprintManager sprintManager;
     StoryManager storyManager;
@@ -73,51 +73,31 @@ public class CurrentStoryListMenuTest {
             = new ActivityScenarioRule<>(MainMenu.class);
 
     @Test
-    public void CurrentStoryListMenuShowsStoryAssignedToSprintFromList() {
-        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
-        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
-        onView(withText("1:Story Title")).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void CurrentStoryListMenuShowsSecondStoryFromCurrentSprint() {
-        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
-        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
-        onView(withText("2:Story Title2")).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void CurrentStoryListMenuTakesUserToCurrentStoryMenuWhenOneOfTheItemsIsClicked() {
+    public void viewCurrentSprintMenuShowsStoryListView() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
         onView(allOf(withText("1:Story Title"))).perform(click());
-        onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(isDisplayed()));
+        onView(withId(R.id.viewCurrentStoryTotalPointsTextView)).check(matches(isDisplayed()));
+    }
+
+   /* @Test
+    public void viewCurrentSprintMenuShowsExistingStoryInStoryListView() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withText("Story Title")).check(matches(isDisplayed()));
     }
 
     @Test
-    public void CurrentStoryListMenuTakesUserToCurrentStoryMenuWithCorrelatedTitleWhenOneOfTheItemsIsClicked() {
+    public void viewCurrentSprintMenuShowsAnotherExistingStoryInStoryListView() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
-        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
-        onView(allOf(withText("1:Story Title"))).perform(click());
-        onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(withText("Story Title")));
+        onView(withText("Story Title2")).check(matches(isDisplayed()));
     }
 
     @Test
-    public void CurrentStoryListMenuTakesUserToAnotherCurrentStoryMenuWithCorrelatedTitleWhenOneOfTheItemsIsClicked() {
+    public void clickingOnStoryTitleTakesUserToStoryPage() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
-        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
-        onView(allOf(withText("2:Story Title2"))).perform(click());
+        onView(allOf(withText("Story Title2"))).perform(scrollTo());
+        onView(allOf(withText("Story Title2"))).perform(click());
         onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(withText("Story Title2")));
-    }
-
-    @Test
-    public void CurrentStoryListMenuTakesUserToCurrentStoryWithNonContiguousIdWhenCorrelatedTitleIsClicked() {
-        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
-        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
-        onView(allOf(withText("4:Story Title4"))).perform(click());
-        onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(withText("Story Title4")));
-
-    }
-
+    }*/
 
 }

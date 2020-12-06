@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.actual.myapplication.SprintManager;
 import com.actual.myapplication.Story;
@@ -57,15 +58,27 @@ public class CurrentStoryListMenu extends AppCompatActivity {
     private void iterativeStoryAdd() {
         arrayList = new ArrayList<>();
         for(Story story: sprintManager.getSprint(sprintId).getStoryList()) {
-            arrayList.add(story.getTitle());
+            arrayList.add(story.getId()+":"+story.getTitle());
         }
     }
 
     private void goToViewCurrentStoryMenu(View view, int position) {
         Intent myIntent = new Intent(view.getContext(), ViewCurrentStoryMenu.class);
         Bundle bundle = new Bundle();
-        bundle.putInt("storyId", position+1);
-        myIntent.putExtras(bundle);
+        placeStoryIdInBundle(position, myIntent, bundle);
         startActivityForResult(myIntent, 0);
+    }
+
+    private void placeStoryIdInBundle(int position, Intent myIntent, Bundle bundle) {
+        int storyId = getStoryIdFromListTitle(position);
+        bundle.putInt("storyId", storyId);
+        myIntent.putExtras(bundle);
+    }
+
+    private int getStoryIdFromListTitle(int position) {
+        ListView listView = findViewById(R.id.viewCurrentStoryListView);
+        String storyTitle = listView.getItemAtPosition(position).toString();
+        String stringStoryId = storyTitle.split(":")[0];
+        return Integer.parseInt(stringStoryId);
     }
 }
