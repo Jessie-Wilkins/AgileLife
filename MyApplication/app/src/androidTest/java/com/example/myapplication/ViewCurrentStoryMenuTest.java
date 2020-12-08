@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -73,31 +74,61 @@ public class ViewCurrentStoryMenuTest {
             = new ActivityScenarioRule<>(MainMenu.class);
 
     @Test
-    public void viewCurrentSprintMenuShowsStoryListView() {
+    public void viewCurrentSprintMenuShowsStoryPoints() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
         onView(allOf(withText("1:Story Title"))).perform(click());
         onView(withId(R.id.viewCurrentStoryTotalPointsTextView)).check(matches(isDisplayed()));
     }
 
-   /* @Test
-    public void viewCurrentSprintMenuShowsExistingStoryInStoryListView() {
+    @Test
+    public void viewCurrentSprintMenuShowsCorrectStoryPointsAmount() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
-        onView(withText("Story Title")).check(matches(isDisplayed()));
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("1:Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryTotalPointsTextView)).check(matches(withText("Total Points:\n9")));
     }
 
     @Test
-    public void viewCurrentSprintMenuShowsAnotherExistingStoryInStoryListView() {
+    public void viewCurrentSprintMenuShowsStoryDescription() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
-        onView(withText("Story Title2")).check(matches(isDisplayed()));
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("1:Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryDescriptionTextView)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void clickingOnStoryTitleTakesUserToStoryPage() {
+    public void viewCurrentSprintMenuShowsCorrectStoryDescriptionContent() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
-        onView(allOf(withText("Story Title2"))).perform(scrollTo());
-        onView(allOf(withText("Story Title2"))).perform(click());
-        onView(withId(R.id.viewCurrentStoryTitleTextView)).check(matches(withText("Story Title2")));
-    }*/
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("1:Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryDescriptionTextView)).check(matches(withText("Description:\nStory Description")));
+    }
+
+    @Test
+    public void viewCurrentSprintMenuShowsCorrectWorkableStoryPointsAmount() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("1:Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryWorkablePointsTextView)).check(matches(withText("Points Left:\n9")));
+    }
+
+    @Test
+    public void viewCurrentSprintMenuShowsCorrectCompletedStoryPointsAmount() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("1:Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryCompletedPointsTextView)).check(matches(withText("Points Completed:\n0")));
+    }
+
+    @Test
+    public void viewCurrentSprintMenuCanChangePointsCompletedAmount() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("1:Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryCompletedPointsEditText)).perform(typeText("1"));
+        onView(withId(R.id.viewCurrentStoryCompletedPointsBtn)).perform(click());
+        onView(withId(R.id.viewCurrentStoryTotalPointsTextView)).check(matches(withText("Points Complete:\n1")));
+    }
 
 }
