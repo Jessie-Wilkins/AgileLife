@@ -13,6 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -22,6 +23,9 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.AllOf.allOf;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -137,7 +141,17 @@ public class ViewCurrentStoryMenuTest {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
         onView(allOf(withText("1:Story Title"))).perform(click());
-        onView(withId(R.id.viewCurrentStoryStatusSpinner)).check(matches(withText("Ready")));
+        onView(withText("READY")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void viewCurrentStoryMenuCanChangeStoryStatus() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("1:Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryStatusSpinner)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("IN_PROGRESS"))).perform(click());
+        assertEquals("IN_PROGRESS" ,storyManager.getStory(1).getStatus().toString());
     }
 
 }

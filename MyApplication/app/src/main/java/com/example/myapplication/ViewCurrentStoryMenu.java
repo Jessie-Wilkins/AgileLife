@@ -23,6 +23,7 @@ public class ViewCurrentStoryMenu extends AppCompatActivity {
     private Spinner spinner;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> arrayList;
+    public static int spinner_location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class ViewCurrentStoryMenu extends AppCompatActivity {
         getStoryDescription();
         getWorkableStoryPoints();
         getCompletedStoryPoints();
+        populateStoryStatusSpinner();
     }
 
     private void initiateStoryValues() {
@@ -94,8 +96,9 @@ public class ViewCurrentStoryMenu extends AppCompatActivity {
 
     private void populateStoryStatusSpinner() {
         spinner = findViewById(R.id.viewCurrentStoryStatusSpinner);
+        statusAdd();
         setArrayAdapterForSpinner();
-        //spinner.setOnItemSelectedListener(new AddStoryToSprintStorySpinner());
+        spinner.setOnItemSelectedListener(new ViewCurrentStoryStatusSpinner());
     }
 
     private void statusAdd() {
