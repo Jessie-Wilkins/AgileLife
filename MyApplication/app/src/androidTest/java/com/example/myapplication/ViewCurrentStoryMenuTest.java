@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -74,7 +75,7 @@ public class ViewCurrentStoryMenuTest {
             = new ActivityScenarioRule<>(MainMenu.class);
 
     @Test
-    public void viewCurrentSprintMenuShowsStoryPoints() {
+    public void viewCurrentStoryMenuShowsStoryPoints() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
         onView(allOf(withText("1:Story Title"))).perform(click());
@@ -82,7 +83,7 @@ public class ViewCurrentStoryMenuTest {
     }
 
     @Test
-    public void viewCurrentSprintMenuShowsCorrectStoryPointsAmount() {
+    public void viewCurrentStoryMenuShowsCorrectStoryPointsAmount() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
         onView(allOf(withText("1:Story Title"))).perform(click());
@@ -90,7 +91,7 @@ public class ViewCurrentStoryMenuTest {
     }
 
     @Test
-    public void viewCurrentSprintMenuShowsStoryDescription() {
+    public void viewCurrentStoryMenuShowsStoryDescription() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
         onView(allOf(withText("1:Story Title"))).perform(click());
@@ -98,7 +99,7 @@ public class ViewCurrentStoryMenuTest {
     }
 
     @Test
-    public void viewCurrentSprintMenuShowsCorrectStoryDescriptionContent() {
+    public void viewCurrentStoryMenuShowsCorrectStoryDescriptionContent() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
         onView(allOf(withText("1:Story Title"))).perform(click());
@@ -106,7 +107,7 @@ public class ViewCurrentStoryMenuTest {
     }
 
     @Test
-    public void viewCurrentSprintMenuShowsCorrectWorkableStoryPointsAmount() {
+    public void viewCurrentStoryMenuShowsCorrectWorkableStoryPointsAmount() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
         onView(allOf(withText("1:Story Title"))).perform(click());
@@ -114,7 +115,7 @@ public class ViewCurrentStoryMenuTest {
     }
 
     @Test
-    public void viewCurrentSprintMenuShowsCorrectCompletedStoryPointsAmount() {
+    public void viewCurrentStoryMenuShowsCorrectCompletedStoryPointsAmount() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
         onView(allOf(withText("1:Story Title"))).perform(click());
@@ -122,13 +123,21 @@ public class ViewCurrentStoryMenuTest {
     }
 
     @Test
-    public void viewCurrentSprintMenuCanChangePointsCompletedAmount() {
+    public void viewCurrentStoryMenuCanChangePointsCompletedAmount() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
         onView(allOf(withText("1:Story Title"))).perform(click());
-        onView(withId(R.id.viewCurrentStoryCompletedPointsEditText)).perform(typeText("1"));
+        onView(withId(R.id.viewCurrentStoryCompletedPointsEditText)).perform(typeText("1"), closeSoftKeyboard());
         onView(withId(R.id.viewCurrentStoryCompletedPointsBtn)).perform(click());
-        onView(withId(R.id.viewCurrentStoryTotalPointsTextView)).check(matches(withText("Points Complete:\n1")));
+        onView(withId(R.id.viewCurrentStoryCompletedPointsTextView)).check(matches(withText("Points Completed:\n1")));
+    }
+
+    @Test
+    public void viewCurrentStoryMenuCanShowStoryStatus() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("1:Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryStatusSpinner)).check(matches(withText("Ready")));
     }
 
 }
