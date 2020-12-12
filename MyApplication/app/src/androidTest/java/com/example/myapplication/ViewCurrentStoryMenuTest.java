@@ -137,6 +137,16 @@ public class ViewCurrentStoryMenuTest {
     }
 
     @Test
+    public void viewCurrentStoryMenuCanChangePointsAssignedAmount() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("1:Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryCompletedPointsEditText)).perform(typeText("1"), closeSoftKeyboard());
+        onView(withId(R.id.viewCurrentStoryCompletedPointsBtn)).perform(click());
+        onView(withId(R.id.viewCurrentStoryWorkablePointsTextView)).check(matches(withText("Points Left:\n8")));
+    }
+
+    @Test
     public void viewCurrentStoryMenuCanShowStoryStatus() {
         onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
         onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());

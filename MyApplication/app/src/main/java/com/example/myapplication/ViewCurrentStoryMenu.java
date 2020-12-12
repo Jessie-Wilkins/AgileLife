@@ -23,7 +23,6 @@ public class ViewCurrentStoryMenu extends AppCompatActivity {
     private Spinner spinner;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> arrayList;
-    public static int spinner_location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +88,7 @@ public class ViewCurrentStoryMenu extends AppCompatActivity {
     }
 
     private void placeStoryIdInBundle(Intent myIntent, Bundle bundle) {
-       int storyId = getIntent().getExtras().getInt("storyId");
+        int storyId = getIntent().getExtras().getInt("storyId");
         bundle.putInt("storyId", storyId);
         myIntent.putExtras(bundle);
     }
@@ -98,6 +97,11 @@ public class ViewCurrentStoryMenu extends AppCompatActivity {
         spinner = findViewById(R.id.viewCurrentStoryStatusSpinner);
         statusAdd();
         setArrayAdapterForSpinner();
+        setStoryIdAndListenerForSpinner();
+    }
+
+    private void setStoryIdAndListenerForSpinner() {
+        ViewCurrentStoryStatusSpinner.setStoryId(storyId);
         spinner.setOnItemSelectedListener(new ViewCurrentStoryStatusSpinner());
     }
 
