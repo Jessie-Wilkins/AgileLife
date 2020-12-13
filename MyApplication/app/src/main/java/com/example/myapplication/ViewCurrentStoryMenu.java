@@ -118,5 +118,18 @@ public class ViewCurrentStoryMenu extends AppCompatActivity {
         spinner.setAdapter(arrayAdapter);
     }
 
+    public void goToCurrentStoryListMenu(View view) {
+        Intent myIntent = new Intent(view.getContext(), CurrentStoryListMenu.class);
+        Bundle bundle = new Bundle();
+        int sprintId = getSprintIdFromStory();
+        bundle.putInt("sprintId", sprintId);
+        myIntent.putExtras(bundle);
+        startActivityForResult(myIntent, 0);
+    }
+
+    private int getSprintIdFromStory() {
+        return Integer.parseInt(storyManager.getStory(storyId).getSprintTitleAndId().split(":")[0]);
+    }
+
 
 }

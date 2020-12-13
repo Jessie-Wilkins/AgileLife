@@ -164,4 +164,13 @@ public class ViewCurrentStoryMenuTest {
         assertEquals("IN_PROGRESS" ,storyManager.getStory(1).getStatus().toString());
     }
 
+    @Test
+    public void viewCurrentStoryMenuCanGoBackToCurrentStoryListMenu() {
+        onView(withId(R.id.ViewCurrentSprintBtn)).perform(click());
+        onView(withId(R.id.viewCurrentSprintSeeStoriesBtn)).perform(click());
+        onView(allOf(withText("1:Story Title"))).perform(click());
+        onView(withId(R.id.viewCurrentStoryMenuGoBackBtn)).perform(click());
+        onView(withText("1:Story Title")).check(matches(isDisplayed()));
+    }
+
 }
